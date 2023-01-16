@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import "./cadastro.css"
-import imglap from '../Image/IMGlap.png'
+
 
 export interface ICadatro{
   firtname: string,
@@ -38,7 +38,9 @@ const Cadastro: React.FC = (props:any) => {
 
   return (
     <section>
-      <img src={imglap}></img>
+      <section>
+        <img></img>
+      </section>
       <form className='form'>
         <p>
           <label>
@@ -90,7 +92,7 @@ const Cadastro: React.FC = (props:any) => {
         </p>
 
         <p>
-          <input type="submit" />
+          <input type="submit" onClick={(e)=> e.preventDefault() }/>
         </p>
         </form>
       </section>
