@@ -1,0 +1,5 @@
+.form{
+    display: grid;
+    grid-column: 1fr 1fr;
+    grid-row: none;
+}
