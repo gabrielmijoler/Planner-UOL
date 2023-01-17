@@ -2,33 +2,13 @@
     display: grid;
     grid-template-columns: repeat(auto-fit,minmax(50%,1fr));;
     grid-template-rows: repeat(auto-fit,minmax(100%,1fr));
-    align-items: center;
-    justify-items: center;
     background-color: #2a2d31;
 }
 
-button{
-    width: 471px;
-    height: 67px;
-    left: 298px;
-    top: 928px;
-    background: linear-gradient(90deg, #FF2D04 0%, #C13216 100%);
-    box-shadow: inset 5px 5px 15px rgba(0, 0, 0, 0.15);
-    border-radius: 50px;
-    font-family: 'Mulish';
-    font-style: normal;
-    font-weight: 700;
-    font-size: 32px;
-    line-height: 40px;
-    color: #FFFFFF;
-}
 
 .titleWelcome{
     display: flex;
     flex-direction: column;
-    font-family: 'Mulish';
-    font-style: normal;
-    font-weight: 400;
     font-size: 60px;
     color: #E0E0E0;
 }
@@ -37,6 +17,23 @@ button{
     font-size: 16px;
     margin-left: 2px;
 }
+.sectionOne{
+    display: grid;
+    justify-items: start;
+    justify-content: center;
+}
+
+.container{
+    background-image: url('../Image/IMGlap.png');
+    background-repeat: no-repeat;
+    background-size: 100%;
+}
+.sectLink{
+    display: flex;
+    justify-content: center;
+
+}
+
 /* .imglap{
     width: 841px;
     height: 990px;

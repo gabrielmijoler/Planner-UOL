@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import Input from '../UI/Input/Input';
 import "./cadastro.css"
-import { logoUol } from '../Image/index';
+import logoUol from '../Image/logouol.svg';
 import Button from '../UI/Button/Button';
-import App from '../../App';
 import { Link } from 'react-router-dom';
+
 
 export interface ICadatro{
   firtname: string,
@@ -43,7 +43,7 @@ const Cadastro: React.FC = (props:any) => {
   return (
     <>
     <section className='control-form'>
-      <section>
+      <section className='sectionOne'>
         <p className='titleWelcome'>Welcome,
         <a className='second-title'>Please, register to continue.</a></p>
         <form className='form'>
@@ -103,17 +103,16 @@ const Cadastro: React.FC = (props:any) => {
               onChange={(e) => setPassowrd(e)}
               placeholder='Comfirm your password'
             /> 
-            <Button type='submit' />
-          </form>
-          <section>
-            <ul>
-              <Link to='/login'>Login</Link>
-            </ul>
+            <Button type='submit' label="Register Now"/>
+            <section className='sectLink'>
+              <ul style={{color:"#fff"}}>
+                You have cadastre click<Link style={{color:"white"}} to='/login'> here</Link>
+              </ul>
           </section>
+          </form>
         </section>
-
-        <section>
-          <img className='imglap' />
+        <section className='container'>
+          <a href='https://compass.uol/pt/sobre-nos/'><img style={{marginLeft:"25%", marginTop:"3%"}} src={logoUol}/></a>
         </section>
       </section>
       </>

@@ -1,40 +1,35 @@
 .control {
-    margin: 1rem;
     display: flex;
-    align-items: flex-end;
-    flex-direction: column;
+    justify-content: space-between;
   }
   
   .control label {
-    font-family: 'Mulish';
-    font-style: normal;
-    font-weight: 400;
     font-size: 16px;
     line-height: 20px;
     color: #E0E0E0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
   }
   
   .control input {
-    width: 379px;
+    width: 350px;
     height: 60px;
     border: 1px solid #0f0d0d;
     border-radius: 50px;
     background: #26292C;
-    font-family: 'Mulish';
-    font-style: normal;
-    font-weight: 400;
     font-size: 12px;
     line-height: 15px;
     color: #E0E0E0;
-    margin: 0 0 2px 20px;
+    padding-left: 29px;
   }
   
-  .control input:focus {
+  /* .control input:focus {
     outline: none;
     border-color: #4f005f;
     background: #f6dbfc;
   }
-  
+   */
   /* .control.invalid input {
     border-color: red;
     background: #fbdada;

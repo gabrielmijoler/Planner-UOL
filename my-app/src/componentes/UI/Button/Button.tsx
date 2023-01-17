@@ -1,8 +1,17 @@
 import React from 'react';
-
 import './Button.css';
 
-const Button = (props:any) => {
+type Props = {
+  label?: string;
+  onClick?: () => void
+  disabled?: boolean;
+  type?: "button" | "submit" | "reset" | undefined, 
+  children?: string
+};
+
+const Button = (props:Props) => {
+
+  
   return (
     <>
     <button
@@ -11,6 +20,7 @@ const Button = (props:any) => {
       disabled={props.disabled}
     >
       {props.children}  
+      {props.label}
     </button>
     </>
   );
