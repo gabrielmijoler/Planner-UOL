@@ -1,4 +1,4 @@
-.control {
+/* .control {
     display: flex;
     justify-content: space-between;
   }
@@ -11,33 +11,4 @@
     justify-content: center;
     align-items: center;
   }
-  
-  .control input {
-    width: 350px;
-    height: 60px;
-    border: 1px solid #0f0d0d;
-    border-radius: 50px;
-    background: #26292C;
-    font-size: 12px;
-    line-height: 15px;
-    color: #E0E0E0;
-    padding-left: 29px;
-  }
-  
-  /* .control input:focus {
-    outline: none;
-    border-color: #4f005f;
-    background: #f6dbfc;
-  }
    */
-  /* .control.invalid input {
-    border-color: red;
-    background: #fbdada;
-  } */
-  
-  /* @media (min-width: 768px) {
-    .control {
-      align-items: center;
-      flex-direction: row;
-    }
-  } */ 

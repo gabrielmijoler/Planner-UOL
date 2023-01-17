@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { InputStyle, LabelInput, P } from '.';
 
 import './Input.css';
  
@@ -21,14 +22,14 @@ type Props = {
       };
 
     return (
-    <p className="control">
-        <label>{props.label}</label>
-        <input
-        onChange={handleChange}
-        placeholder={props.placeholder}
-        value={message}
-        type={props.type}
+    <P>
+        <LabelInput>{props.label}</LabelInput>
+        <InputStyle
+          onChange={handleChange}
+          placeholder={props.placeholder}
+          value={message}
+          type={props.type}
         />
-    </p>
+    </P>
     );
 }
