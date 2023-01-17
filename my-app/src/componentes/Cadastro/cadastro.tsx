@@ -1,9 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import Input from '../UI/Input/Input';
 import "./cadastro.css"
-import { logoUol } from '../Image/index'; 
-import { laptop } from '../Image/index'; 
-
+import { logoUol } from '../Image/index';
+import Button from '../UI/Button/Button';
 
 export interface ICadatro{
   firtname: string,
@@ -100,12 +99,12 @@ const Cadastro: React.FC = (props:any) => {
               onChange={(e) => setPassowrd(e)}
               placeholder='Comfirm your password'
             /> 
-            <button type='submit'>Register Now</button>
+            <Button type='submit' />
           </form>
         </section>
 
         <section>
-          <img></img>
+          <img className='imglap' />
         </section>
 
       </section>

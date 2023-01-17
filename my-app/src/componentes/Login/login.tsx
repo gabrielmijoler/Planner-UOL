@@ -1,29 +1,24 @@
 import React, { useState } from 'react';
 import Input from '../UI/Input/Input';
 
-const Cadastro: React.FC = (props:any) => {
-    const [username, setUsername] = useState<string>('')
-    const [password, setPassowwrd] = useState<string>('')
-    
-    return(
-        <form className='form'>
-        <p>
-          <Input type="text" 
-          label="first name" 
-          value={username} 
-          onChange={function (str: string): void {
-            throw new Error('Function not implemented.');
-          } } 
-          placeholder='user name' />
-        </p>
+const Cadastro: React.FC = (props: any) => {
+  const [username, setUsername] = useState<string>('')
+  const [password, setPassowrd] = useState<string>('')
 
-        <p>
-          <label>
-            last name
-            <input type="text"  value={password} onChange={(e) => setPassowwrd(e.target.value)}/>
-          </label>
-        </p>
-        </form>
-    )
+  return (
+    <form className='form'>
+      <Input type="text"
+        value={username}
+        onChange={(e) => setUsername(e)}
+        placeholder='user name'
+      />
+
+      <Input type="text"
+        value={password}
+        onChange={(e) => setPassowrd(e)}
+        placeholder='password'
+      />
+    </form>
+  )
 
 }
