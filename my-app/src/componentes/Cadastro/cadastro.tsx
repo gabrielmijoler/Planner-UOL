@@ -1,5 +1,8 @@
 import React, { useEffect, useState } from 'react';
+import Input from '../UI/Input/Input';
 import "./cadastro.css"
+import { logoUol } from '../Image/index'; 
+import { laptop } from '../Image/index'; 
 
 
 export interface ICadatro{
@@ -20,7 +23,7 @@ const Cadastro: React.FC = (props:any) => {
   const [country, setCoutry] = useState<string>('')
   const [city, setCity] = useState<string>('')
   const [email, setEmail] = useState<string>('')
-  const [password, setPassowwrd] = useState<string>('')
+  const [password, setPassowrd] = useState<string>('')
 
 
   useEffect(() => {
@@ -37,65 +40,76 @@ const Cadastro: React.FC = (props:any) => {
 
 
   return (
-    <section>
+    <>
+    <section className='control-form'>
       <section>
-        <img></img>
+        <form className='form'>
+            <Input 
+              label="first name"
+              type="text"
+              value={firtname}
+              onChange={(e) => setFirstaname(e)}
+              placeholder='Your first name'
+            />
+            <Input 
+              label="last name"
+              type="text"
+              value={lastname}
+              onChange={(e) => setLastname(e)}
+              placeholder='Your last name'
+            />
+            <Input 
+              label="birth date"
+              type="number"
+              value={birthdate}
+              onChange={(e) => setBirthdate(e)}
+              placeholder='MM/DD/YYYY'
+            />
+            <Input 
+              label="Country"
+              type="text"
+              value={country}
+              onChange={(e) => setCoutry(e)}
+              placeholder='Your Country'
+            />
+            <Input 
+              label="City"
+              type="text"
+              value={city}
+              onChange={(e) => setCity(e)}
+              placeholder='Your City'
+            />
+            <Input 
+              label="e-mail"
+              type="email"
+              value={email}
+              onChange={(e) => setEmail(e)}
+              placeholder='A valid e-mail here'
+            /> 
+            <Input 
+              label="password"
+              type="password"
+              value={password}
+              onChange={(e) => setPassowrd(e)}
+              placeholder='Your password'
+            /> 
+            <Input 
+              label="password"
+              type="password"
+              value={password}
+              onChange={(e) => setPassowrd(e)}
+              placeholder='Comfirm your password'
+            /> 
+            <button type='submit'>Register Now</button>
+          </form>
+        </section>
+
+        <section>
+          <img></img>
+        </section>
+
       </section>
-      <form className='form'>
-        <p>
-          <label>
-            first name
-          <input type="text" value={firtname} onChange={(e) => setFirstaname(e.target.value)} />
-            </label>
-        </p>
-
-        <p>
-          <label>
-            last name
-            <input type="text"  value={lastname} onChange={(e) => setLastname(e.target.value)}/>
-          </label>
-        </p>
-
-        <p>
-          <label>
-            birth date
-            <input type="text" value={birthdate} onChange={(e) => setBirthdate(e.target.value)} />
-          </label>
-        </p>
-
-        <p>
-          <label>
-            country
-            <input type="text" value={country} onChange={(e) => setCoutry(e.target.value)} />
-          </label>
-        </p>
-
-        <p>
-          <label>
-            city
-            <input type="text" value={city} onChange={(e) => setCity(e.target.value)} />
-          </label>
-        </p>
-
-        <p>
-          <label>
-            email
-            <input type="password" value={email} onChange={(e) => setEmail(e.target.value)} />
-          </label>
-        </p>
-
-        <p>
-          <label>
-            password
-            <input type="password" value={password} onChange={(e) => setPassowwrd(e.target.value)} />
-          </label>
-        </p>
-
-        <p>
-          <input type="submit" onClick={(e)=> e.preventDefault() }/>
-        </p>
-        </form>
-      </section>
+      </>
     )
   }
 

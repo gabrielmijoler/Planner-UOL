@@ -8,7 +8,13 @@ const Cadastro: React.FC = (props:any) => {
     return(
         <form className='form'>
         <p>
-          <Input type="text" label="first name" valor={username  } value={username} onChange={(e: { target: { value: React.SetStateAction<string>; }; }) => setUsername(e.target.value)} />
+          <Input type="text" 
+          label="first name" 
+          value={username} 
+          onChange={function (str: string): void {
+            throw new Error('Function not implemented.');
+          } } 
+          placeholder='user name' />
         </p>
 
         <p>
