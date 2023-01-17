@@ -1,12 +1,24 @@
 import React from 'react';
+import { Route, Routes } from 'react-router-dom';
 import './App.css';
-import Cadastro from './componentes/Cadastro/cadastro';
 
 function App() {
+  const Cadastro= React.lazy(() => import('./componentes/Cadastro/cadastro'));
+  const Login = React.lazy(() => import('./componentes/Login/login'));
+  // const Settings = React.lazy(() => import('./components/Settings'));
+  const Loading = () => <p>Loading ...</p>;
   return (
-    <div className="App">
-      <Cadastro />
-    </div>
+    <React.Suspense fallback={<Loading />}>
+    <Routes>
+      <Route path='/' element={<Cadastro/>} />
+      <Route path='/login' element={<Login/>} />
+    </Routes>
+  </React.Suspense>
+
+    // <Routes>
+    //   <Route path="/cadastro" element={<Cadastro />} />
+    //   <Route path="/login" element={<Login />} />
+    // </Routes>
   );
 }
 

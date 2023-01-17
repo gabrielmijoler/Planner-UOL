@@ -1,7 +1,8 @@
+import exp from 'constants';
 import React, { useState } from 'react';
 import Input from '../UI/Input/Input';
 
-const Cadastro: React.FC = (props: any) => {
+const Login: React.FC = (props: any) => {
   const [username, setUsername] = useState<string>('')
   const [password, setPassowrd] = useState<string>('')
 
@@ -20,5 +21,6 @@ const Cadastro: React.FC = (props: any) => {
       />
     </form>
   )
-
 }
+
+export default Login;

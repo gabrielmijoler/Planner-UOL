@@ -1,6 +1,9 @@
 .control-form{
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: repeat(auto-fit,minmax(50%,1fr));;
+    grid-template-rows: repeat(auto-fit,minmax(100%,1fr));
+    align-items: center;
+    justify-items: center;
     background-color: #2a2d31;
 }
 
@@ -20,6 +23,20 @@ button{
     color: #FFFFFF;
 }
 
+.titleWelcome{
+    display: flex;
+    flex-direction: column;
+    font-family: 'Mulish';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 60px;
+    color: #E0E0E0;
+}
+
+.second-title{
+    font-size: 16px;
+    margin-left: 2px;
+}
 /* .imglap{
     width: 841px;
     height: 990px;

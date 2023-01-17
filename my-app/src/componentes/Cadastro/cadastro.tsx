@@ -3,6 +3,8 @@ import Input from '../UI/Input/Input';
 import "./cadastro.css"
 import { logoUol } from '../Image/index';
 import Button from '../UI/Button/Button';
+import App from '../../App';
+import { Link } from 'react-router-dom';
 
 export interface ICadatro{
   firtname: string,
@@ -42,6 +44,8 @@ const Cadastro: React.FC = (props:any) => {
     <>
     <section className='control-form'>
       <section>
+        <p className='titleWelcome'>Welcome,
+        <a className='second-title'>Please, register to continue.</a></p>
         <form className='form'>
             <Input 
               label="first name"
@@ -101,12 +105,16 @@ const Cadastro: React.FC = (props:any) => {
             /> 
             <Button type='submit' />
           </form>
+          <section>
+            <ul>
+              <Link to='/login'>Login</Link>
+            </ul>
+          </section>
         </section>
 
         <section>
           <img className='imglap' />
         </section>
-
       </section>
       </>
     )
