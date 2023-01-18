@@ -1,10 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import Input from '../UI/Input/Input';
-import "./cadastro.css"
 import logoUol from '../Image/logouol.svg';
 import Button from '../UI/Button/Button';
 import { Link } from 'react-router-dom';
-import { ControlForm, ImageLaptop, SectionInputs, SectionLogoUOL, SubTitulo, TituloWelcome } from '.';
+import { ControlForm, ImageLaptop, SectionImg, SectionInputs,  SubTitulo, TituloWelcome } from '.';
 
 export interface ICadatro{
   firtname: string,
@@ -104,14 +103,14 @@ const Cadastro: React.FC = (props:any) => {
                 placeholder='Comfirm your password'
               /> 
               <Button type='submit' label="Register Now"/>
-              <SectionLogoUOL>
+              <SectionImg>
                 <ul style={{color:"#fff"}}>
                   You have cadastre click<Link style={{color:"white"}} to='/login'> here</Link>
                 </ul>
-            </SectionLogoUOL>
+              </SectionImg>
           </form>
         </SectionInputs>
-        <ImageLaptop >
+        <ImageLaptop>
           <a href='https://compass.uol/pt/sobre-nos/'><img style={{marginLeft:"25%", marginTop:"3%"}} src={logoUol}/></a>
         </ImageLaptop>
       </ControlForm>

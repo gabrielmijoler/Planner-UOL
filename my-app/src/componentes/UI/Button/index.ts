@@ -1,5 +1,8 @@
-  button{
-    width: 471px;
+import styled from "styled-components";
+
+
+export const ButtonStyled = styled.button<{widthsize?: any}>`
+    width: ${props => props.widthsize}px;
     height: 67px;
     left: 298px;
     top: 928px;
@@ -12,14 +15,4 @@
     font-size: 32px;
     line-height: 40px;
     color: #FFFFFF;
-}
-
-  button:disabled,
-  button:focus:disabled,
-  button:hover:disabled,
-  button:active:disabled {
-    background: #ccc;
-    border-color: #ccc;
-    color: #666666;
-    cursor: not-allowed;
-  }
+`;

@@ -13,13 +13,13 @@ export const LabelInput = styled.label`
     justify-content: center;
     align-items: center;
 `;
-export const InputStyle = styled.input`
+export const InputStyle = styled.input<{sizeplaceholder?:any}>`
     width: 350px;
     height: 60px;
     border: 1px solid #0f0d0d;
     border-radius: 50px;
     background: #26292C;
-    font-size: 12px;
+    font-size: ${props => props.sizeplaceholder}px;
     line-height: 15px;
     color: #E0E0E0;
     padding-left: 29px;

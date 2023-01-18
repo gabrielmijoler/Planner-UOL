@@ -1,8 +1,6 @@
 import React, { useState } from 'react';
 import { InputStyle, LabelInput, P } from '.';
 
-import './Input.css';
- 
 
 type Props = {
     label?: string;
@@ -10,6 +8,8 @@ type Props = {
     placeholder: string;
     value?: string;
     type?: 'text' | 'number' | 'password' | 'email';
+    className?: string;
+    size?: number;
   };
   
 
@@ -25,6 +25,8 @@ type Props = {
     <P>
         <LabelInput>{props.label}</LabelInput>
         <InputStyle
+          sizeplaceholder={props.size}
+          className={props.className}
           onChange={handleChange}
           placeholder={props.placeholder}
           value={message}

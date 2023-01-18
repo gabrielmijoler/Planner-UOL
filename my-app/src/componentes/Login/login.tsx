@@ -2,9 +2,10 @@ import exp from 'constants';
 import React, { useState } from 'react';
 import Input from '../UI/Input/Input';
 import logoUol from '../Image/logouol.svg';
-import { ControlForm, SectionInputs, SectionLogoUOL } from '../Cadastro';
+import { ControlForm, ImageLaptop, SectionImg, SectionInputs, SubTitulo, TituloWelcome } from '../Cadastro';
 import Button from '../UI/Button/Button';
 import { Link } from 'react-router-dom';
+import { P } from '.';
 
 
 const Login: React.FC = (props: any) => {
@@ -14,29 +15,35 @@ const Login: React.FC = (props: any) => {
   return (
     <ControlForm>
       <SectionInputs>
+        <TituloWelcome>Welcome,
+          <SubTitulo>To continue browsing safely, log in to the network.</SubTitulo></TituloWelcome>
         <form>
-          <Input type="text"
+          <P>Login</P>
+          <Input
+            size={16}
+            type="text"
             value={username}
             onChange={(e) => setUsername(e)}
             placeholder='user name'
           />
 
           <Input type="text"
+            size={16}
             value={password}
             onChange={(e) => setPassowrd(e)}
             placeholder='password'
           />
         </form>
-        <Button type='submit' label="Register Now"/>
-        <section>
-          <ul style={{color:"#fff"}}>
-            You don´t have cadastre click<Link style={{color:"white"}} to='/cadastro'> here</Link>
+        <Button width={379} type='submit' label="Log in" />
+        <SectionImg>
+          <ul style={{ color: "#fff" }}>
+            You don't have cadastre click<Link style={{ color: "white" }} to='/cadastro'> here</Link>
           </ul>
-        </section>
+        </SectionImg>
       </SectionInputs>
-      <SectionLogoUOL className='container'>
-        <a href='https://compass.uol/pt/sobre-nos/'><img style={{marginLeft:"25%", marginTop:"3%"}} src={logoUol}/></a>
-      </SectionLogoUOL>
+      <ImageLaptop className='container'>
+        <a href='https://compass.uol/pt/sobre-nos/'><img style={{ marginLeft: "25%", marginTop: "3%" }} src={logoUol} /></a>
+      </ImageLaptop>
     </ControlForm>
   )
 }
