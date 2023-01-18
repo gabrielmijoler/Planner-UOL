@@ -34,9 +34,7 @@ export const SectionImg = styled.section`
 `;  
  
 export const ImageLaptop = styled.section`
-    /* background-image: url(${({  }) => }); */
-    /* background: url(${(props: { thumbnail: string }) =>
-		props.thumbnail ? props.thumbnail : `${process.env.BASE_URL}/logo_map.png`}); */
+    background-image: url(${ img });
     background-repeat: no-repeat;
     background-size:100%;
 `;

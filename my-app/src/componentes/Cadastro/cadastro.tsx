@@ -102,7 +102,7 @@ const Cadastro: React.FC = (props:any) => {
                 onChange={(e) => setPassowrd(e)}
                 placeholder='Comfirm your password'
               /> 
-              <Button type='submit' label="Register Now"/>
+              <Button type='submit' width={471} label="Register Now"/>
               <SectionImg>
                 <ul style={{color:"#fff"}}>
                   You have cadastre click<Link style={{color:"white"}} to='/login'> here</Link>
