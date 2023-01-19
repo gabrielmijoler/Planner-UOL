@@ -28,3 +28,12 @@ export const ControlHeader = styled.section`
 export const Titulo = styled.span`
     font-size: 20px;
 `;
+export const SectionLogOut = styled.section`
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    font-size: 17px;
+    line-height: 20px;
+    margin-right: 1%;
+`;

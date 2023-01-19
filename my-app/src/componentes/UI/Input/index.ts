@@ -13,14 +13,21 @@ export const LabelInput = styled.label`
     justify-content: center;
     align-items: center;
 `;
-export const InputStyle = styled.input<{sizeplaceholder?:any}>`
-    width: 350px;
-    height: 60px;
+export const InputStyle = styled.input<{
+    sizeplaceholder?:any,
+    width?:number,
+    height?: number,
+    borderRadius?: number,
+    background?: string,
+    color?: string,
+    }>`
+    width: ${props => props.width}px;
+    height: ${props => props.height}px;
     border: 1px solid #0f0d0d;
-    border-radius: 50px;
-    background: #26292C;
+    border-radius: ${props => props.borderRadius}px;
+    background: ${props => props.background};
     font-size: ${props => props.sizeplaceholder}px;
     line-height: 15px;
-    color: #E0E0E0;
+    color: ${props => props.color};
     padding-left: 29px;
 `;

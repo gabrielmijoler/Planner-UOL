@@ -8,11 +8,14 @@ type Props = {
   type?: "button" | "submit" | "reset" | undefined, 
   children?: string;
   width?: number;
+  height?: number;
+  fontSize?:number;
+  style?:any;
+  boderRadius?: number
+  borderColors?: string
 };
 
-const Button = (props:Props) => {
-
-  
+const Button = (props:Props) => {  
   return (
     <>
     <ButtonStyled
@@ -20,6 +23,11 @@ const Button = (props:Props) => {
       onClick={props.onClick}
       disabled={props.disabled}
       widthsize={props.width}
+      height={props.height}
+      fontSize={props.fontSize}
+      style={props.style}
+      borderRadius={props.boderRadius || 50}
+      borderColors={props.borderColors}
     >
       {props.children}  
       {props.label}

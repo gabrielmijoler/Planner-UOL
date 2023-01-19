@@ -1,7 +1,7 @@
 import React from 'react';
-import { ControlHeader,  Titulo,  Weekeplanner } from '.';
-import logouol from "../Image/logouol.svg"
-import logout from "../Image/logout.svg"
+import { ControlHeader,  SectionLogOut,  Titulo,  Weekeplanner } from '.';
+import logouolback from "../Image/logouolback.svg"
+import iconlogout from "../Image/iconlogout.svg"
 
 
 const Header: React.FC = (props:any) => {
@@ -34,10 +34,11 @@ let horas = dataAtual.toTimeString()
             </section>
             <section>asdadadaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
             </section>
-            <section>
-                <img src={logouol} alt="Logouol" style={{width: '100px'}} />
-                <input type="button" src={logout}/>
-            </section>
+            <SectionLogOut>
+                <img src={logouolback} alt="Logouol" style={{marginBottom:'10%'}} />
+                <a href='/login'><img alt='logo compass' src={iconlogout} ></img></a>
+                Logout
+            </SectionLogOut>
         </ControlHeader>
         
     </>

@@ -10,6 +10,11 @@ type Props = {
     type?: 'text' | 'number' | 'password' | 'email';
     className?: string;
     size?: number;
+    width?:number,
+    height?: number,
+    borderRadius?: number,
+    background?: string,
+    color?: string,
   };
   
 
@@ -31,6 +36,11 @@ type Props = {
           placeholder={props.placeholder}
           value={message}
           type={props.type}
+          width={props.width}
+          height={props.height} 
+          borderRadius={props.borderRadius}
+          background={props.background} 
+          color={props.color} 
         />
     </P>
     );
