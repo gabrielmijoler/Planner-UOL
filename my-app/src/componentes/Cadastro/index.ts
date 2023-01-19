@@ -4,7 +4,7 @@ import img from "../Image/IMGlap.png"
 
 export const ControlForm = styled.section`
     display: grid;
-    grid-template-columns: repeat(auto-fit,minmax(50%,1fr));;
+    grid-template-columns: repeat(auto-fit,minmax(50%,1fr));
     grid-template-rows: repeat(auto-fit,minmax(100%,1fr));
     background-color: #2a2d31;
     height: 100vh;
