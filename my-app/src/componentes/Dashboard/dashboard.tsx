@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { ControlDashboard, Head, Imagemlogo, Main, Nav, SectionWeek, Time, Weeks } from '.';
+import { ControlDashboard, Head, Imagemlogo, Main, Nav, SectionButton, SectionWeek, Time, Weeks } from '.';
 import CardItem from '../Card/card';
 import Header from '../Header/header';
 import Button from '../UI/Button/Button';
@@ -19,29 +19,41 @@ const Dashboard: React.FC = (props:any) => {
             size={14} 
             width={391} 
             height={45} 
-            placeholder={''}
+            placeholder='Task or issue'
             color={'rgba(0, 0, 0, 0.7);'}
             borderRadius={10}
             background={'#fff'}
+            bordercolor={'#FECE00'}
+            type={'text'}
           />
           <Input size={14} 
             width={240} 
             height={45} 
-            placeholder={''}
+            placeholder='Monday'
             color={'rgba(0, 0, 0, 0.7);'}
             borderRadius={10}
             background={'#fff'}
+            bordercolor={'#FECE00'}
+            type={'text'}
             />
           <Input size={14} 
             width={120} 
             height={45} 
-            placeholder={''}
+            placeholder='01h 32m'
             color={'rgba(0, 0, 0, 0.7);'}
             borderRadius={10}
             background={'#fff'}
+            bordercolor={'#FECE00'}
+            type={'time'}
             />
-          <Button label='Add to calendar' width={200}></Button>
-          <Button label='Delete All' width={200}></Button>
+          <SectionButton >
+            <Button 
+              label='Add to calendar'
+              width={200}
+              
+              />
+            <Button label='Delete All' width={200} marginleft={5}/>
+          </SectionButton>
       </Head>
       <SectionWeek>
             <Weeks/>

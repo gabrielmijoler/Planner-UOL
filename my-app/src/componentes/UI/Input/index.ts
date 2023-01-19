@@ -20,14 +20,16 @@ export const InputStyle = styled.input<{
     borderRadius?: number,
     background?: string,
     color?: string,
+    bordercolor?: string,
     }>`
     width: ${props => props.width}px;
     height: ${props => props.height}px;
-    border: 1px solid #0f0d0d;
+    border: 1px solid;
     border-radius: ${props => props.borderRadius}px;
     background: ${props => props.background};
     font-size: ${props => props.sizeplaceholder}px;
     line-height: 15px;
     color: ${props => props.color};
     padding-left: 29px;
+    border-color: ${props => props.bordercolor};;
 `;

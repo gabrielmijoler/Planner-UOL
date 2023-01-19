@@ -13,6 +13,7 @@ type Props = {
   style?:any;
   boderRadius?: number
   borderColors?: string
+  marginleft?: number
 };
 
 const Button = (props:Props) => {  
@@ -28,6 +29,7 @@ const Button = (props:Props) => {
       style={props.style}
       borderRadius={props.boderRadius || 50}
       borderColors={props.borderColors}
+      marginleft={props.marginleft}
     >
       {props.children}  
       {props.label}

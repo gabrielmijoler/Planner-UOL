@@ -8,6 +8,7 @@ export const ButtonStyled = styled.button<
         fontSize?: number,
         borderRadius?: number,
         borderColors?: any,
+        marginleft?: number,
      }>`
 
     width: ${props => props.widthsize}px;
@@ -21,5 +22,6 @@ export const ButtonStyled = styled.button<
     font-size: ${props => props.fontSize}px;
     line-height: 40px;
     color: #FFFFFF;
-    border-color: ${props => props.borderColors}
+    border-color: ${props => props.borderColors};
+    margin-left: ${props => props.marginleft}%;
 `;

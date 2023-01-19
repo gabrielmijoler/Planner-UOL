@@ -81,3 +81,10 @@ export const Imagemlogo = styled.img`
 `;
 
   
+export const SectionButton = styled.section`
+    display: flex;
+    justify-content: center;
+    margin-left: 35%;
+`;
+
+  

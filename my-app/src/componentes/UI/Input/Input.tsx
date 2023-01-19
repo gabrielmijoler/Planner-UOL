@@ -7,7 +7,7 @@ type Props = {
     onChange?: (str: string) => void;
     placeholder: string;
     value?: string;
-    type?: 'text' | 'number' | 'password' | 'email';
+    type: 'text' | 'number' | 'password' | 'email'|'time';
     className?: string;
     size?: number;
     width?:number,
@@ -15,6 +15,7 @@ type Props = {
     borderRadius?: number,
     background?: string,
     color?: string,
+    bordercolor?: string,
   };
   
 
@@ -41,6 +42,7 @@ type Props = {
           borderRadius={props.borderRadius}
           background={props.background} 
           color={props.color} 
+          bordercolor={props.bordercolor}
         />
     </P>
     );
