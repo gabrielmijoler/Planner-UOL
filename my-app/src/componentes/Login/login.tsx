@@ -5,13 +5,32 @@ import iconPassowrd from '../Image/iconPassowrd.svg';
 import iconUser from '../Image/iconUser.svg';
 import { ControlForm, ImageLaptop, SectionImg, SectionInputs, SubTitulo, TituloWelcome } from '../Cadastro';
 import Button from '../UI/Button/Button';
-import { Link } from 'react-router-dom';
-import { P } from '.';
+import { Link, useHref } from 'react-router-dom';
+import { ControlInput, Imagem,  P } from '.';
 
 
 const Login: React.FC = (props: any) => {
   const [username, setUsername] = useState<string>('')
   const [password, setPassowrd] = useState<string>('')
+  const [emptyusername, setEmptyusername] = useState<any>(null)
+  const [emptypassword, setEmptypassword] = useState<any>(null)
+
+
+  function PasswordHandleChange(){
+    if(password !== ''){
+      setEmptyusername(true)
+    }else{
+      setEmptyusername(false)
+    }
+  }
+  
+  function UsarnameHandleChange(){
+    if(username !== ''){
+      setEmptypassword(true)
+    }else{
+      setEmptypassword(false)
+    }
+  }
 
   return (
     <ControlForm>
@@ -20,21 +39,26 @@ const Login: React.FC = (props: any) => {
           <SubTitulo>To continue browsing safely, log in to the network.</SubTitulo></TituloWelcome>
         <form>
           <P>Login</P>
-          <Input
-            size={16}
-            type="text"
-            value={username}
-            onChange={(e) => setUsername(e)}
-            placeholder='user name'
-          />
-          <img src={iconUser} alt="" />
-          <Input type="text"
-            size={16}
-            value={password}
-            onChange={(e) => setPassowrd(e)}
-            placeholder='password'
-          />
-          <img src={iconPassowrd} alt="" />
+          <ControlInput empty={emptyusername} style={{marginBottom: '20px'}}>
+            <Input
+              size={16}
+              type="text"
+              value={username}
+              onChange={PasswordHandleChange}
+              placeholder='user name'
+            />
+            <Imagem src={iconUser} alt="" />
+          </ControlInput>
+          <ControlInput empty={emptypassword}>
+            <Input 
+              type="password"
+              value={password}
+              size={16}
+              onChange={UsarnameHandleChange}
+              placeholder='password'
+            />
+            <Imagem src={iconPassowrd}/>
+          </ControlInput>
         </form>
         <Button 
           type='submit' 

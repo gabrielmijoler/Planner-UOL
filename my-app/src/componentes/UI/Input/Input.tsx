@@ -4,7 +4,7 @@ import { InputStyle, LabelInput, P } from '.';
 
 type Props = {
     label?: string;
-    onChange?: (str: string) => void;
+    onChange: (str: string) => void;
     placeholder: string;
     value?: string;
     type: 'text' | 'number' | 'password' | 'email'|'time';
@@ -21,33 +21,41 @@ type Props = {
   };
   
 
-  export default function Input(props: Props) {
-    const [message, setMessage] = useState('');
-
-    const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-        setMessage(event.target.value);
-        console.log(event.target.value);
-      };
+  export default function Input({ 
+    onChange, 
+    label, 
+    value = "",
+    size, 
+    placeholder, 
+    type, 
+    className, 
+    width, 
+    height,
+    borderRadius, 
+    background, 
+    color,
+    bordercolor,
+    marginLeft,
+    }: Props) {
 
     return (
-    <P>
-        <LabelInput>{props.label}</LabelInput>
+      <>
+        <LabelInput>{label}</LabelInput>
         <InputStyle
-          sizeplaceholder={props.size || 12}
-          className={props.className}
-          onChange={handleChange}
-          placeholder={props.placeholder}
-          value={message}
-          type={props.type}
-          width={props.width || 347}
-          height={props.height || 60} 
-          borderRadius={props.borderRadius || 50}
-          background={props.background || '#26292C'} 
-          color={props.color} 
-          bordercolor={props.bordercolor ||'#FFFFFF'}
-          marginLeft={props.marginLeft}
+          onChange={event => onChange(event.target.value)}
+          sizeplaceholder={size || 12}
+          className={className}
+          placeholder={placeholder}
+          value={value}
+          type={type}
+          width={width || 347}
+          height={height || 60} 
+          borderRadius={borderRadius || 50}
+          background={background || '#26292C'} 
+          color={color || '#ffffff'} 
+          bordercolor={bordercolor ||'#FFFFFF'}
+          marginLeft={marginLeft}
         />
-        <img src={props.icon} alt="" />
-    </P>
+      </>
     );
 }

@@ -9,14 +9,11 @@ const Header: React.FC = (props:any) => {
 
 
 var dataAtual = new Date();
-console.log(dataAtual);
-
-let newDate = new Date()
-let date = newDate.getDate();
-let month = newDate.getMonth() + 1;
-let year = newDate.getFullYear();
-let data = dataAtual.toDateString()
+let date = dataAtual.getDate();
+// let month = newDate.getMonth() + 1;
+let year = dataAtual.getFullYear();
 let horas = dataAtual.toTimeString()
+let monthString = dataAtual.toDateString().slice(3,-7)
 
 // let horas = newDate.setHours(hours: nuber);
 
@@ -28,11 +25,11 @@ let horas = dataAtual.toTimeString()
               <p>
                 <Titulo>Weekly Planner</Titulo><br />
                 Use this planner to organize your daily issues</p ></Weekeplanner>
-            <section style={{display:'flex', justifyContent:'center', flexDirection:'column'}}>
-                <p style={{display:'flex', justifyContent:'center'}}>{horas}</p>
-                <p style={{display:'flex', justifyContent:'center'}}>{new Date().toLocaleString("en-US", { month: "long" })}</p>
+            <section style={{display:'flex', justifyContent:'center', flexDirection:'column', marginBottom:'25px'}}>
+                <p style={{display:'flex', justifyContent:'center', fontSize: '40px', marginBottom:'0px'}}>{horas.slice(0, -38)}</p>
+                <p style={{display:'flex', justifyContent:'center',fontSize: '20px', marginTop: '0px'}}>{`${monthString} ${date}th,${year} `}</p>
             </section>
-            <section>asdadadaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+            <section>clima
             </section>
             <SectionLogOut>
                 <img src={logouolback} alt="Logouol" style={{marginBottom:'10%'}} />

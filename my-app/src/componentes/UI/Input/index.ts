@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 
-export const P = styled.p`
+export const P = styled.section`
     display: flex;
     justify-content: space-between;
 `;
@@ -34,4 +34,12 @@ export const InputStyle = styled.input<{
     padding-left: 29px;
     border-color: ${props => props.bordercolor};
     margin-left: ${props => props.marginLeft}px;
+
+    &.active{
+        transform:translateX(-24px);
+        }
 `;
+
+
+
+

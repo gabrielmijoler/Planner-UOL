@@ -27,6 +27,8 @@ const Dashboard: React.FC = (props:any) => {
             background={'#fff'}
             bordercolor={'#FECE00'}
             type={'text'}
+            onChange={(e) => setInputest(e)}
+            value={inputest}
           />
           <InputWeeks
             placeholder='Monday'
@@ -40,7 +42,8 @@ const Dashboard: React.FC = (props:any) => {
             <option value="Saturday">Saturday</option>
             <option value="Sunday">Sunday</option>
           </InputWeeks>
-          <Input size={14} 
+          <Input 
+            size={14} 
             width={120} 
             height={45} 
             placeholder='01h 32m'
@@ -50,6 +53,8 @@ const Dashboard: React.FC = (props:any) => {
             bordercolor={'#FECE00'}
             type={'time'}
             marginLeft={2}
+            onChange={(e) => setInputime(e)}
+            value={inputime}
             />
           <SectionButton >
             <Button 
