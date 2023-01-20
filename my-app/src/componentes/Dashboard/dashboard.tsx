@@ -1,15 +1,17 @@
 import React, { useState } from 'react';
-import { ControlDashboard, Head, Imagemlogo, Main, Nav, SectionButton, SectionWeek, Time, Weeks } from '.';
+import { ControlDashboard, Head, Imagemlogo, InputWeeks, Main, Nav, Pvazia, SectionButton, SectionWeek, Time, Weeks } from '.';
 import CardItem from '../Card/card';
 import Header from '../Header/header';
 import Button from '../UI/Button/Button';
 import Input from '../UI/Input/Input';
 import dashlogo from '../Image/dashlogo.svg';
+import NavTime from '../Timer/timer';
 
 
 
 const Dashboard: React.FC = (props:any) => {
   const [inputest, setInputest] = useState<string>('')
+  const [inputime, setInputime] = useState<string>('')
 
   return (
     <>
@@ -26,16 +28,18 @@ const Dashboard: React.FC = (props:any) => {
             bordercolor={'#FECE00'}
             type={'text'}
           />
-          <Input size={14} 
-            width={240} 
-            height={45} 
+          <InputWeeks
             placeholder='Monday'
             color={'rgba(0, 0, 0, 0.7);'}
-            borderRadius={10}
-            background={'#fff'}
-            bordercolor={'#FECE00'}
-            type={'text'}
-            />
+          >
+            <option value="Monday">Monday</option>
+            <option value="Tuesday">Tuesday</option>
+            <option value="Wednesday">Wednesday</option>
+            <option value="Thursday">Thursday</option>
+            <option value="Friday">Friday</option>
+            <option value="Saturday">Saturday</option>
+            <option value="Sunday">Sunday</option>
+          </InputWeeks>
           <Input size={14} 
             width={120} 
             height={45} 
@@ -45,18 +49,32 @@ const Dashboard: React.FC = (props:any) => {
             background={'#fff'}
             bordercolor={'#FECE00'}
             type={'time'}
+            marginLeft={2}
             />
           <SectionButton >
             <Button 
               label='Add to calendar'
               width={200}
-              
+              background='#00BA88'
+              borderColors='#00BA88'
               />
-            <Button label='Delete All' width={200} marginleft={5}/>
+            <Button 
+              label='Delete All' 
+              width={200} 
+              marginleft={5} 
+              background='#FF3D1F'
+              borderColors='#FF3D1F'
+              />
           </SectionButton>
       </Head>
       <SectionWeek>
-            <Weeks/>
+            <Weeks key={1}>Monday</Weeks>
+            <Weeks >Tuesday</Weeks>
+            <Weeks >Wednesday</Weeks>
+            <Weeks >Thursday</Weeks>
+            <Weeks >Friday</Weeks>
+            <Weeks >Saturday</Weeks>
+            <Weeks >Sunday</Weeks>
           {/* <Weeks>asd</Weeks>
           <Weeks>asd</Weeks>
           <Weeks>asd</Weeks>
@@ -67,9 +85,11 @@ const Dashboard: React.FC = (props:any) => {
       <ControlDashboard>
         <Nav>
           <Time>Time</Time>
+          <NavTime id={1} labela={inputime}></NavTime>
         </Nav>
         <Main>
-            <CardItem  labela={inputest} id={1}/>
+            <Pvazia></Pvazia>
+            <CardItem labela={inputest} id={1}/>
             <Imagemlogo src={dashlogo}></Imagemlogo>
         </Main>
       </ControlDashboard>

@@ -19,13 +19,16 @@ export const Head = styled.head`
     height: 100px;
     align-items: center;
     margin-left: 2%;
+    width: 100%;
 `;
 
 
 export const Nav = styled.nav`
     grid-area: nav;
     display: flex;
-    justify-content: center;
+    justify-content: flex-start;
+    margin: 10px 0px 0px 50px;
+    flex-direction: column;
 `;
 
 export const Main = styled.main`
@@ -49,9 +52,10 @@ export const Time = styled.p`
     display: flex;
     justify-content: center;
     align-items: center;
+    margin: 0px 0px 19px 0px;
 `;
   
-export const Weeks = styled.p`
+export const Weeks = styled.button`
     width: 290px;
     height: 33px;
     background: #FF0024;
@@ -59,9 +63,25 @@ export const Weeks = styled.p`
     border-radius: 9px;
     display: flex;
     justify-content: center;
+    margin-top: 10px;
 `;
-  
-  
+
+export const InputWeeks = styled.select`
+    width: 240px;
+    height: 45px;
+    left: 418px;
+    top: 164px;
+    background: #FFFFFF;
+    border: 1px solid #FECE00;
+    border-radius: 10px;
+    display: flex;
+    justify-content: center;
+    font-size:14;
+    color: rgba(0, 0, 0, 0.7);
+    margin-left: 3px;
+
+`;
+ 
 export const SectionWeek = styled.section`
     display: flex;
     width: 1750px;
@@ -80,11 +100,16 @@ export const Imagemlogo = styled.img`
     float: right;
 `;
 
-  
 export const SectionButton = styled.section`
     display: flex;
     justify-content: center;
     margin-left: 35%;
+`;
+
+  
+export const Pvazia = styled.section`
+    width: 512px;
+    height: 85px;
 `;
 
   

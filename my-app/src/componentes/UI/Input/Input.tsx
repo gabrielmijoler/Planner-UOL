@@ -10,12 +10,14 @@ type Props = {
     type: 'text' | 'number' | 'password' | 'email'|'time';
     className?: string;
     size?: number;
-    width?:number,
-    height?: number,
-    borderRadius?: number,
-    background?: string,
-    color?: string,
-    bordercolor?: string,
+    width?:number;
+    height?: number;
+    borderRadius?: number;
+    background?: string;
+    color?: string;
+    bordercolor?: string;
+    marginLeft?: number;
+    icon?: any;
   };
   
 
@@ -31,19 +33,21 @@ type Props = {
     <P>
         <LabelInput>{props.label}</LabelInput>
         <InputStyle
-          sizeplaceholder={props.size}
+          sizeplaceholder={props.size || 12}
           className={props.className}
           onChange={handleChange}
           placeholder={props.placeholder}
           value={message}
           type={props.type}
-          width={props.width}
-          height={props.height} 
-          borderRadius={props.borderRadius}
-          background={props.background} 
+          width={props.width || 347}
+          height={props.height || 60} 
+          borderRadius={props.borderRadius || 50}
+          background={props.background || '#26292C'} 
           color={props.color} 
-          bordercolor={props.bordercolor}
+          bordercolor={props.bordercolor ||'#FFFFFF'}
+          marginLeft={props.marginLeft}
         />
+        <img src={props.icon} alt="" />
     </P>
     );
 }

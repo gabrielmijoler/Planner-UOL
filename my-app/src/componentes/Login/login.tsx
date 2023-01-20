@@ -1,7 +1,8 @@
-import exp from 'constants';
 import React, { useState } from 'react';
 import Input from '../UI/Input/Input';
 import logoUol from '../Image/logouol.svg';
+import iconPassowrd from '../Image/iconPassowrd.svg';
+import iconUser from '../Image/iconUser.svg';
 import { ControlForm, ImageLaptop, SectionImg, SectionInputs, SubTitulo, TituloWelcome } from '../Cadastro';
 import Button from '../UI/Button/Button';
 import { Link } from 'react-router-dom';
@@ -26,15 +27,22 @@ const Login: React.FC = (props: any) => {
             onChange={(e) => setUsername(e)}
             placeholder='user name'
           />
-
+          <img src={iconUser} alt="" />
           <Input type="text"
             size={16}
             value={password}
             onChange={(e) => setPassowrd(e)}
             placeholder='password'
           />
+          <img src={iconPassowrd} alt="" />
         </form>
-        <Button width={379} type='submit' label="Log in" />
+        <Button 
+          type='submit' 
+          label="Log in" width={379}
+          background='linear-gradient(90deg, #FF2D04 0%, #C13216 100%)'
+          height={67}
+          fontSize={32}
+          />
         <SectionImg>
           <ul style={{ color: "#fff" }}>
             You don't have cadastre click<Link style={{ color: "white" }} to='/cadastro'> here</Link>

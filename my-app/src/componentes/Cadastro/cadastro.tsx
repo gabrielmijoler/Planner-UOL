@@ -52,6 +52,7 @@ const Cadastro: React.FC = (props:any) => {
                 value={firtname}
                 onChange={(e) => setFirstaname(e)}
                 placeholder='Your first name'
+                marginLeft={18}
               />
               <Input 
                 label="last name"
@@ -59,6 +60,7 @@ const Cadastro: React.FC = (props:any) => {
                 value={lastname}
                 onChange={(e) => setLastname(e)}
                 placeholder='Your last name'
+                marginLeft={18}
               />
               <Input 
                 label="birth date"
@@ -66,6 +68,7 @@ const Cadastro: React.FC = (props:any) => {
                 value={birthdate}
                 onChange={(e) => setBirthdate(e)}
                 placeholder='MM/DD/YYYY'
+                marginLeft={18}
               />
               <Input 
                 label="Country"
@@ -73,6 +76,7 @@ const Cadastro: React.FC = (props:any) => {
                 value={country}
                 onChange={(e) => setCoutry(e)}
                 placeholder='Your Country'
+                marginLeft={18}
               />
               <Input 
                 label="City"
@@ -80,6 +84,7 @@ const Cadastro: React.FC = (props:any) => {
                 value={city}
                 onChange={(e) => setCity(e)}
                 placeholder='Your City'
+                marginLeft={18}
               />
               <Input 
                 label="e-mail"
@@ -87,6 +92,7 @@ const Cadastro: React.FC = (props:any) => {
                 value={email}
                 onChange={(e) => setEmail(e)}
                 placeholder='A valid e-mail here'
+                marginLeft={18}
               /> 
               <Input 
                 label="password"
@@ -94,6 +100,7 @@ const Cadastro: React.FC = (props:any) => {
                 value={password}
                 onChange={(e) => setPassowrd(e)}
                 placeholder='Your password'
+                marginLeft={18}
               /> 
               <Input 
                 label="password"
@@ -101,8 +108,16 @@ const Cadastro: React.FC = (props:any) => {
                 value={password}
                 onChange={(e) => setPassowrd(e)}
                 placeholder='Comfirm your password'
+                marginLeft={18}
               /> 
-              <Button type='submit' width={471} label="Register Now"/>
+              <Button
+                type='submit' 
+                label="Register Now"
+                width={471} 
+                background='linear-gradient(90deg, #FF2D04 0%, #C13216 100%)'
+                height={67}
+                fontSize={32}
+                />
               <SectionImg>
                 <ul style={{color:"#fff"}}>
                   You have cadastre click<Link style={{color:"white"}} to='/login'> here</Link>

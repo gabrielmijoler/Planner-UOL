@@ -21,6 +21,7 @@ export const InputStyle = styled.input<{
     background?: string,
     color?: string,
     bordercolor?: string,
+    marginLeft?: number,
     }>`
     width: ${props => props.width}px;
     height: ${props => props.height}px;
@@ -31,5 +32,6 @@ export const InputStyle = styled.input<{
     line-height: 15px;
     color: ${props => props.color};
     padding-left: 29px;
-    border-color: ${props => props.bordercolor};;
+    border-color: ${props => props.bordercolor};
+    margin-left: ${props => props.marginLeft}px;
 `;

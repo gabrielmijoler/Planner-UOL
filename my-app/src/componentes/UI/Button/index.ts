@@ -9,11 +9,12 @@ export const ButtonStyled = styled.button<
         borderRadius?: number,
         borderColors?: any,
         marginleft?: number,
+        background?: string,
      }>`
 
     width: ${props => props.widthsize}px;
     height: ${props => props.height}px;
-    background: linear-gradient(90deg, #FF2D04 0%, #C13216 100%);
+    background: ${props => props.background};
     box-shadow: inset 5px 5px 15px rgba(0, 0, 0, 0.15);
     border-radius: ${props => props.borderRadius}px;
     font-family: 'Mulish';
@@ -24,4 +25,5 @@ export const ButtonStyled = styled.button<
     color: #FFFFFF;
     border-color: ${props => props.borderColors};
     margin-left: ${props => props.marginleft}%;
+    
 `;
