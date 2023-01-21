@@ -3,7 +3,7 @@ import Input from '../UI/Input/Input';
 import logoUol from '../Image/logouol.svg';
 import Button from '../UI/Button/Button';
 import { Link } from 'react-router-dom';
-import { ControlForm, ImageLaptop, SectionImg, SectionInputs,  SubTitulo, TituloWelcome } from '.';
+import { ControlForm, ImageLaptop, SectionImg, SectionInputs,  SubTitulo, TituloWelcome } from './style';
 
 export interface ICadatro{
   firtname: string,
@@ -15,6 +15,7 @@ export interface ICadatro{
   password: string,
 }
 
+// let counter = 0;
 
 const Cadastro: React.FC = (props:any) => {
   const [firtname, setFirstaname] = useState<string>('')
@@ -24,7 +25,13 @@ const Cadastro: React.FC = (props:any) => {
   const [city, setCity] = useState<string>('')
   const [email, setEmail] = useState<string>('')
   const [password, setPassowrd] = useState<string>('')
+  
+  // const [register, setRegister] = useForm()
+  
 
+  // const onSubmit = (d: any) =>{
+  //   alert(JSON.stringify(d))
+  // }
 
   useEffect(() => {
     const data: ICadatro = {
@@ -62,7 +69,8 @@ const Cadastro: React.FC = (props:any) => {
                 placeholder='Your last name'
                 marginLeft={18}
               />
-              <Input 
+              <Input
+                
                 label="birth date"
                 type="number"
                 value={birthdate}
@@ -70,7 +78,8 @@ const Cadastro: React.FC = (props:any) => {
                 placeholder='MM/DD/YYYY'
                 marginLeft={18}
               />
-              <Input 
+              <Input
+                 
                 label="Country"
                 type="text"
                 value={country}
@@ -78,7 +87,8 @@ const Cadastro: React.FC = (props:any) => {
                 placeholder='Your Country'
                 marginLeft={18}
               />
-              <Input 
+              <Input
+                 
                 label="City"
                 type="text"
                 value={city}
@@ -86,7 +96,8 @@ const Cadastro: React.FC = (props:any) => {
                 placeholder='Your City'
                 marginLeft={18}
               />
-              <Input 
+              <Input
+                 
                 label="e-mail"
                 type="email"
                 value={email}
@@ -94,7 +105,8 @@ const Cadastro: React.FC = (props:any) => {
                 placeholder='A valid e-mail here'
                 marginLeft={18}
               /> 
-              <Input 
+              <Input
+                 
                 label="password"
                 type="password"
                 value={password}
@@ -102,7 +114,8 @@ const Cadastro: React.FC = (props:any) => {
                 placeholder='Your password'
                 marginLeft={18}
               /> 
-              <Input 
+              <Input
+                 
                 label="password"
                 type="password"
                 value={password}
@@ -110,6 +123,7 @@ const Cadastro: React.FC = (props:any) => {
                 placeholder='Comfirm your password'
                 marginLeft={18}
               /> 
+              {/* <p>Render:<span>{counter++}</span></p> */}
               <Button
                 type='submit' 
                 label="Register Now"
@@ -135,3 +149,7 @@ const Cadastro: React.FC = (props:any) => {
 
 
 export default Cadastro;
+
+function useForm(): [any, any] {
+  throw new Error('Function not implemented.');
+}

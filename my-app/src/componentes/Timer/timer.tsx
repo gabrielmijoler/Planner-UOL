@@ -1,5 +1,5 @@
-import { PCard } from "../Card";
-import { Time } from "../Dashboard";
+import { PCard } from "../Card/style";
+import { Time } from "../Dashboard/style";
 
 export interface ICard{
     labela?: string;

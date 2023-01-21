@@ -1,10 +1,11 @@
 import React, { useState } from 'react';
-import { InputStyle, LabelInput, P } from '.';
+import { ConteinerInput, InputStyle, LabelInput } from './style';
 
 
 type Props = {
     label?: string;
     onChange: (str: string) => void;
+    onBlur?: (str: string) => void;
     placeholder: string;
     value?: string;
     type: 'text' | 'number' | 'password' | 'email'|'time';
@@ -18,11 +19,13 @@ type Props = {
     bordercolor?: string;
     marginLeft?: number;
     icon?: any;
+    showlabel?: boolean
   };
   
 
   export default function Input({ 
     onChange, 
+    onBlur,
     label, 
     value = "",
     size, 
@@ -36,11 +39,12 @@ type Props = {
     color,
     bordercolor,
     marginLeft,
+    showlabel = true,
     }: Props) {
 
     return (
-      <>
-        <LabelInput>{label}</LabelInput>
+      <ConteinerInput>
+        { showlabel && (<LabelInput>{label}</LabelInput>)}
         <InputStyle
           onChange={event => onChange(event.target.value)}
           sizeplaceholder={size || 12}
@@ -55,7 +59,8 @@ type Props = {
           color={color || '#ffffff'} 
           bordercolor={bordercolor ||'#FFFFFF'}
           marginLeft={marginLeft}
+          onBlur={event => onBlur && onBlur(event.target.value)}
         />
-      </>
+      </ConteinerInput>
     );
 }

@@ -15,6 +15,7 @@ export const TituloWelcome = styled.p`
     flex-direction: column;
     font-size: 60px;
     color: #E0E0E0;
+    margin-top: 40%;
 `;
 
 export const SubTitulo = styled.a`
@@ -36,5 +37,5 @@ export const SectionImg = styled.section`
 export const ImageLaptop = styled.section`
     background-image: url(${ img });
     background-repeat: no-repeat;
-    background-size:100%;
+    background-size: cover;
 `;

@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { ControlDashboard, Head, Imagemlogo, InputWeeks, Main, Nav, Pvazia, SectionButton, SectionWeek, Time, Weeks } from '.';
+import { ControlDashboard, Head, Imagemlogo, InputWeeks, Main, Nav, Pvazia, SectionButton, SectionWeek, Time, Weeks } from './style';
 import CardItem from '../Card/card';
 import Header from '../Header/header';
 import Button from '../UI/Button/Button';
@@ -12,7 +12,6 @@ import NavTime from '../Timer/timer';
 const Dashboard: React.FC = (props:any) => {
   const [inputest, setInputest] = useState<string>('')
   const [inputime, setInputime] = useState<string>('')
-
   return (
     <>
       <Header/>

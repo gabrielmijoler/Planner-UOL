@@ -1,5 +1,5 @@
 import React from 'react';
-import { ControlHeader,  SectionLogOut,  Titulo,  Weekeplanner } from '.';
+import { ControlHeader,  SectionLogOut,  Titulo,  Weekeplanner } from './style';
 import logouolback from "../Image/logouolback.svg"
 import iconlogout from "../Image/iconlogout.svg"
 
@@ -10,14 +10,10 @@ const Header: React.FC = (props:any) => {
 
 var dataAtual = new Date();
 let date = dataAtual.getDate();
-// let month = newDate.getMonth() + 1;
 let year = dataAtual.getFullYear();
 let horas = dataAtual.toTimeString()
 let monthString = dataAtual.toDateString().slice(3,-7)
 
-// let horas = newDate.setHours(hours: nuber);
-
-// return `${year}${separator}${month<10?`0${month}`:`${month}`}${separator}${date}`
   return (
     <>
         <ControlHeader>

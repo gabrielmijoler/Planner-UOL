@@ -1,4 +1,4 @@
-import { Card, PCard, Span } from ".";
+import { Card, PCard, Span } from "./style";
 import Button from "../UI/Button/Button";
 
 export interface ICard{

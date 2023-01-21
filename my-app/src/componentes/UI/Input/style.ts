@@ -12,7 +12,9 @@ export const LabelInput = styled.label`
     display: flex;
     justify-content: center;
     align-items: center;
+    width: 75px;
 `;
+
 export const InputStyle = styled.input<{
     sizeplaceholder?:any,
     width?:number,
@@ -34,12 +36,14 @@ export const InputStyle = styled.input<{
     padding-left: 29px;
     border-color: ${props => props.bordercolor};
     margin-left: ${props => props.marginLeft}px;
-
-    &.active{
-        transform:translateX(-24px);
-        }
 `;
 
+export const ConteinerInput = styled.div`
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding: 8px;
+`;
 
 
 
