@@ -135,9 +135,9 @@ const Cadastro: React.FC = (props:any) => {
                 margintop={10}
                 />
               <SectionImg>
-                <ul style={{color:"#fff"}}>
+                <span style={{color:"#fff"}}>
                   You have cadastre click<Link style={{color:"white"}} to='/login'> here</Link>
-                </ul>
+                </span>
               </SectionImg>
           </form>
         </SectionInputs>

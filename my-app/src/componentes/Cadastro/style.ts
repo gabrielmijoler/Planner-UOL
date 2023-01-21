@@ -32,6 +32,7 @@ export const SectionInputs = styled.section`
 export const SectionImg = styled.section`
     display: flex;
     justify-content: center;
+    padding-top: 5%;
 `;  
  
 export const ImageLaptop = styled.section`
