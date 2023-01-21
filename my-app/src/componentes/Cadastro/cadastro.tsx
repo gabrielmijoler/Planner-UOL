@@ -4,6 +4,7 @@ import logoUol from '../Image/logouol.svg';
 import Button from '../UI/Button/Button';
 import { Link } from 'react-router-dom';
 import { ControlForm, ImageLaptop, SectionImg, SectionInputs,  SubTitulo, TituloWelcome } from './style';
+import { ApiContext } from '../../context/api-context';
 
 export interface ICadatro{
   firtname: string,
@@ -70,7 +71,6 @@ const Cadastro: React.FC = (props:any) => {
                 marginLeft={18}
               />
               <Input
-                
                 label="birth date"
                 type="number"
                 value={birthdate}
@@ -79,7 +79,6 @@ const Cadastro: React.FC = (props:any) => {
                 marginLeft={18}
               />
               <Input
-                 
                 label="Country"
                 type="text"
                 value={country}
@@ -88,7 +87,6 @@ const Cadastro: React.FC = (props:any) => {
                 marginLeft={18}
               />
               <Input
-                 
                 label="City"
                 type="text"
                 value={city}
@@ -97,7 +95,6 @@ const Cadastro: React.FC = (props:any) => {
                 marginLeft={18}
               />
               <Input
-                 
                 label="e-mail"
                 type="email"
                 value={email}
@@ -106,7 +103,6 @@ const Cadastro: React.FC = (props:any) => {
                 marginLeft={18}
               /> 
               <Input
-                 
                 label="password"
                 type="password"
                 value={password}
@@ -115,7 +111,6 @@ const Cadastro: React.FC = (props:any) => {
                 marginLeft={18}
               /> 
               <Input
-                 
                 label="password"
                 type="password"
                 value={password}
@@ -123,7 +118,6 @@ const Cadastro: React.FC = (props:any) => {
                 placeholder='Comfirm your password'
                 marginLeft={18}
               /> 
-              {/* <p>Render:<span>{counter++}</span></p> */}
               <Button
                 type='submit' 
                 label="Register Now"
