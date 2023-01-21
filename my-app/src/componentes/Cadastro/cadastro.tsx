@@ -131,6 +131,8 @@ const Cadastro: React.FC = (props:any) => {
                 background='linear-gradient(90deg, #FF2D04 0%, #C13216 100%)'
                 height={67}
                 fontSize={32}
+                marginleft={2}
+                margintop={10}
                 />
               <SectionImg>
                 <ul style={{color:"#fff"}}>
@@ -149,7 +151,3 @@ const Cadastro: React.FC = (props:any) => {
 
 
 export default Cadastro;
-
-function useForm(): [any, any] {
-  throw new Error('Function not implemented.');
-}

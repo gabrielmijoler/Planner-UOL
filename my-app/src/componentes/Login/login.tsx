@@ -6,19 +6,19 @@ import iconUser from '../Image/iconUser.svg';
 import { ControlForm, ImageLaptop, SectionImg, SectionInputs, SubTitulo, TituloWelcome } from '../Cadastro/style';
 import Button from '../UI/Button/Button';
 import { Link } from 'react-router-dom';
-import { ControlInput, Imagem,  P } from './style';
+import { ControlInput, Imagem, P } from './style';
 
 
 const Login: React.FC = (props: any) => {
   const [username, setUsername] = useState<string>('')
   const [password, setPassowrd] = useState<string>('')
 
-  
-  function UsarnameHandleChange(e: any){
+
+  function UsarnameHandleChange(e: any) {
     setUsername(e)
   }
-  
-  function PasswordHandleChange(e: any){
+
+  function PasswordHandleChange(e: any) {
     setPassowrd(e)
   }
 
@@ -29,7 +29,7 @@ const Login: React.FC = (props: any) => {
           <SubTitulo>To continue browsing safely, log in to the network.</SubTitulo></TituloWelcome>
         <form>
           <P>Login</P>
-          <ControlInput style={{marginBottom: '20px'}}>
+          <ControlInput style={{ marginBottom: '20px' }}>
             <Input
               showlabel={false}
               size={16}
@@ -42,7 +42,7 @@ const Login: React.FC = (props: any) => {
             <Imagem empty={username?.length > 0} src={iconUser} alt="" />
           </ControlInput>
           <ControlInput>
-            <Input 
+            <Input
               showlabel={false}
               type="password"
               value={password}
@@ -51,22 +51,23 @@ const Login: React.FC = (props: any) => {
               onBlur={PasswordHandleChange}
               placeholder='password'
             />
-            <Imagem empty={password?.length > 0} src={iconPassowrd} alt=""/>
+            <Imagem empty={password?.length > 0} src={iconPassowrd} alt="" />
           </ControlInput>
-          <div>
-          <Button 
-            type='submit' 
-            label="Log in" width={379}
-            background='linear-gradient(90deg, #FF2D04 0%, #C13216 100%)'
-            height={67}
-            fontSize={32}
+          <div style={{padding: '8px'}}>
+            <Button
+              type='submit'
+              label="Log in" width={379}
+              background='linear-gradient(90deg, #FF2D04 0%, #C13216 100%)'
+              height={67}
+              fontSize={32}
+              margintop={25}
             />
-          <SectionImg>
-            <span style={{ color: "#fff" }}>
-              You don't have cadastre click<Link style={{ color: "white" }} to='/cadastro'> here</Link>
-            </span>
-          </SectionImg>
-        </div>
+            <SectionImg>
+              <span style={{ color: "#fff" }}>
+                You don't have cadastre click<Link style={{ color: "white" }} to='/cadastro'> here</Link>
+              </span>
+            </SectionImg>
+          </div>
         </form>
       </SectionInputs>
       <ImageLaptop className='container'>

@@ -9,6 +9,7 @@ export const ButtonStyled = styled.button<
         borderRadius?: number,
         borderColors?: any,
         marginleft?: number,
+        margintop?: number,
         background?: string,
      }>`
 
@@ -25,5 +26,6 @@ export const ButtonStyled = styled.button<
     color: #FFFFFF;
     border-color: ${props => props.borderColors};
     margin-left: ${props => props.marginleft}%;
+    margin-top: ${props => props.margintop}%;
     
 `;
