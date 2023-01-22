@@ -16,18 +16,17 @@ const Login: React.FC = (props: any) => {
   const [erroLoigin, setErroLoigin] = useState<boolean>(true)
 
   useEffect(() => {
-    // const getitem = localStorage.getItem('objt')
 
-    // const validationLogin: any = () => {
+    const validationLogin: any = () => {
+      const getitem = JSON.parse(localStorage.getItem('objt') as string)
+     
+      if (getitem.email !==  username|| getitem.name !== username ) {
+        setErroLoigin(true)
+      } else {
+        setErroLoigin(false)
+      }
+    }
 
-    //   if (username == '' || getitem == username) {
-    //     setErroLoigin(true)
-    //   } else {
-    //     setErroLoigin(false)
-    //   }
-    // }
-    setName(localStorage.getItem("objt") || "");
-    console.log(setName)
 
   }, [])
 

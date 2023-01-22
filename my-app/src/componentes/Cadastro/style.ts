@@ -46,3 +46,11 @@ export const ErrorSpan = styled.span`
     margin-left: 15%;
 
 `;
+
+export const Errorbutton = styled.span`
+    color: #ffffff;
+    margin-top: 10%;
+    margin-left: 20%;
+    font-size: 16px;
+    line-height: 20px;
+`;

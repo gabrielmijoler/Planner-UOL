@@ -3,7 +3,7 @@ import Input from '../UI/Input/Input';
 import logoUol from '../Image/logouol.svg';
 import Button from '../UI/Button/Button';
 import { Link, useNavigate } from 'react-router-dom';
-import { ControlForm, ImageLaptop, SectionImg, SectionInputs, SubTitulo, TituloWelcome, ErrorSpan, Spanhere } from './style';
+import { ControlForm, ImageLaptop, SectionImg, SectionInputs, SubTitulo, TituloWelcome, ErrorSpan, Spanhere, Errorbutton } from './style';
 
 export interface ICadatro {
   firtname: string,
@@ -40,6 +40,7 @@ const Cadastro: React.FC<ICadatro> = () => {
   const [inputEmail, setInputEmail] = useState(true)
   const [Inputpasswconf, setInputpasswconf] = useState(true)
   const [Inputpassword, setInputpassword] = useState(true)
+  const [SubmitError, setSubmitError] = useState(false)
 
 
   const armazenar = (chave: string, valor: any) => {
@@ -47,43 +48,49 @@ const Cadastro: React.FC<ICadatro> = () => {
   }
 
   const submit = (e?: any) => {
-    armazenar('objt', itemStorage)
-    validation()
-    navigate('/login')
+    if (inputBirthError && inputCityError && inputCountryError && inputEmail && inputLastnameError
+      && inputNameError && Inputpasswconf && Inputpassword)
+      { setSubmitError(true)
+      e.preventDefault()}
+    else {
+      armazenar('objt', itemStorage)
+      navigate('/login')
+      setSubmitError(false)
+    }
   }
 
 
   const emailRegex = (/^[a-zA-Z0-9.!#$%&'*+\/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$/);
-  
+
   const validation = () => {
-    
+
     if (itemStorage.firstname === "" || itemStorage.firstname.length < 2) {
       setInputNameError(true)
     } else {
       setInputNameError(false)
     }
 
-    if(itemStorage.lastname === "" || itemStorage.lastname.length < 2 ){
+    if (itemStorage.lastname === "" || itemStorage.lastname.length < 2) {
       setInputLastnameError(true)
-    }else{
+    } else {
       setInputLastnameError(false)
     }
 
-    if(itemStorage.country === "" || itemStorage.country.length < 2 ){
+    if (itemStorage.country === "" || itemStorage.country.length < 2) {
       setInputCountryError(true)
-    }else{
+    } else {
       setInputCountryError(false)
     }
 
-    if(itemStorage.city === "" || itemStorage.city.length < 2 ){
+    if (itemStorage.city === "" || itemStorage.city.length < 2) {
       setInputCityError(true)
-    }else{
+    } else {
       setInputCityError(false)
     }
 
-    if(itemStorage.birthdate === ""){
+    if (itemStorage.birthdate === "") {
       setInputBirthError(true)
-    }else{
+    } else {
       setInputBirthError(false)
     }
 
@@ -93,24 +100,19 @@ const Cadastro: React.FC<ICadatro> = () => {
       setInputEmail(true)
     }
 
-
     if (itemStorage.password === "" || (itemStorage.password).length < 6) {
       setInputpassword(true)
     } else {
       setInputpassword(false)
     }
-    console.log('itemStorage.password: ', itemStorage.password)
 
     if (itemStorage.password !== itemStorage.confirpassword || itemStorage.confirpassword === "") {
       setInputpasswconf(true)
     } else {
       setInputpasswconf(false)
     }
-    console.log('itemStorage.confirpassword: ', itemStorage.confirpassword)
-    
-    console.log(itemStorage)
   }
-  
+
   return (
     <>
       <ControlForm>
@@ -199,6 +201,10 @@ const Cadastro: React.FC<ICadatro> = () => {
               onBlur={validation}
             />
             {Inputpasswconf && <ErrorSpan>Confirm password is not equal</ErrorSpan>}
+            
+            <div style={{marginTop:'5%'}}> 
+              {SubmitError && <Errorbutton>There is empty field or invalid</Errorbutton>}
+            </div>
             <Button
               type='submit'
               label="Register Now"
@@ -207,7 +213,7 @@ const Cadastro: React.FC<ICadatro> = () => {
               height={67}
               fontSize={32}
               marginleft={2}
-              margintop={10}
+              margintop={1}
               onClick={(e) => submit(e)}
             />
             <SectionImg>
