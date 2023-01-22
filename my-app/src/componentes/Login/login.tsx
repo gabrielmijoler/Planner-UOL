@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import Input from '../UI/Input/Input';
 import logoUol from '../Image/logouol.svg';
 import iconPassowrd from '../Image/iconPassowrd.svg';
@@ -13,8 +13,22 @@ const Login: React.FC = (props: any) => {
   const [username, setUsername] = useState<string>('')
   const [password, setPassowrd] = useState<string>('')
 
-  var getitem = localStorage.getItem('objt')
-  console.log(getitem)
+  const [erroLoigin, setErroLoigin] = useState<boolean>(true)
+
+  useEffect(() => {
+    const getitem = localStorage.getItem('objt')
+
+    const validationLogin: any = () => {
+
+      if (username == '' || getitem == username) {
+        setErroLoigin(true)
+      } else {
+        setErroLoigin(false)
+      }
+    }
+
+  }, [])
+
 
   function UsarnameHandleChange(e: any) {
     setUsername(e)
@@ -55,7 +69,7 @@ const Login: React.FC = (props: any) => {
             />
             <Imagem empty={password?.length > 0} src={iconPassowrd} alt="" />
           </ControlInput>
-          <div style={{padding: '8px'}}>
+          <div style={{ padding: '8px' }}>
             <Button
               type='submit'
               label="Log in" width={379}
@@ -63,6 +77,7 @@ const Login: React.FC = (props: any) => {
               height={67}
               fontSize={32}
               margintop={25}
+              onClick={(e) => e.preventDefault() }
             />
             <SectionImg>
               <span style={{ color: "#fff" }}>

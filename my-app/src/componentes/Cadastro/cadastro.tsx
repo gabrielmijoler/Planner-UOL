@@ -109,12 +109,8 @@ const Cadastro: React.FC<ICadatro> = () => {
     console.log('itemStorage.confirpassword: ', itemStorage.confirpassword)
     
     console.log(itemStorage)
-
-
   }
   
-
-
   return (
     <>
       <ControlForm>
