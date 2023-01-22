@@ -13,7 +13,7 @@ function App() {
     <React.Suspense fallback={<Loading />}>
       <Routes>
         <Route path='*' element={<h1>Not Found</h1>} />
-        <Route path='/cadastro' element={<Cadastro/>} />
+        <Route path='/cadastro' element={<Cadastro firtname={''} lastname={''} birthdate={''} country={''} city={''} email={''} password={''} confirpassword={''}/>} />
         <Route path='/login' element={<Login/>} />
         <Route path='/dashboard' element={<Dashboard/>} />
       </Routes>

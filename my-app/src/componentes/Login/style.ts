@@ -16,6 +16,7 @@ export const Imagem = styled.img<{empty: any}>`
     : `{
       transform: translateX(5%)
     }`}  
+    transition: 1s
 `;
 
 export const ControlInput = styled.section`

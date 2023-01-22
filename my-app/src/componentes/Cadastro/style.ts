@@ -14,8 +14,7 @@ export const TituloWelcome = styled.p`
     display: flex;
     flex-direction: column;
     font-size: 60px;
-    color: #E0E0E0;
-    margin-top: 40%;
+    color: #E0E0E0
 `;
 
 export const SubTitulo = styled.a`
@@ -30,13 +29,20 @@ export const SectionInputs = styled.section`
 `;
 
 export const SectionImg = styled.section`
-    display: flex;
-    justify-content: center;
-    padding-top: 5%;
+    padding-top: 2%;
+`;  
+export const Spanhere = styled.span`
+    margin-left: 21%;
 `;  
  
 export const ImageLaptop = styled.section`
     background-image: url(${ img });
     background-repeat: no-repeat;
     background-size: cover;
+`;
+
+export const ErrorSpan = styled.span`
+    color: #ffffff;
+    margin-left: 15%;
+
 `;

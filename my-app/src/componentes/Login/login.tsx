@@ -13,6 +13,8 @@ const Login: React.FC = (props: any) => {
   const [username, setUsername] = useState<string>('')
   const [password, setPassowrd] = useState<string>('')
 
+  var getitem = localStorage.getItem('objt')
+  console.log(getitem)
 
   function UsarnameHandleChange(e: any) {
     setUsername(e)

@@ -3,7 +3,7 @@ import { ButtonStyled } from './style';
 
 type Props = {
   label?: string;
-  onClick?: () => void
+  onClick?: (e:any) => void
   disabled?: boolean;
   type?: "button" | "submit" | "reset" | undefined, 
   children?: string;

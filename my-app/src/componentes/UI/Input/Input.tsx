@@ -3,12 +3,13 @@ import { ConteinerInput, InputStyle, LabelInput } from './style';
 
 
 type Props = {
+    id?: string;
     label?: string;
     onChange: (str: string) => void;
     onBlur?: (str: string) => void;
     placeholder: string;
     value?: string;
-    type: 'text' | 'number' | 'password' | 'email'|'time';
+    type: 'text' | 'number' | 'password' | 'email'|'time'| 'date';
     className?: string;
     size?: number;
     width?:number;
@@ -40,12 +41,14 @@ type Props = {
     bordercolor,
     marginLeft,
     showlabel = true,
+    id,
     }: Props) {
 
     return (
       <ConteinerInput>
         { showlabel && (<LabelInput>{label}</LabelInput>)}
         <InputStyle
+          id={id}
           onChange={event => onChange(event.target.value)}
           sizeplaceholder={size || 12}
           className={className}
