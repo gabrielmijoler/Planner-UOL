@@ -12,20 +12,22 @@ import { ControlInput, Imagem, P } from './style';
 const Login: React.FC = (props: any) => {
   const [username, setUsername] = useState<string>('')
   const [password, setPassowrd] = useState<string>('')
-
+  const [name, setName] = useState("");
   const [erroLoigin, setErroLoigin] = useState<boolean>(true)
 
   useEffect(() => {
-    const getitem = localStorage.getItem('objt')
+    // const getitem = localStorage.getItem('objt')
 
-    const validationLogin: any = () => {
+    // const validationLogin: any = () => {
 
-      if (username == '' || getitem == username) {
-        setErroLoigin(true)
-      } else {
-        setErroLoigin(false)
-      }
-    }
+    //   if (username == '' || getitem == username) {
+    //     setErroLoigin(true)
+    //   } else {
+    //     setErroLoigin(false)
+    //   }
+    // }
+    setName(localStorage.getItem("objt") || "");
+    console.log(setName)
 
   }, [])
 
@@ -77,7 +79,7 @@ const Login: React.FC = (props: any) => {
               height={67}
               fontSize={32}
               margintop={25}
-              onClick={(e) => e.preventDefault() }
+              //onClick={}
             />
             <SectionImg>
               <span style={{ color: "#fff" }}>
