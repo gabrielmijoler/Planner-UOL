@@ -7,12 +7,14 @@ import { ControlForm, ImageLaptop, SectionImg, SectionInputs, Spanhere, SubTitul
 import Button from '../UI/Button';
 import { Link, useNavigate } from 'react-router-dom';
 import { ControlInput, Imagem, P, SectionButton, Spanlogin } from './style';
+import { ApiContext } from '../../context/api-context';
 
 
 
 
 const Login: React.FC = () => {
-  let navigate = useNavigate();
+  
+  const { Login } = useContext(ApiContext)
 
   const [loginItem, setLoginItem] = useState({
     username: '',
@@ -25,13 +27,12 @@ const Login: React.FC = () => {
   const getFullName = JSON.parse(localStorage.getItem('Fullname') as string)
 
   const validationLogin: any = (e: any) => {
-
-    if ((getitem.email === loginItem.username || getFullName === loginItem.username) &&
-      (getitem.password === loginItem.password)) {
-      navigate('/dashboard')
+    e.preventDefault()
+    
+    if ((getitem.email === loginItem.username || getFullName === loginItem.username) && (getitem.password === loginItem.password)) {
+      Login(loginItem.username, loginItem.password)
     } else {
       setErroLoigin(true)
-      e.preventDefault()
     }
 
   }

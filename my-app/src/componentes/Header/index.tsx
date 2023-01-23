@@ -1,13 +1,13 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { ControlHeader, SectionLogOut, Titulo, Weekeplanner } from './style';
 import logouolback from "../Image/logouolback.svg"
 import iconlogout from "../Image/iconlogout.svg"
-import { useNavigate } from 'react-router-dom';
+import { ApiContext } from '../../context/api-context';
 
 
 const Header: React.FC = (props: any) => {
-
-
+ 
+  const { Logout } = useContext(ApiContext)
 
   var dataAtual = new Date();
   let date = dataAtual.getDate();
@@ -15,6 +15,9 @@ const Header: React.FC = (props: any) => {
   let horas = dataAtual.toTimeString()
   let monthString = dataAtual.toDateString().slice(3, -7)
 
+  function handleLogout(){
+    Logout()
+  }
   return (
     <>
       <ControlHeader>
@@ -29,11 +32,8 @@ const Header: React.FC = (props: any) => {
         <section>clima
         </section>
         <SectionLogOut>
-          <img src={logouolback} alt="Logouol" style={{ marginBottom: '10%' }} />
-          <a onClick={()=>{
-            localStorage.removeItem('objt')
-            localStorage.removeItem('Fullname')
-          }} href='/login'><img alt='logo compass' src={iconlogout} ></img></a>
+          <a href="href='https://compass.uol/pt/sobre-nos/'"><img src={logouolback} alt="Logouol" style={{ marginBottom: '10%' }} /></a>
+          <a onClick={handleLogout} href='/login'><img alt='logo compass' src={iconlogout}></img></a>
           Logout
         </SectionLogOut>
       </ControlHeader>

@@ -12,11 +12,9 @@ const root = ReactDOM.createRoot(
 );
 root.render(
   <>
-  <ApiProvider>
     <BrowserRouter>
       <App />
     </BrowserRouter>
-  </ApiProvider>
   </>
 );
 
