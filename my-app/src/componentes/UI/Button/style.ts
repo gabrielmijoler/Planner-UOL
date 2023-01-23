@@ -11,7 +11,7 @@ export const ButtonStyled = styled.button<
         marginleft?: number,
         margintop?: number,
         background?: string,
-     }>`
+    }>`
 
     width: ${props => props.widthsize}px;
     height: ${props => props.height}px;

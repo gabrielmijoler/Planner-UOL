@@ -7,13 +7,13 @@ export const P = styled.p`
     color: #E0E0E0;
 `;
 
-export const Imagem = styled.img<{empty: any}>`
+export const Imagem = styled.img<{ empty: any }>`
   ${(props) =>
-  props.empty  
-  ? `{
+    props.empty
+      ? `{
     transform: translateX(-44px)
     }`
-    : `{
+      : `{
       transform: translateX(5%)
     }`}  
     transition: 1s

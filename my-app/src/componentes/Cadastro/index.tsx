@@ -54,13 +54,13 @@ const Cadastro: React.FC<ICadatro> = () => {
 
   const submit = (e?: any) => {
     if (inputBirthError && inputCityError && inputCountryError && inputEmail && inputLastnameError
-      && inputNameError && Inputpasswconf && Inputpassword)
-      { 
-        setSubmitError(true)
-        e.preventDefault()}
+      && inputNameError && Inputpasswconf && Inputpassword) {
+      setSubmitError(true)
+      e.preventDefault()
+    }
     else {
       armazenar('objt', itemStorage)
-      armazenarFullname('Fullname', itemStorage.firstname + " " +  itemStorage.lastname)
+      armazenarFullname('Fullname', itemStorage.firstname + " " + itemStorage.lastname)
       navigate('/login')
       setSubmitError(false)
     }
@@ -208,8 +208,8 @@ const Cadastro: React.FC<ICadatro> = () => {
               onBlur={validation}
             />
             {Inputpasswconf && <ErrorSpan>Confirm password is not equal</ErrorSpan>}
-            
-            <div style={{marginTop:'5%'}}> 
+
+            <div style={{ marginTop: '5%' }}>
               {SubmitError && <Errorbutton>There is empty field or invalid</Errorbutton>}
             </div>
             <Button

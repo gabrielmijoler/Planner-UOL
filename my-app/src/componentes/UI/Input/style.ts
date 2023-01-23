@@ -16,15 +16,15 @@ export const LabelInput = styled.label`
 `;
 
 export const InputStyle = styled.input<{
-    sizeplaceholder?:any,
-    width?:number,
+    sizeplaceholder?: any,
+    width?: number,
     height?: number,
     borderRadius?: number,
     background?: string,
     color?: string,
     bordercolor?: string,
     marginLeft?: number,
-    }>`
+}>`
     width: ${props => props.width}px;
     height: ${props => props.height}px;
     border: 1px solid;

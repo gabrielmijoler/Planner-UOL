@@ -39,7 +39,7 @@ export const Main = styled.main`
     overflow-y: scroll;
     overflow-x: scroll;
 `;
-  
+
 export const Time = styled.p`
     width: 85px;
     height: 75px;
@@ -54,7 +54,7 @@ export const Time = styled.p`
     align-items: center;
     margin: 0px 0px 19px 0px;
 `;
-  
+
 export const Weeks = styled.button`
     width: 290px;
     height: 33px;
@@ -81,7 +81,7 @@ export const InputWeeks = styled.select`
     margin-left: 3px;
 
 `;
- 
+
 export const SectionWeek = styled.section`
     display: flex;
     width: 1750px;
@@ -106,10 +106,9 @@ export const SectionButton = styled.section`
     margin-left: 35%;
 `;
 
-  
+
 export const Pvazia = styled.section`
     width: 512px;
     height: 85px;
 `;
 
-  

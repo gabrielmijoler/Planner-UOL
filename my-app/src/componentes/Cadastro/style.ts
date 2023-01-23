@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import img from "../Image/IMGlap.png" 
+import img from "../Image/IMGlap.png"
 
 
 export const ControlForm = styled.section`
@@ -30,14 +30,14 @@ export const SectionInputs = styled.section`
 
 export const SectionImg = styled.section`
     padding-top: 2%;
-`;  
-export const Spanhere = styled.span<{marginleft: any}>`
+`;
+export const Spanhere = styled.span<{ marginleft: any }>`
     margin-left: ${props => props.marginleft}%;
     color: #ffffff;
-`;  
- 
+`;
+
 export const ImageLaptop = styled.section`
-    background-image: url(${ img });
+    background-image: url(${img});
     background-repeat: no-repeat;
     background-size: cover;
 `;

@@ -10,8 +10,6 @@ interface Props {
 }
 
 
-
-
 export const ApiContext = createContext<IContext>({
     id: false
 });
@@ -21,7 +19,7 @@ const ApiProvider: React.FC<Props> = ({ children }) => {
 
 
     return (
-        <ApiContext.Provider value={{id}}>
+        <ApiContext.Provider value={{ id }}>
             {children}
         </ApiContext.Provider>
     );

@@ -1,19 +1,19 @@
 import { Card, PCard, Span } from "./style";
 import Button from "../UI/Button";
 
-export interface ICard{
+export interface ICard {
     labela?: string;
     id: number;
 }
 
-const CardItem = ({labela, id}:ICard)=>{
+const CardItem = ({ labela, id }: ICard) => {
     return (
         <Card key={id}>
-            <Span/>
+            <Span />
             <PCard>{labela}</PCard>
-            <Button 
-                width={57} 
-                height={25} 
+            <Button
+                width={57}
+                height={25}
                 label='Delete'
                 fontSize={14}
                 boderRadius={6}

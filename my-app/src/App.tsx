@@ -18,11 +18,6 @@ function App() {
         <Route path='/dashboard' element={<Dashboard/>} />
       </Routes>
     </React.Suspense>
-
-    // <Routes>
-    //   <Route path="/cadastro" element={<Cadastro />} />
-    //   <Route path="/login" element={<Login />} />
-    // </Routes>
   );
 }
 
