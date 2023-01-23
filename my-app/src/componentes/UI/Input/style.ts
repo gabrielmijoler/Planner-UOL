@@ -36,6 +36,19 @@ export const InputStyle = styled.input<{
     padding-left: 29px;
     border-color: ${props => props.bordercolor};
     margin-left: ${props => props.marginLeft}px;
+    
+    &:-webkit-autofill{
+        -webkit-text-fill-color: #E0E0E0 ;
+        box-shadow: -500px 0 0 30px #26292C inset;
+    }
+    &:-webkit-autofill:hover{
+        -webkit-text-fill-color: #E0E0E0;
+        box-shadow: -500px 0 0 30px #26292C inset;
+    }
+    &:-webkit-autofill:focus{
+        -webkit-text-fill-color: #E0E0E0 ;
+        box-shadow: -500px 0 0 30px #26292C inset;
+    }
 `;
 
 export const ConteinerInput = styled.div`

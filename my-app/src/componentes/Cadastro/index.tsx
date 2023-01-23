@@ -1,9 +1,10 @@
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import Input from '../UI/Input';
 import logoUol from '../Image/logouol.svg';
 import Button from '../UI/Button';
 import { Link, useNavigate } from 'react-router-dom';
 import { ControlForm, ImageLaptop, SectionImg, SectionInputs, SubTitulo, TituloWelcome, ErrorSpan, Spanhere, Errorbutton } from './style';
+
 
 export interface ICadatro {
   firtname: string,
@@ -47,6 +48,10 @@ const Cadastro: React.FC<ICadatro> = () => {
     localStorage.setItem(chave, JSON.stringify(valor))
   }
 
+  const armazenarFullname = (chave: string, valor: any) => {
+    localStorage.setItem(chave, JSON.stringify(valor))
+  }
+
   const submit = (e?: any) => {
     if (inputBirthError && inputCityError && inputCountryError && inputEmail && inputLastnameError
       && inputNameError && Inputpasswconf && Inputpassword)
@@ -55,6 +60,7 @@ const Cadastro: React.FC<ICadatro> = () => {
         e.preventDefault()}
     else {
       armazenar('objt', itemStorage)
+      armazenarFullname('Fullname', itemStorage.firstname + " " +  itemStorage.lastname)
       navigate('/login')
       setSubmitError(false)
     }

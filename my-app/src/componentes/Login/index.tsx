@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useContext, useState } from 'react';
 import Input from '../UI/Input';
 import logoUol from '../Image/logouol.svg';
 import iconPassowrd from '../Image/iconPassowrd.svg';
@@ -7,75 +7,46 @@ import { ControlForm, ImageLaptop, SectionImg, SectionInputs, Spanhere, SubTitul
 import Button from '../UI/Button';
 import { Link, useNavigate } from 'react-router-dom';
 import { ControlInput, Imagem, P, SectionButton, Spanlogin } from './style';
-import { ApiContext } from '../../context/api-context';
 
 
-const Login: React.FC = (props: any) => {
+
+
+const Login: React.FC = () => {
   let navigate = useNavigate();
-
+  
   const [loginItem, setLoginItem] = useState({
     username:'',
-    password:''
+    password:'',
   })
   const [erroLoigin, setErroLoigin] = useState<boolean>(false)
 
-  // const { id } = ApiContext();
+  // const context = useContext(AuthContext);
 
+  // console.log(context);
 
   const getitem = JSON.parse(localStorage.getItem('objt') as string)
-  const namefull = ( getitem.firstname + getitem.lastname)
+  const getFullName = JSON.parse(localStorage.getItem('Fullname') as string)
   
   const validationLogin: any = (e:any) => {
 
-    if ((getitem.email !== loginItem.username || namefull !== loginItem.username) && (getitem.password !==  loginItem.password)){
-        setErroLoigin(true)
-        e.preventDefault()
-       }else{
+    if ((getitem.email === loginItem.username || getFullName === loginItem.username) &&
+      (getitem.password ===  loginItem.password))
+      {
         navigate('/dashboard')
+      }else{
+         setErroLoigin(true)
+         e.preventDefault()
         }
 
-    // if (getitem.password !==  loginItem.username){
-    //     console.log(alert('error'))
-    //     setErroLoigin(false)
-    //     }else{
-    //     setErroLoigin(true)
-    //     }
-    
-    // if(erroLoigin){
-    //   navigate('/dashboard')
-    // }else{
-    //   setErroLoigin(true)
-    //   e.preventDefault()
-    // }
-  }
+      }
+      
+      console.log('setlogin', getitem)
 
-  console.log('setlogin', getitem)
   console.log('username', loginItem.username)
   console.log('password', loginItem.password)
   console.log('getitem.senha', getitem.password)
-  console.log('namefull', namefull)
+  console.log('namefull', getFullName)
   console.log('email', getitem.email)
-
-  // const handleChange=() =>{
-
-  // } 
-  
-  // const submit = (e?: any) => {
-  //   if (errorUser)
-  //     { 
-  //       setErroLoigin(true)
-  //       e.preventDefault()}
-  //   else {
-  //       navigate('/dashboard')
-  //       setErroLoigin(false)
-  //   }
-  // }
-
-
-  // useEffect(() => {
-    
-  // }, [])
-
 
   return (
     <ControlForm>
@@ -117,7 +88,6 @@ const Login: React.FC = (props: any) => {
               height={67}
               fontSize={32}
               margintop={15}
-              // onClick={()=> validationLogin()}
             />
             <SectionImg>
               <Spanhere marginleft={15}>

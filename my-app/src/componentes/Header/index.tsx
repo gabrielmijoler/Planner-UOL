@@ -2,6 +2,7 @@ import React from 'react';
 import { ControlHeader,  SectionLogOut,  Titulo,  Weekeplanner } from './style';
 import logouolback from "../Image/logouolback.svg"
 import iconlogout from "../Image/iconlogout.svg"
+import { useNavigate } from 'react-router-dom';
 
 
 const Header: React.FC = (props:any) => {
