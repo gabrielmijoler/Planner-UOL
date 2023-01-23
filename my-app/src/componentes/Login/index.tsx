@@ -39,7 +39,7 @@ const Login: React.FC = () => {
   return (
     <ControlForm>
       <SectionInputs>
-        <TituloWelcome>Welcome,
+        <TituloWelcome style={{marginTop: '55%'}}>Welcome,
           <SubTitulo>To continue browsing safely, log in to the network.</SubTitulo></TituloWelcome>
         <form onSubmit={validationLogin}>
           <P>Login</P>
