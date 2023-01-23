@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
 import { ControlDashboard, Head, Imagemlogo, InputWeeks, Main, Nav, Pvazia, SectionButton, SectionWeek, Time, Weeks } from './style';
 import CardItem from '../Card/card';
-import Header from '../Header/header';
-import Button from '../UI/Button/Button';
-import Input from '../UI/Input/Input';
+import Header from '../Header';
+import Button from '../UI/Button';
+import Input from '../UI/Input';
 import dashlogo from '../Image/dashlogo.svg';
-import NavTime from '../Timer/timer';
+import NavTime from '../Timer';
 
 
 
@@ -79,17 +79,11 @@ const Dashboard: React.FC = (props:any) => {
             <Weeks >Friday</Weeks>
             <Weeks >Saturday</Weeks>
             <Weeks >Sunday</Weeks>
-          {/* <Weeks>asd</Weeks>
-          <Weeks>asd</Weeks>
-          <Weeks>asd</Weeks>
-          <Weeks>asd</Weeks>
-          <Weeks>asd</Weeks>
-          <Weeks>asd</Weeks> */}
         </SectionWeek>
       <ControlDashboard>
         <Nav>
           <Time>Time</Time>
-          <NavTime id={1} labela={inputime}></NavTime>
+          <NavTime id={1}></NavTime>
         </Nav>
         <Main>
             <Pvazia></Pvazia>

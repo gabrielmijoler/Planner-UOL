@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
-import Input from '../UI/Input/Input';
+import Input from '../UI/Input';
 import logoUol from '../Image/logouol.svg';
-import Button from '../UI/Button/Button';
+import Button from '../UI/Button';
 import { Link, useNavigate } from 'react-router-dom';
 import { ControlForm, ImageLaptop, SectionImg, SectionInputs, SubTitulo, TituloWelcome, ErrorSpan, Spanhere, Errorbutton } from './style';
 

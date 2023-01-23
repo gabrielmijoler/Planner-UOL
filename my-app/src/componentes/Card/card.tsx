@@ -1,5 +1,5 @@
 import { Card, PCard, Span } from "./style";
-import Button from "../UI/Button/Button";
+import Button from "../UI/Button";
 
 export interface ICard{
     labela?: string;

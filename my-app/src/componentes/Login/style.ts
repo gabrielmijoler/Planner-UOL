@@ -29,3 +29,6 @@ export const Spanlogin = styled.span`
     color: #E9B425;
     margin-top: 6%;
 `;
+export const SectionButton = styled.div`
+    padding: 8px;
+`;

@@ -1,46 +1,52 @@
-import React, { useEffect, useState } from 'react';
-import Input from '../UI/Input/Input';
+import React, { useContext, useEffect, useState } from 'react';
+import Input from '../UI/Input';
 import logoUol from '../Image/logouol.svg';
 import iconPassowrd from '../Image/iconPassowrd.svg';
 import iconUser from '../Image/iconUser.svg';
 import { ControlForm, ImageLaptop, SectionImg, SectionInputs, Spanhere, SubTitulo, TituloWelcome } from '../Cadastro/style';
-import Button from '../UI/Button/Button';
+import Button from '../UI/Button';
 import { Link, useNavigate } from 'react-router-dom';
-import { ControlInput, Imagem, P, Spanlogin } from './style';
+import { ControlInput, Imagem, P, SectionButton, Spanlogin } from './style';
+import { ApiContext } from '../../context/api-context';
 
 
 const Login: React.FC = (props: any) => {
   let navigate = useNavigate();
-  
+
   const [loginItem, setLoginItem] = useState({
     username:'',
     password:''
   })
-
-  const [errorUser, setErrorUser] = useState<boolean>(false)
   const [erroLoigin, setErroLoigin] = useState<boolean>(false)
-  
+
+  // const { id } = ApiContext();
+
+
   const getitem = JSON.parse(localStorage.getItem('objt') as string)
   const namefull = ( getitem.firstname + getitem.lastname)
   
   const validationLogin: any = (e:any) => {
-    if (getitem.email === loginItem.username || namefull === loginItem.username){
-        setErroLoigin(false)
-       }else{
+
+    if ((getitem.email !== loginItem.username || namefull !== loginItem.username) && (getitem.password !==  loginItem.password)){
         setErroLoigin(true)
+        e.preventDefault()
+       }else{
+        navigate('/dashboard')
         }
 
-    if (getitem.password ===  loginItem.username){
-        setErroLoigin(false)
-        }else{
-        setErroLoigin(true)
-        }
+    // if (getitem.password !==  loginItem.username){
+    //     console.log(alert('error'))
+    //     setErroLoigin(false)
+    //     }else{
+    //     setErroLoigin(true)
+    //     }
     
-    if(erroLoigin){
-      navigate('/dashboard')
-    }else{
-      setErroLoigin(true)
-    }
+    // if(erroLoigin){
+    //   navigate('/dashboard')
+    // }else{
+    //   setErroLoigin(true)
+    //   e.preventDefault()
+    // }
   }
 
   console.log('setlogin', getitem)
@@ -48,7 +54,8 @@ const Login: React.FC = (props: any) => {
   console.log('password', loginItem.password)
   console.log('getitem.senha', getitem.password)
   console.log('namefull', namefull)
-  
+  console.log('email', getitem.email)
+
   // const handleChange=() =>{
 
   // } 
@@ -75,7 +82,7 @@ const Login: React.FC = (props: any) => {
       <SectionInputs>
         <TituloWelcome>Welcome,
           <SubTitulo>To continue browsing safely, log in to the network.</SubTitulo></TituloWelcome>
-        <form>
+        <form onSubmit={validationLogin}>
           <P>Login</P>
           <ControlInput style={{ marginBottom: '20px' }}>
             <Input
@@ -99,7 +106,8 @@ const Login: React.FC = (props: any) => {
             />
             <Imagem empty={loginItem.password?.length > 0} src={iconPassowrd} alt="" />
           </ControlInput>
-          <div style={{ padding: '8px' }}>
+
+          <SectionButton>
             {erroLoigin && <Spanlogin>Wow, invalid username or password.<br/>
                 Please, try again!</Spanlogin>}
             <Button
@@ -109,14 +117,14 @@ const Login: React.FC = (props: any) => {
               height={67}
               fontSize={32}
               margintop={15}
-              onClick={()=> validationLogin()}
+              // onClick={()=> validationLogin()}
             />
             <SectionImg>
               <Spanhere marginleft={15}>
                 You don't have cadastre click<Link style={{ color: "white" }} to='/cadastro'> here</Link>
               </Spanhere>
             </SectionImg>
-          </div>
+          </SectionButton>
         </form>
       </SectionInputs>
       <ImageLaptop className='container'>

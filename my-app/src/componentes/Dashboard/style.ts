@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import Button from "../UI/Button/Button";
+import Button from "../UI/Button";
 
 
 export const ControlDashboard = styled.section`
