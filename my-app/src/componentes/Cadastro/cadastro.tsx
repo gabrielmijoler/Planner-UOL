@@ -50,8 +50,9 @@ const Cadastro: React.FC<ICadatro> = () => {
   const submit = (e?: any) => {
     if (inputBirthError && inputCityError && inputCountryError && inputEmail && inputLastnameError
       && inputNameError && Inputpasswconf && Inputpassword)
-      { setSubmitError(true)
-      e.preventDefault()}
+      { 
+        setSubmitError(true)
+        e.preventDefault()}
     else {
       armazenar('objt', itemStorage)
       navigate('/login')
@@ -217,8 +218,8 @@ const Cadastro: React.FC<ICadatro> = () => {
               onClick={(e) => submit(e)}
             />
             <SectionImg>
-              <Spanhere style={{ color: "#fff" }}>
-                You have cadastre click<Link style={{ color: "white" }} to='/login'> here</Link>
+              <Spanhere marginleft={30}>
+                If you have already registered<Link style={{ color: "white" }} to='/login'> here</Link>
               </Spanhere>
             </SectionImg>
           </form>

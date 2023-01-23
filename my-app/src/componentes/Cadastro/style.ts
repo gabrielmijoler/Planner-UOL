@@ -31,8 +31,9 @@ export const SectionInputs = styled.section`
 export const SectionImg = styled.section`
     padding-top: 2%;
 `;  
-export const Spanhere = styled.span`
-    margin-left: 21%;
+export const Spanhere = styled.span<{marginleft: any}>`
+    margin-left: ${props => props.marginleft}%;
+    color: #ffffff;
 `;  
  
 export const ImageLaptop = styled.section`
@@ -42,15 +43,15 @@ export const ImageLaptop = styled.section`
 `;
 
 export const ErrorSpan = styled.span`
-    color: #ffffff;
-    margin-left: 15%;
+    color: #E9B425;
+    margin-left: 23%;
 
 `;
 
 export const Errorbutton = styled.span`
-    color: #ffffff;
+    color: #E9B425;
     margin-top: 10%;
-    margin-left: 20%;
+    margin-left: 30%;
     font-size: 16px;
     line-height: 20px;
 `;

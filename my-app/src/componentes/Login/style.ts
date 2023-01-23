@@ -20,18 +20,12 @@ export const Imagem = styled.img<{empty: any}>`
 `;
 
 export const ControlInput = styled.section`
-
-  display: flex;
-  & input:focus ~ i{
-    transform:translateX(-24px);
-  }                                   
+  display: flex;                             
 `;
 
-// export const Imagemicon = styled(InputStyle)`
-
-//   &.${props => props.activeClassName} {
-//     transform:translateX(-24px);
-//     font-size: 12px;
-//     color: lowerblue;
-//   }
-// `;
+export const Spanlogin = styled.span`
+    display: flex;
+    justify-content: center;
+    color: #E9B425;
+    margin-top: 6%;
+`;
