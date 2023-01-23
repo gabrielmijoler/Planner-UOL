@@ -30,7 +30,10 @@ const Header: React.FC = (props: any) => {
         </section>
         <SectionLogOut>
           <img src={logouolback} alt="Logouol" style={{ marginBottom: '10%' }} />
-          <a href='/login'><img alt='logo compass' src={iconlogout} ></img></a>
+          <a onClick={()=>{
+            localStorage.removeItem('objt')
+            localStorage.removeItem('Fullname')
+          }} href='/login'><img alt='logo compass' src={iconlogout} ></img></a>
           Logout
         </SectionLogOut>
       </ControlHeader>
