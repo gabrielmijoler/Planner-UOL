@@ -13,7 +13,7 @@ const Header: React.FC = (props: any) => {
   let date = dataAtual.getDate();
   let year = dataAtual.getFullYear();
   let horas = dataAtual.toTimeString()
-  let monthString = dataAtual.toDateString().slice(3, -7)
+  let monthString = dataAtual.toLocaleString('en-Us', { month: 'long' })
 
   function handleLogout(){
     Logout()
@@ -27,7 +27,7 @@ const Header: React.FC = (props: any) => {
             Use this planner to organize your daily issues</p ></Weekeplanner>
         <section style={{ display: 'flex', justifyContent: 'center', flexDirection: 'column', marginBottom: '25px' }}>
           <p style={{ display: 'flex', justifyContent: 'center', fontSize: '40px', marginBottom: '0px' }}>{horas.slice(0, -38)}</p>
-          <p style={{ display: 'flex', justifyContent: 'center', fontSize: '20px', marginTop: '0px' }}>{`${monthString} ${date}th,${year} `}</p>
+          <p style={{ display: 'flex', justifyContent: 'center', fontSize: '20px', marginTop: '0px' }}>{`${monthString} ${date},${year} `}</p>
         </section>
         <section>clima
         </section>

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { ConteinerInput, InputStyle, LabelInput } from './style';
 
 
@@ -21,6 +21,7 @@ type Props = {
   marginLeft?: number;
   icon?: any;
   showlabel?: boolean
+  error?: boolean
 };
 
 
@@ -42,9 +43,10 @@ export default function Input({
   marginLeft,
   showlabel = true,
   id,
+  error,
 }: Props) {
 
-  return (
+  return (  
     <ConteinerInput>
       {showlabel && (<LabelInput>{label}</LabelInput>)}
       <InputStyle
@@ -60,9 +62,10 @@ export default function Input({
         borderRadius={borderRadius || 50}
         background={background || '#26292C'}
         color={color || '#ffffff'}
-        bordercolor={bordercolor || '#FFFFFF'}
+        bordercolor={bordercolor}
         marginLeft={marginLeft}
         onBlur={event => onBlur && onBlur(event.target.value)}
+        error={error}
       />
     </ConteinerInput>
   );

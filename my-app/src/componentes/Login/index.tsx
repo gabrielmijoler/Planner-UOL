@@ -15,27 +15,27 @@ import { ApiContext } from '../../context/api-context';
 const Login: React.FC = () => {
   
   const { Login } = useContext(ApiContext)
-
   const [loginItem, setLoginItem] = useState({
     username: '',
     password: '',
   })
+  
   const [erroLoigin, setErroLoigin] = useState<boolean>(false)
 
-
+  const [emptyusername, setEmptyusername] = useState<any>(null)
   const getitem = JSON.parse(localStorage.getItem('objt') as string)
   const getFullName = JSON.parse(localStorage.getItem('Fullname') as string)
-
-  const validationLogin: any = (e: any) => {
+  
+  const validationLogin: any = (e: any, valor:any ) => {
+    // const expiraTime = new Date(new Date().getTime() + +valor.expireIn * 1000)
     e.preventDefault()
-    
     if ((getitem.email === loginItem.username || getFullName === loginItem.username) && (getitem.password === loginItem.password)) {
       Login(loginItem.username, loginItem.password)
-    } else {
+    }else{
       setErroLoigin(true)
     }
-
   }
+
 
   return (
     <ControlForm>
@@ -52,6 +52,7 @@ const Login: React.FC = () => {
               value={loginItem.username}
               onChange={(e) => setLoginItem({ ...loginItem, username: e })}
               placeholder='user name'
+              error={erroLoigin}
             />
             <Imagem empty={loginItem.username?.length > 0} src={iconUser} alt="" />
           </ControlInput>
@@ -63,6 +64,7 @@ const Login: React.FC = () => {
               size={16}
               onChange={(e) => setLoginItem({ ...loginItem, password: e })}
               placeholder='password'
+              error={erroLoigin}
             />
             <Imagem empty={loginItem.password?.length > 0} src={iconPassowrd} alt="" />
           </ControlInput>

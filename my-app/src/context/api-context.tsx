@@ -33,6 +33,7 @@ const ApiProvider: React.FC<Props> = ({ children }) => {
     useEffect(() => {
         if (localStorage.getItem('token')){
             setUser(getitem);
+            navigate('/dashboard')
         }
     }, []); 
 

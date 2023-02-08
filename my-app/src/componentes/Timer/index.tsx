@@ -1,16 +1,15 @@
-import { PCard } from "../Card/style";
+import { PCard, Span } from "../Card/style";
 import { Time } from "../Dashboard/style";
 
-export interface ICard {
-    labela?: string;
-    id: number;
-}
 
-const NavTime = ({ labela, id }: ICard) => {
+
+const NavTime = (props: any) => {
     return (
-        <Time key={id}>
-            <PCard>{labela}</PCard>
-        </Time>
+        <>
+            {props.timeitem.map((item: any) => (
+                    <Time key={item.id}>{item.inpuTime}</Time>
+            ))}
+        </>
     )
 }
 

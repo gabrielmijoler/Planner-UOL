@@ -45,7 +45,6 @@ export const ImageLaptop = styled.section`
 export const ErrorSpan = styled.span`
     color: #E9B425;
     margin-left: 23%;
-
 `;
 
 export const Errorbutton = styled.span`

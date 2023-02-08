@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { ControlDashboard, Head, Imagemlogo, InputWeeks, Main, Nav, Pvazia, SectionButton, SectionWeek, Time, Weeks } from './style';
+import { ControlDashboard, Divcard, DivPai, Head, Imagemlogo, InputWeeks, Main, Nav, Pvazia, SectionButton, SectionWeek, Spanvazio, Time, Weeks } from './style';
 import CardItem from '../Card/card';
 import Header from '../Header';
 import Button from '../UI/Button';
@@ -9,42 +9,106 @@ import NavTime from '../Timer';
 
 
 
-const Dashboard: React.FC = (props:any) => {
-  const [inputest, setInputest] = useState<string>('')
-  const [inputime, setInputime] = useState<string>('')
-  return (
-    <>
-      <Header/>
-      <Head>
-          <Input 
-            size={14} 
-            width={391} 
-            height={45} 
+const Dashboard: React.FC = (props: any) => {
+  const [inpuDescription, setInpuDescription] = useState('');
+  const [inpuTime, setInpuTime] = useState('');
+  const [dataTime, setDataTime] = useState('Monday')
+  const [selection, setSelection] = useState('');
+
+  const days = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"]
+
+  const time = [
+    {
+      id: 1,
+      dataTime:'Monday',
+      inpuTime:'10:10',
+      inpuDescription: 'erro'
+    },
+    {
+      id: 2, 
+      inpuTime:'10:10',
+      inpuDescription: 'eita'
+    },
+    {
+      id: 3,
+      inpuTime:'10:10',
+      inpuDescription:'teste'
+    },
+    {
+      id: 4, 
+      inpuTime:'9:20',
+      inpuDescription: '9hr'
+    },
+    {
+      id: 5, 
+      inpuTime:'9:20',
+      inpuDescription: '9hr'
+    },
+    {
+      id: 6, 
+      inpuTime:'9:20',
+      inpuDescription: '9hr'
+    },
+    {
+      id: 7, 
+      inpuTime:'9:20',
+      inpuDescription: '9hr'
+    },
+    {
+      id: 7, 
+      inpuTime:'9:20',
+      inpuDescription: '9hr'
+    },
+    {
+      id: 7, 
+      inpuTime:'9:20',
+      inpuDescription: '9hr'
+    },
+  ]
+  
+  const handleSelect = (e: any) => {
+    setDataTime(e.target.value)
+    }
+  const Clickselect = (e: any) => {
+    setSelection(e.target.value)
+    }
+
+
+    const addCard = (event: any) => {
+      event.preventDefault();
+      
+    };
+
+    return (
+      <DivPai>
+        <Header />
+        <Head>
+          <Input
+            size={14}
+            width={391}
+            height={45}
             placeholder='Task or issue'
             color={'rgba(0, 0, 0, 0.7);'}
             borderRadius={10}
             background={'#fff'}
             bordercolor={'#FECE00'}
             type={'text'}
-            onChange={(e) => setInputest(e)}
-            value={inputest}
+            onChange={(e) => setInpuDescription(e)}
+            value={inpuDescription}
           />
           <InputWeeks
-            placeholder='Monday'
             color={'rgba(0, 0, 0, 0.7);'}
+            value={dataTime}
+            onChange={e => handleSelect(e)}
           >
-            <option value="Monday">Monday</option>
-            <option value="Tuesday">Tuesday</option>
-            <option value="Wednesday">Wednesday</option>
-            <option value="Thursday">Thursday</option>
-            <option value="Friday">Friday</option>
-            <option value="Saturday">Saturday</option>
-            <option value="Sunday">Sunday</option>
+            {
+              days.map((address, key) => <option key={key} value={address}>{address}</option>)
+            }
           </InputWeeks>
-          <Input 
-            size={14} 
-            width={120} 
-            height={45} 
+          <Input
+            size={14}
+            width={120}
+            height={45}
             placeholder='01h 32m'
             color={'rgba(0, 0, 0, 0.7);'}
             borderRadius={10}
@@ -52,50 +116,43 @@ const Dashboard: React.FC = (props:any) => {
             bordercolor={'#FECE00'}
             type={'time'}
             marginLeft={2}
-            onChange={(e) => setInputime(e)}
-            value={inputime}
-            />
+            onChange={(e) => setInpuTime(e)}
+            value={inpuTime}
+          />
           <SectionButton >
-            <Button 
+            <Button
               label='Add to calendar'
               width={200}
               background='#00BA88'
               borderColors='#00BA88'
-              />
-            <Button 
-              label='Delete All' 
-              width={200} 
-              marginleft={5} 
+              onClick={addCard}
+            />
+            <Button
+              label='Delete All'
+              width={200}
+              marginleft={5}
               background='#FF3D1F'
               borderColors='#FF3D1F'
-              />
+            />
           </SectionButton>
-      </Head>
-      <SectionWeek>
-            <Weeks key={1}>Monday</Weeks>
-            <Weeks >Tuesday</Weeks>
-            <Weeks >Wednesday</Weeks>
-            <Weeks >Thursday</Weeks>
-            <Weeks >Friday</Weeks>
-            <Weeks >Saturday</Weeks>
-            <Weeks >Sunday</Weeks>
+        </Head>
+        <SectionWeek>
+          {days.map((address, key) => <Weeks onClick={Clickselect} key={key} value={address}>{address}</Weeks>)}
         </SectionWeek>
-      <ControlDashboard>
-        <Nav>
-          <Time>Time</Time>
-          <NavTime id={1}></NavTime>
-        </Nav>
-        <Main>
-            <Pvazia></Pvazia>
-            <CardItem labela={inputest} id={1}/>
+        <ControlDashboard>
+          <Main>
+            <Divcard>
+              <NavTime timeitem={time}/>
+              <CardItem card={time} id={props.id} />
+            </Divcard>
             <Imagemlogo src={dashlogo}></Imagemlogo>
-        </Main>
-      </ControlDashboard>
-      
-
-    </>
+          </Main>
+          
+        </ControlDashboard>
+        </DivPai>
     )
   }
 
+  console.log(CardItem)
 
-export default Dashboard;
+  export default Dashboard;
