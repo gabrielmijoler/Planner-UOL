@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from 'react';
+import React, {useState } from 'react';
 import Input from '../UI/Input';
 import logoUol from '../Image/logouol.svg';
 import Button from '../UI/Button';
@@ -21,7 +21,7 @@ export interface ICadatro {
 
 const Cadastro: React.FC<ICadatro> = () => {
   let navigate = useNavigate();
-
+  
   const [itemStorage, setItemStorage] = useState({
     firstname: '',
     lastname: '',

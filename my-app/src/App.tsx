@@ -1,22 +1,36 @@
-import React from 'react';
-import { Route, Routes } from 'react-router-dom';
+import React, { useContext } from 'react';
+import { Navigate, Route, Routes } from 'react-router-dom';
 import './App.css';
-import Dashboard from './componentes/Dashboard';
+import ApiProvider, { ApiContext } from './context/api-context';
+
+interface Props{
+  children: any
+}
 
 function App() {
   const Cadastro= React.lazy(() => import('./componentes/Cadastro'));
   const Login = React.lazy(() => import('./componentes/Login'));
   const Dashboard = React.lazy(() => import('./componentes/Dashboard'));
   const Loading = () => <p>Loading ...</p>;
-
+  
+  const Private: React.FC <Props> = ({children}) => {
+    const { signed } = useContext(ApiContext)
+      if(!signed){
+          return(<Navigate to="/login"/>)
+      }
+      return children;
+    }
+ 
   return (
     <React.Suspense fallback={<Loading />}>
-      <Routes>
-        <Route path='*' element={<Cadastro firtname={''} lastname={''} birthdate={''} country={''} city={''} email={''} password={''} confirpassword={''} />}/>
-        <Route path='/cadastro' element={<Cadastro firtname={''} lastname={''} birthdate={''} country={''} city={''} email={''} password={''} confirpassword={''} />}/>
-        <Route path='/login' element={<Login/>} />
-        <Route path='/dashboard' element={<Dashboard/>} />
-      </Routes>
+      <ApiProvider>
+        <Routes>
+          <Route path='*' element={<Cadastro firtname={''} lastname={''} birthdate={''} country={''} city={''} email={''} password={''} confirpassword={''} />}/>
+          <Route path='/cadastro' element={<Cadastro firtname={''} lastname={''} birthdate={''} country={''} city={''} email={''} password={''} confirpassword={''} />}/>
+          <Route path='/login' element={<Login/>} />
+          <Route path='/dashboard' element={<Private><Dashboard/></Private>} />
+        </Routes>
+      </ApiProvider>
     </React.Suspense>
   );
 }
