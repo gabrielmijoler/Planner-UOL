@@ -24,10 +24,11 @@ export const InputStyle = styled.input<{
     color?: string,
     bordercolor?: string,
     marginLeft?: number,
+    error?:boolean
 }>`
     width: ${props => props.width}px;
     height: ${props => props.height}px;
-    border: 1px solid;
+    border: 1px solid ${props => props.error ? '#FECE00' : '#ffffff'};
     border-radius: ${props => props.borderRadius}px;
     background: ${props => props.background};
     font-size: ${props => props.sizeplaceholder}px;
@@ -37,6 +38,7 @@ export const InputStyle = styled.input<{
     border-color: ${props => props.bordercolor};
     margin-left: ${props => props.marginLeft}px;
     
+
     &:-webkit-autofill{
         -webkit-text-fill-color: #E0E0E0 ;
         box-shadow: -500px 0 0 30px #26292C inset;

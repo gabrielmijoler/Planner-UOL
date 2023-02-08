@@ -25,8 +25,8 @@ function App() {
     <React.Suspense fallback={<Loading />}>
       <ApiProvider>
         <Routes>
-          <Route path='*' element={<Cadastro firtname={''} lastname={''} birthdate={''} country={''} city={''} email={''} password={''} confirpassword={''} />}/>
-          <Route path='/cadastro' element={<Cadastro firtname={''} lastname={''} birthdate={''} country={''} city={''} email={''} password={''} confirpassword={''} />}/>
+          <Route path='*' element={<Cadastro />}/>
+          <Route path='/cadastro' element={<Cadastro />}/>
           <Route path='/login' element={<Login/>} />
           <Route path='/dashboard' element={<Private><Dashboard/></Private>} />
         </Routes>
