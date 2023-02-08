@@ -9,7 +9,6 @@ export const Head = styled.section`
     display: flex;
     height: 100px;
     align-items: center;
-    margin-left: 2%;
 `;
 
 
@@ -26,7 +25,6 @@ export const Main = styled.main`
     overflow-x: scroll;
     width: 100%;
     display: flex;
-    flex-direction: row;
 `;
 
 export const Time = styled.span`
@@ -49,7 +47,7 @@ export const Time = styled.span`
     order: 0;
     flex-grow: 0;
 
-    margin: 0% 0% 37% 0%;
+    margin: 0% 0% 10% 0%;
 `;
 
 export const Weeks = styled.button`
@@ -89,7 +87,6 @@ export const SectionWeek = styled.section`
     height: 40px;
     padding-left: 9.3%;
     padding-right: 2%;
-
 `;
 
 export const Imagemlogo = styled.img`
@@ -106,18 +103,42 @@ export const Imagemlogo = styled.img`
 export const SectionButton = styled.section`
     display: flex;
     justify-content: center;
-    margin-left: 35%;
+    margin-left: 11%;
 `;
 
 
-export const Pvazia = styled.section`
+export const Pvazia = styled.div`
     width: 512px;
     height: 85px;
+
+    border-radius: 10px;
+    flex: none;
+    order: 0;
+    flex-grow: 0;
 `;
-export const Spanvazio = styled.section`
+
+export const Spanvazio = styled.span`
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
     width: 85px;
-    height: 85px;
+    height: 75px;
+
+    background: #FFFFFF;
+    box-shadow: 0px 4px 24px rgb(168 168 168 / 25%);
+    border-radius: 10px;
+
+    flex: none;
+    order: 0;
+    flex-grow: 0;
     
+    font-family: 'Mulish';
+    font-style: normal;
+    font-weight: 800;
+    font-size: 17px;
+    line-height: 20px;
+    margin-bottom: 12%;
 `;
 
 export const DivPai = styled.div`
@@ -125,7 +146,12 @@ export const DivPai = styled.div`
     height: 100vh;
 `;
 
+export const Div = styled.div`
+    display: flex;
+    flex-direction: column;
+    margin-left: 5%;
+`;
+
 export const Divcard = styled.div`
     display: flex;
 `;
-
