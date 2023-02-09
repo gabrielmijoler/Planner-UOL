@@ -50,21 +50,6 @@ export const Time = styled.span`
     margin: 0% 0% 10% 0%;
 `;
 
-export const Weeks = styled.button`
-    width: 290px;
-    height: 33px;
-    background: #FF0024;
-    box-shadow: 0px 4px 24px rgba(168, 168, 168, 0.25);
-    border-radius: 9px 9px 0px 0px;
-    display: flex;
-    margin: 0px 1px 0px 0px;
-    border: none;
-    align-items: center;
-    font-family: 'Mulish';
-    font-weight: 500;
-    font-size: 20px;
-    line-height: 20px;
-`;
 
 export const InputWeeks = styled.select`
     width: 240px;
@@ -82,12 +67,25 @@ export const InputWeeks = styled.select`
 
 `;
 
-export const SectionWeek = styled.section`
+export const SectionWeek = styled.div`
     display: flex;
-    height: 40px;
-    padding-left: 9.3%;
-    padding-right: 2%;
+    width: 240px;
+    height: 33px;
+    box-shadow: 0px 4px 24px rgba(168, 168, 168, 0.25);
+    border-radius: 9px 9px 0px 0px;
+    display: flex;
+    margin: 0px 1px 0px 0px;
+    border: none;
+    background: #FF0024;
+    font-family: 'Mulish';
+    font-weight: 500;
+    font-size: 20px;
+    line-height: 20px;
+    align-items: center;
+    justify-content: center;
+    flex-direction: row;
 `;
+
 
 export const Imagemlogo = styled.img`
     position: fixed;
@@ -154,4 +152,17 @@ export const Div = styled.div`
 
 export const Divcard = styled.div`
     display: flex;
+`;
+
+export const Containerlist = styled.div`
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+`;
+
+export const ContainerWeek = styled.div`
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    justify-content: end;
 `;

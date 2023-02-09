@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { ControlDashboard, Div, Divcard, DivPai, Head, Imagemlogo, InputWeeks, Main, Pvazia, SectionButton, SectionWeek, Spanvazio, Weeks } from './style';
+import React, { useEffect, useState } from 'react';
+import { Containerlist, ContainerWeek, ControlDashboard, Div, Divcard, DivPai, Head, Imagemlogo, InputWeeks, Main, Pvazia, SectionButton, SectionWeek, Spanvazio } from './style';
 import CardItem from '../Card/card';
 import Header from '../Header';
 import Button from '../UI/Button';
@@ -10,74 +10,70 @@ import NavTime from '../Timer';
 
 
 const Dashboard: React.FC = (props: any) => {
-  const [inpuDescription, setInpuDescription] = useState('');
-  const [inpuTime, setInpuTime] = useState('');
-  const [dataTime, setDataTime] = useState('Monday')
-  const [selection, setSelection] = useState('');
-
-  const days = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"]
-
-  const time = [
-    {
-      id: 1,
-      dataTime: 'Monday',
-      inpuTime: '10:10',
-      inpuDescription: 'erro'
-    },
-    {
-      id: 2,
-      inpuTime: '10:10',
-      inpuDescription: 'eita'
-    },
-    {
-      id: 3,
-      inpuTime: '10:10',
-      inpuDescription: 'teste'
-    },
-    {
-      id: 4,
-      inpuTime: '9:20',
-      inpuDescription: '9hr'
-    },
-    {
-      id: 5,
-      inpuTime: '9:20',
-      inpuDescription: '9hr'
-    },
-    {
-      id: 6,
-      inpuTime: '9:20',
-      inpuDescription: '9hr'
-    },
-    {
-      id: 7,
-      inpuTime: '9:20',
-      inpuDescription: '9hr'
-    },
-    {
-      id: 7,
-      inpuTime: '9:20',
-      inpuDescription: '9hr'
-    },
-    {
-      id: 7,
-      inpuTime: '9:20',
-      inpuDescription: '9hr'
-    },
+  // {
+  //   description: 'desc',
+  //   hour: '12:12',
+  //   day: 'Monday',
+  //   id: 1,
+  // }
+  const days = [
+    {name: "Monday", id: 1, data: []},
+    { name: "Tuesday", id: 2, data: [] },
+    { name: "Wednesday", id: 3, data: [] },
+    { name: "Thursday", id: 4, data: [] },
+    { name: "Friday", id: 5, data: [] },
+    { name: "Saturday", id: 6, data: [] },
+    { name: "Sunday", id: 7, data: [] }
   ]
 
+  const [inpuDescription, setInpuDescription] = useState('');
+  const [inpuTime, setInpuTime] = useState('');
+  const [inputDays, setInputDays] = useState(days[0])
+  const [selection, setSelection] = useState('Monday');
+
+
+  const [list, setList] = useState(days)
+
   const handleSelect = (e: any) => {
-    setDataTime(e.target.value)
+    const day: any = days.find((item: any) => item.id === Number(e.target.value)) // verifica se eh o msm id e retorna 
+    setInputDays(day)
   }
-  const Clickselect = (e: any) => {
-    setSelection(e.target.value)
+
+  const Clickselect = (day: string) => {
+    setSelection(day)
   }
 
 
   const addCard = (event: any) => {
     event.preventDefault();
+    const newlist: any = [...list]
 
+    const newItems = newlist.find((item: any) => item.name === inputDays.name)
+
+    let newData: any = [...newItems.data] // criando
+    newData.push({
+      description: inpuDescription,
+      hour: inpuTime,
+      day: inputDays.name,
+      id: newData.length + 1,
+    })
+
+    const newHandle = newlist.map((n: any) => {
+      if (n.name === newItems.name) {
+        return {
+          ...newItems,
+          data: newData
+        }
+      }
+      return n
+    })
+
+    setList(newHandle)
   };
+
+  useEffect(() => {
+    console.log(list)
+  }, [list])
 
   return (
     <DivPai>
@@ -98,11 +94,11 @@ const Dashboard: React.FC = (props: any) => {
         />
         <InputWeeks
           color={'rgba(0, 0, 0, 0.7);'}
-          value={dataTime}
+          value={inputDays.id}
           onChange={e => handleSelect(e)}
         >
           {
-            days.map((address, key) => <option key={key} value={address}>{address}</option>)
+            days.map((address, key) => <option key={key} value={address.id}>{address.name}</option>)
           }
         </InputWeeks>
         <Input
@@ -136,28 +132,52 @@ const Dashboard: React.FC = (props: any) => {
           />
         </SectionButton>
       </Head>
-      <SectionWeek>
-        {days.map((address, key) => <Weeks onClick={Clickselect} key={key} value={address}>{address}</Weeks>)}
-      </SectionWeek>
-      <ControlDashboard>
-        <Main>
-          <Divcard>
-            <Div>
-              <Spanvazio>Time</Spanvazio>
-              <NavTime timeitem={time} />
-            </Div>
-            <Div>
-              <Pvazia/>
-              <CardItem card={time} id={props.id} />
-            </Div>
-          </Divcard>
-          <Imagemlogo src={dashlogo}></Imagemlogo>
-        </Main>
-      </ControlDashboard>
+      <Containerlist>
+        {/* <SectionWeek onClick={Clickselect} key={data.id}>
+                {data.name}
+              </SectionWeek> */}
+
+        <ContainerWeek>
+          {days.map((address) =>
+            <SectionWeek onClick={()=> Clickselect(address.name)} key={address.id}>
+              {address.name}
+            </SectionWeek>
+          )}
+        </ContainerWeek>
+        
+        {list.map((data: any, idx: any) => {
+          return (
+            <div key={idx}>
+              { selection === data.name && (
+                data.data.map((value: any, idmap: number) => {
+                  return (
+                    <ControlDashboard key={idmap}>
+                      <Main>
+                        <Divcard>
+                          <Div>
+                            <Spanvazio>Time</Spanvazio>
+                            {/* <NavTime timeitem={data} /> */}
+                            <span>{value.hour}</span>
+                          </Div>
+                          <Div>
+                            <Pvazia />
+                            {/* <CardItem card={data} id={props.id} /> */}
+                            <div>{value.description}</div>
+                          </Div>
+                        </Divcard>
+                        <Imagemlogo src={dashlogo}></Imagemlogo>
+                      </Main>
+                    </ControlDashboard>
+                  )
+                })
+              )}
+            </div>
+          )
+        })}
+      </Containerlist>
     </DivPai>
   )
 }
 
-console.log(CardItem)
 
 export default Dashboard;

@@ -8,7 +8,7 @@ const CardItem = (props: any) => {
         {props.card.map((item: any, id: number) => (
                 <Card key={id}>
                     <Span/>
-                    <PCard>{item.inpuDescription}</PCard>
+                    <PCard>{item.item.description}</PCard>
                     <Button
                         width={57}
                         height={25}

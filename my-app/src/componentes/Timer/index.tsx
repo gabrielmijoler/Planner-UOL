@@ -6,8 +6,8 @@ import { Time } from "../Dashboard/style";
 const NavTime = (props: any) => {
     return (
         <>
-            {props.timeitem.map((item: any) => (
-                    <Time key={item.id}>{item.inpuTime}</Time>
+            {props.timeitem.map((item: any, idx: number) => (
+                    <Time key={idx}>{item.hour}</Time>
             ))}
         </>
     )
