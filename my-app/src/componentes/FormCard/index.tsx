@@ -1,14 +1,26 @@
 import { Card, PCard, Span } from "./style";
 import Button from "../UI/Button";
+import CardItem from "../../model";
+import { Div, Divcard } from "../Dashboard/style";
+import { getBackgroundColor } from "../../util";
 
 
-const CardItem = (props: any) => {
+interface Props {
+    item: CardItem,
+    Click: (id: number) => void
+}
+
+const FormCard = ({ item, Click }: Props) => {
     return (
         <>
-        {props.card.map((item: any, id: number) => (
-                <Card key={id}>
-                    <Span/>
-                    <PCard>{item.item.description}</PCard>
+         <Divcard>
+            <Div>
+                <Span style={getBackgroundColor(item.name)}>{item.hour}</Span>
+            </Div>
+            <Div>
+                <Card key={item.id}>
+                    <Span />
+                    <PCard>{item.description}</PCard>
                     <Button
                         width={57}
                         height={25}
@@ -25,12 +37,14 @@ const CardItem = (props: any) => {
                             alignItems: 'center',
                             justifyContent: 'center'
                         }}
+                        onClick={() => Click(item.id)}
                     />
                 </Card>
-            ))
-        }
+            </Div>
+            </Divcard>
+            )
         </>
     )
 }
 
-export default CardItem;
+export default FormCard;

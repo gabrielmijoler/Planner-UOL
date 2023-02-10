@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from 'react';
-import { Containerlist, ContainerWeek, ControlDashboard, Div, Divcard, DivPai, Head, Imagemlogo, InputWeeks, Main, Pvazia, SectionButton, SectionWeek, Spanvazio } from './style';
-import CardItem from '../Card/card';
+import { Containerlist, ContainerWeek, ControlDashboard, DivPai, Head, Imagemlogo, InputWeeks, Pvazia, SectionButton, SectionWeek, Spanvazio } from './style';
 import Header from '../Header';
 import Button from '../UI/Button';
 import Input from '../UI/Input';
 import dashlogo from '../Image/dashlogo.svg';
-import NavTime from '../Timer';
+import FormCard from '../FormCard';
+import { getBackgroundColor } from '../../util';
 
 
 
@@ -36,86 +36,32 @@ const Dashboard: React.FC = (props: any) => {
   const Clickselect = (day: string) => {
     setSelection(day)
   }
+  const deleteCard = (day:number) => {
+  }
 
-  const getBackgroundColor = (dayName:string) => {
-    let backgroundColor;
-    switch (dayName) {
-      case 'Monday':
-        backgroundColor = "#FF0024";
-        break;
-      case 'Tuesday':
-        backgroundColor = "#FF8000";
-        break;
-      case 'Wednesday':
-        backgroundColor = "#FFCE00";
-        break;
-      case 'Thursday':
-        backgroundColor = "rgba(255, 0, 36, 0.7)";
-        break;
-      case 'Friday':
-        backgroundColor = "rgba(255, 128, 0, 0.7)";
-        break;
-      case 'Saturday':
-        backgroundColor = "rgba(255, 206, 0, 0.7)";
-        break;
-      case 'Sunday':
-        backgroundColor = "rgba(255, 0, 36, 0.5)";
-        break;
-      default:
-        backgroundColor = "white";
-    }
-    return { backgroundColor: backgroundColor };
-  };
 
   const addCard = (event: any) => {
     event.preventDefault();
-    const newList: any = [...list]
-
-    const newItems = newList.find((day: any) => day.name === inputDays.name)
-
-    let newData: any = [...newItems.data] // criando
-    newData.push({
-      description: inpuDescription,
-      hour: inpuTime,
-      day: inputDays.name,
-      id: newData.length + 1,
-    })
-
-    const newHandle = newList.map((days: any) => {
-      if (days.name === newItems.name) {
-        return {
-          ...newItems,
-          data: newData
-        }
-      }
-      return days
-    })
-
-    setList(newHandle)
+    const newList = [...list];
+  
+    const newItemsIndex = newList.findIndex((list: any) => list.name === inputDays.name);
+    if(newItemsIndex !== -1){
+      let newData: any = [...newList[newItemsIndex].data];
+      newData.push({
+        description: inpuDescription,
+        hour: inpuTime,
+        day: inputDays.name,
+        id: newData.length + 1,
+      });
+    
+      newList[newItemsIndex] = {
+        ...newList[newItemsIndex],
+        data: newData,
+      };
+      setList(newList);
+    }
   };
 
-  // const addCard = (event: any) => {
-  //   event.preventDefault();
-  //   const newList = [...list];
-  
-  //   const newItemsIndex = newList.findIndex((day: any) => day.name === inputDays.name);
-  //   let newData: any = [...newList[newItemsIndex].data];
-  //   newData.push({
-  //     description: inpuDescription,
-  //     hour: inpuTime,
-  //     day: inputDays.name,
-  //     id: newData.length + 1,
-  //   });
-  
-  //   newList[newItemsIndex] = {
-  //     ...newList[newItemsIndex],
-  //     data: newData,
-  //   };
-  //   setList(newList);
-  // };
-  
-  
-  
 
   useEffect(() => {
     console.log(list)
@@ -144,7 +90,7 @@ const Dashboard: React.FC = (props: any) => {
           onChange={e => handleSelect(e)}
         >
           {
-            days.map((address, key) => <option key={key} value={address.id}>{address.name}</option>)
+            days.map((value, key) => <option key={key} value={value.id}>{value.name}</option>)
           }
         </InputWeeks>
         <Input
@@ -157,7 +103,6 @@ const Dashboard: React.FC = (props: any) => {
           background={'#fff'}
           bordercolor={'#FECE00'}
           type={'time'}
-          marginLeft={2}
           onChange={(e) => setInpuTime(e)}
           value={inpuTime}
         />
@@ -179,17 +124,17 @@ const Dashboard: React.FC = (props: any) => {
         </SectionButton>
       </Head>
       <Containerlist>
-        {/* <SectionWeek onClick={Clickselect} key={data.id}>
-                {data.name}
-              </SectionWeek> */}
-
         <ContainerWeek>
-          {days.map((days) =>
-            <SectionWeek onClick={() => Clickselect(days.name)} key={days.id} style={getBackgroundColor(days.name)}>
-              {days.name}
+          {days.map((item) =>
+            <SectionWeek onClick={() => Clickselect(item.name)} key={item.id} style={getBackgroundColor(item.name)}>
+              {item.name}
             </SectionWeek>
           )}
         </ContainerWeek>
+        <div>
+          <Spanvazio>Time</Spanvazio>
+          <Pvazia/>
+        </div>
         {list.map((data: any, idx: any) => {
           return (
             <div key={idx}>
@@ -197,19 +142,7 @@ const Dashboard: React.FC = (props: any) => {
                 data.data.map((value: any, idcard: number) => {
                   return (
                     <ControlDashboard key={idcard}>
-                      <Main>
-                        <Divcard>
-                          <Div>
-                            <Spanvazio>Time</Spanvazio>
-                            <Spanvazio style={getBackgroundColor(data.name)}>{value.hour}</Spanvazio>
-                          </Div>
-                          <Div>
-                            <Pvazia />
-                            <div>{value.description}</div>
-                          </Div>
-                        </Divcard>
-                        <Imagemlogo src={dashlogo}></Imagemlogo>
-                      </Main>
+                      <FormCard item={value} Click={props => deleteCard(props)} />
                     </ControlDashboard>
                   )
                 })
@@ -217,6 +150,8 @@ const Dashboard: React.FC = (props: any) => {
             </div>
           )
         })}
+          <Imagemlogo src={dashlogo}></Imagemlogo> 
+  {/* postion absolute, z-index -1 */}
       </Containerlist>
     </DivPai>
   )

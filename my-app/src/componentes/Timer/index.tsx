@@ -1,4 +1,4 @@
-import { PCard, Span } from "../Card/style";
+import { PCard, Span } from "../FormCard/style";
 import { Time } from "../Dashboard/style";
 
 
