@@ -5,9 +5,9 @@ import img from "../Image/IMGlap.png"
 export const ControlForm = styled.section`
     display: grid;
     grid-template-columns: repeat(auto-fit,minmax(50%,1fr));
-    grid-template-rows: repeat(auto-fit,minmax(100%,1fr));
     background-color: #2a2d31;
     height: 100vh;
+    overflow-x: hidden;
 `;
 
 export const TituloWelcome = styled.p`
@@ -26,6 +26,7 @@ export const SectionInputs = styled.section`
     display: grid;
     justify-items: start;
     justify-content: center;
+    padding-bottom: 3%;
 `;
 
 export const SectionImg = styled.section`
