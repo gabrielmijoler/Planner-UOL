@@ -67,7 +67,7 @@ export const InputWeeks = styled.select`
 
 `;
 
-export const SectionWeek = styled.div`
+export const SectionWeek = styled.div<{background?: any}>`
     display: flex;
     width: 240px;
     height: 33px;
@@ -76,7 +76,6 @@ export const SectionWeek = styled.div`
     display: flex;
     margin: 0px 1px 0px 0px;
     border: none;
-    background: #FF0024;
     font-family: 'Mulish';
     font-weight: 500;
     font-size: 20px;
@@ -130,7 +129,7 @@ export const Spanvazio = styled.span`
     flex: none;
     order: 0;
     flex-grow: 0;
-    
+    color: black;
     font-family: 'Mulish';
     font-style: normal;
     font-weight: 800;

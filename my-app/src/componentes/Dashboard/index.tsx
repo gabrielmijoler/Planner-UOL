@@ -10,14 +10,9 @@ import NavTime from '../Timer';
 
 
 const Dashboard: React.FC = (props: any) => {
-  // {
-  //   description: 'desc',
-  //   hour: '12:12',
-  //   day: 'Monday',
-  //   id: 1,
-  // }
+
   const days = [
-    {name: "Monday", id: 1, data: []},
+    { name: "Monday", id: 1, data: [] },
     { name: "Tuesday", id: 2, data: [] },
     { name: "Wednesday", id: 3, data: [] },
     { name: "Thursday", id: 4, data: [] },
@@ -26,13 +21,12 @@ const Dashboard: React.FC = (props: any) => {
     { name: "Sunday", id: 7, data: [] }
   ]
 
-  const [inpuDescription, setInpuDescription] = useState('');
-  const [inpuTime, setInpuTime] = useState('');
+  const [inpuDescription, setInpuDescription] = useState("");
+  const [inpuTime, setInpuTime] = useState("");
   const [inputDays, setInputDays] = useState(days[0])
-  const [selection, setSelection] = useState('Monday');
-
-
+  const [selection, setSelection] = useState("Monday");
   const [list, setList] = useState(days)
+
 
   const handleSelect = (e: any) => {
     const day: any = days.find((item: any) => item.id === Number(e.target.value)) // verifica se eh o msm id e retorna 
@@ -43,12 +37,41 @@ const Dashboard: React.FC = (props: any) => {
     setSelection(day)
   }
 
+  const getBackgroundColor = (dayName:string) => {
+    let backgroundColor;
+    switch (dayName) {
+      case 'Monday':
+        backgroundColor = "#FF0024";
+        break;
+      case 'Tuesday':
+        backgroundColor = "#FF8000";
+        break;
+      case 'Wednesday':
+        backgroundColor = "#FFCE00";
+        break;
+      case 'Thursday':
+        backgroundColor = "rgba(255, 0, 36, 0.7)";
+        break;
+      case 'Friday':
+        backgroundColor = "rgba(255, 128, 0, 0.7)";
+        break;
+      case 'Saturday':
+        backgroundColor = "rgba(255, 206, 0, 0.7)";
+        break;
+      case 'Sunday':
+        backgroundColor = "rgba(255, 0, 36, 0.5)";
+        break;
+      default:
+        backgroundColor = "white";
+    }
+    return { backgroundColor: backgroundColor };
+  };
 
   const addCard = (event: any) => {
     event.preventDefault();
-    const newlist: any = [...list]
+    const newList: any = [...list]
 
-    const newItems = newlist.find((item: any) => item.name === inputDays.name)
+    const newItems = newList.find((day: any) => day.name === inputDays.name)
 
     let newData: any = [...newItems.data] // criando
     newData.push({
@@ -58,18 +81,41 @@ const Dashboard: React.FC = (props: any) => {
       id: newData.length + 1,
     })
 
-    const newHandle = newlist.map((n: any) => {
-      if (n.name === newItems.name) {
+    const newHandle = newList.map((days: any) => {
+      if (days.name === newItems.name) {
         return {
           ...newItems,
           data: newData
         }
       }
-      return n
+      return days
     })
 
     setList(newHandle)
   };
+
+  // const addCard = (event: any) => {
+  //   event.preventDefault();
+  //   const newList = [...list];
+  
+  //   const newItemsIndex = newList.findIndex((day: any) => day.name === inputDays.name);
+  //   let newData: any = [...newList[newItemsIndex].data];
+  //   newData.push({
+  //     description: inpuDescription,
+  //     hour: inpuTime,
+  //     day: inputDays.name,
+  //     id: newData.length + 1,
+  //   });
+  
+  //   newList[newItemsIndex] = {
+  //     ...newList[newItemsIndex],
+  //     data: newData,
+  //   };
+  //   setList(newList);
+  // };
+  
+  
+  
 
   useEffect(() => {
     console.log(list)
@@ -138,30 +184,27 @@ const Dashboard: React.FC = (props: any) => {
               </SectionWeek> */}
 
         <ContainerWeek>
-          {days.map((address) =>
-            <SectionWeek onClick={()=> Clickselect(address.name)} key={address.id}>
-              {address.name}
+          {days.map((days) =>
+            <SectionWeek onClick={() => Clickselect(days.name)} key={days.id} style={getBackgroundColor(days.name)}>
+              {days.name}
             </SectionWeek>
           )}
         </ContainerWeek>
-        
         {list.map((data: any, idx: any) => {
           return (
             <div key={idx}>
               { selection === data.name && (
-                data.data.map((value: any, idmap: number) => {
+                data.data.map((value: any, idcard: number) => {
                   return (
-                    <ControlDashboard key={idmap}>
+                    <ControlDashboard key={idcard}>
                       <Main>
                         <Divcard>
                           <Div>
                             <Spanvazio>Time</Spanvazio>
-                            {/* <NavTime timeitem={data} /> */}
-                            <span>{value.hour}</span>
+                            <Spanvazio style={getBackgroundColor(data.name)}>{value.hour}</Spanvazio>
                           </Div>
                           <Div>
                             <Pvazia />
-                            {/* <CardItem card={data} id={props.id} /> */}
                             <div>{value.description}</div>
                           </Div>
                         </Divcard>
