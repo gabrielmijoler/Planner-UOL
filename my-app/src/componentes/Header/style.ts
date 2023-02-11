@@ -37,3 +37,23 @@ export const SectionLogOut = styled.section`
     line-height: 20px;
     margin-right: 1%;
 `;
+export const DivTempo = styled.div`
+    display: flex;
+    flex-direction: column;
+`;
+
+export const Pcity = styled.span`
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 18px;
+    text-align: center;
+`;
+
+export const Pgrau = styled.span`
+    display: flex;  
+    font-weight: 700;
+    font-size: 48px;
+    line-height: 60px;
+    text-align: center;
+    color: #222222;
+`;

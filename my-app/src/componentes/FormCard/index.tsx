@@ -11,15 +11,16 @@ interface Props {
 }
 
 const FormCard = ({ item, Click}: Props) => {
+    console.log(item.name)
     return (
         <>
          <Divcard>
             <Div>
-                <Time style={getBackgroundColor(item.name)}>{item.hour}</Time   >
+                <Time style={getBackgroundColor(item.day)}>{item.hour}</Time   >
             </Div>
             <Div>
                 <Card key={item.id}>
-                    <Span style={getBackgroundColor(item.name)} />
+                    <Span style={getBackgroundColor(item.day)} />
                     <PCard>{item.description}</PCard>
                     <Button
                         width={57}

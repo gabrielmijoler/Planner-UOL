@@ -178,6 +178,7 @@ const Dashboard: React.FC = () => {
             <div key={idx}>
               {selection === data.name && (
                 data.data.map((value: any, idcard: number) => {
+                  console.log(value)
                   return (
                     <ControlDashboard key={idcard}>
                       <FormCard item={value} Click={(item) => deleteCard(item, data.name)} />
