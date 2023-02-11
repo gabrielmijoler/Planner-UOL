@@ -9,6 +9,8 @@ export const Head = styled.section`
     display: flex;
     height: 100px;
     align-items: center;
+    width: 100%;
+    justify-content: space-around;
 `;
 
 
@@ -33,12 +35,8 @@ export const Time = styled.span`
     line-height: 20px;
 
     color: #3B3E45;
-    background: #FFFFFF;
     box-shadow: 0px 4px 24px rgba(168, 168, 168, 0.25);
     border-radius: 10px;
-    flex: none;
-    order: 0;
-    flex-grow: 0;
 
     margin: 0% 0% 10% 0%;
 `;
@@ -104,10 +102,14 @@ export const Spanvazio = styled.span`
     position: absolute;
     width: 85px;
     height: 75px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 
     background: #FFFFFF;
     box-shadow: 0px 4px 24px rgb(168 168 168 / 25%);
     border-radius: 10px;
+    margin: 0% 0% 0% 1%;
 
     color: black;
     font-family: 'Mulish';
@@ -131,7 +133,6 @@ export const Div = styled.div`
 export const Divcard = styled.div`
     display: flex;
     padding: 5px;
-    width: 193px;
     justify-content: space-around;
 `;
 
@@ -146,7 +147,7 @@ export const ContainerWeek = styled.div`
     flex-direction: row;
     width: 90%;
     justify-content: end;
-    margin: 0% 0% 0% 8%;
+    margin: 0% 0% 0% 7%;
 `;
 
 export const Span = styled.span`

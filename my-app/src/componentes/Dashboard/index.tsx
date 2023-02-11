@@ -6,13 +6,31 @@ import Input from '../UI/Input';
 import dashlogo from '../Image/dashlogo.svg';
 import FormCard from '../FormCard';
 import { getBackgroundColor } from '../../util';
+import CardItem from '../../model';
 
 
-
-const Dashboard: React.FC = (props: any) => {
+const Dashboard: React.FC = () => {
+  // data: [
+  // description: "teste",
+  // hour: "10:10",
+  // day: "monday",
+  // id: 1]
 
   const days = [
-    { name: "Monday", id: 1, data: [] },
+    {
+      name: "Monday", id: 1, data: [{
+        description: "teste",
+        hour: "10:10",
+        day: "Monday",
+        id: 1
+      },
+      { // 
+        description: "teste2",
+        hour: "11:10",
+        day: "Monday",
+        id: 2
+      }]
+    },
     { name: "Tuesday", id: 2, data: [] },
     { name: "Wednesday", id: 3, data: [] },
     { name: "Thursday", id: 4, data: [] },
@@ -27,7 +45,6 @@ const Dashboard: React.FC = (props: any) => {
   const [selection, setSelection] = useState("Monday");
   const [list, setList] = useState(days)
 
-
   const handleSelect = (e: any) => {
     const day: any = days.find((item: any) => item.id === Number(e.target.value)) // verifica se eh o msm id e retorna 
     setInputDays(day)
@@ -36,16 +53,36 @@ const Dashboard: React.FC = (props: any) => {
   const Clickselect = (day: string) => {
     setSelection(day)
   }
-  const deleteCard = (day:number) => {
-  }
+
+ 
+  const deleteCard = (item: CardItem, day: string) => {
+    const indexDay = getIndexOfDay(day)
+    const indexData = getIndexOfData(indexDay, item.id)
+    const newList = updateList(indexDay, indexData)
+    setList(newList)
+  };
+  
+  const getIndexOfDay = (day: string) => list.findIndex(el => el.name === day)
+  const getIndexOfData = (indexDay: number, id: number) => list[indexDay].data.findIndex((el: any) => el.id === id)
+  const updateList = (indexDay: number, indexData: number) => [
+      ...list.slice(0, indexDay),
+      {
+        ...list[indexDay],
+        data: [
+          ...list[indexDay].data.slice(0, indexData),
+          ...list[indexDay].data.slice(indexData + 1),
+        ]
+      },
+      ...list.slice(indexDay + 1),
+    ]
 
 
   const addCard = (event: any) => {
     event.preventDefault();
     const newList = [...list];
-  
+
     const newItemsIndex = newList.findIndex((list: any) => list.name === inputDays.name);
-    if(newItemsIndex !== -1){
+    if (newItemsIndex !== -1) {
       let newData: any = [...newList[newItemsIndex].data];
       newData.push({
         description: inpuDescription,
@@ -53,7 +90,7 @@ const Dashboard: React.FC = (props: any) => {
         day: inputDays.name,
         id: newData.length + 1,
       });
-    
+
       newList[newItemsIndex] = {
         ...newList[newItemsIndex],
         data: newData,
@@ -66,6 +103,7 @@ const Dashboard: React.FC = (props: any) => {
   useEffect(() => {
     console.log(list)
   }, [list])
+
 
   return (
     <DivPai>
@@ -133,16 +171,16 @@ const Dashboard: React.FC = (props: any) => {
         </ContainerWeek>
         <div>
           <Spanvazio>Time</Spanvazio>
-          <Pvazia/>
+          <Pvazia />
         </div>
         {list.map((data: any, idx: any) => {
           return (
             <div key={idx}>
-              { selection === data.name && (
+              {selection === data.name && (
                 data.data.map((value: any, idcard: number) => {
                   return (
                     <ControlDashboard key={idcard}>
-                      <FormCard item={value} Click={props => deleteCard(props)} />
+                      <FormCard item={value} Click={(item) => deleteCard(item, data.name)} />
                     </ControlDashboard>
                   )
                 })
@@ -150,8 +188,8 @@ const Dashboard: React.FC = (props: any) => {
             </div>
           )
         })}
-          <Imagemlogo src={dashlogo}></Imagemlogo> 
-  {/* postion absolute, z-index -1 */}
+        <Imagemlogo src={dashlogo}></Imagemlogo>
+        {/* postion absolute, z-index -1 */}
       </Containerlist>
     </DivPai>
   )
@@ -159,3 +197,4 @@ const Dashboard: React.FC = (props: any) => {
 
 
 export default Dashboard;
+// Click={(id) => data.data.filter((item: { id: number; }) => item.id !== id)}

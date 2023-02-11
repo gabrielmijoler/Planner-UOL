@@ -23,4 +23,6 @@ export const Span = styled.span`
     width: 14px;
     background: #FF0024;
     border-radius: 15px 0px 0px 15px;
+    align-items: center;
+    justify-content: center;
  `;
