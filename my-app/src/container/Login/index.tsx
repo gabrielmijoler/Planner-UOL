@@ -1,15 +1,14 @@
 import React, { useContext, useState } from 'react';
-import Input from '../UI/Input';
-import logoUol from '../Image/logouol.svg';
-import iconPassowrd from '../Image/iconPassowrd.svg';
-import iconUser from '../Image/iconUser.svg';
+import Input from '../../componentes/UI/Input';
+import logoUol from '../../Image/logouol.svg';
+import iconPassowrd from '../../Image/iconPassowrd.svg';
+import iconUser from '../../Image/iconUser.svg';
 import { ControlForm, ImageLaptop, SectionImg, SectionInputs, Spanhere, SubTitulo, TituloWelcome } from '../Cadastro/style';
-import Button from '../UI/Button';
-import { Link, useNavigate } from 'react-router-dom';
+import Button from '../../componentes/UI/Button';
+import { Link } from 'react-router-dom';
 import { ControlInput, Imagem, P, SectionButton, Spanlogin } from './style';
 import { ApiContext } from '../../context/api-context';
-
-
+import instance from '../../api';
 
 
 const Login: React.FC = () => {
@@ -22,15 +21,29 @@ const Login: React.FC = () => {
   
   const [erroLoigin, setErroLoigin] = useState<boolean>(false)
 
-  const [emptyusername, setEmptyusername] = useState<any>(null)
   const getitem = JSON.parse(localStorage.getItem('objt') as string)
   const getFullName = JSON.parse(localStorage.getItem('Fullname') as string)
   
+
+  async function postUserIn() {
+    await instance.post('/users/sign-in', {
+      "email": loginItem.username,
+      "password": loginItem.password
+    })
+    .then(function (response) {
+      console.log(response);
+    })
+    .catch(function (error) {
+      console.log(error);
+    });
+  }
+  
+
   const validationLogin: any = (e: any, valor:any ) => {
-    // const expiraTime = new Date(new Date().getTime() + +valor.expireIn * 1000)
     e.preventDefault()
     if ((getitem.email === loginItem.username || getFullName === loginItem.username) && (getitem.password === loginItem.password)) {
       Login(loginItem.username, loginItem.password)
+      postUserIn()
     }else{
       setErroLoigin(true)
     }
@@ -89,7 +102,7 @@ const Login: React.FC = () => {
         </form>
       </SectionInputs>
       <ImageLaptop className='container'>
-        <a href='https://compass.uol/pt/sobre-nos/'><img style={{ marginLeft: "25%", marginTop: "3%" }} src={logoUol} /></a>
+        <a href='https://compass.uol/pt/sobre-nos/'><img style={{ marginLeft: "25%", marginTop: "3%" }} alt="Site Compass" src={logoUol} /></a>
       </ImageLaptop>
     </ControlForm>
   )

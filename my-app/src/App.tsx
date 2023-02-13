@@ -8,9 +8,9 @@ interface Props{
 }
 
 function App() {
-  const Cadastro= React.lazy(() => import('./componentes/Cadastro'));
-  const Login = React.lazy(() => import('./componentes/Login'));
-  const Dashboard = React.lazy(() => import('./componentes/Dashboard'));
+  const Cadastro= React.lazy(() => import('./container/Cadastro'));
+  const Login = React.lazy(() => import('./container/Login'));
+  const Dashboard = React.lazy(() => import('./container/Dashboard'));
   const Loading = () => <p>Loading ...</p>;
   
   const Private: React.FC <Props> = ({children}) => {

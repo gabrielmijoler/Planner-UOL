@@ -19,18 +19,9 @@ const Header: React.FC = (props: any) => {
   async function getCity() {
       await axios.get(url).then((res)=>{
         setData(res.data)
-        console.log(res.data)
       })
     }
   
-
-  // const handleCity= () => {
-  //   setCity(getItem.city)
-  //   fetch(`https://api.openweathermap.org/data/2.5/weather?q=${city}&lang=pt_br&appid=a00b3f77a926ab75a8ed266af90ae3ed`).then((response)=>{
-  //     console.log('response',response)
-  //   })
-  //   console.log("city dentro da api",city)
-  // }
 
   const { Logout } = useContext(ApiContext)
 

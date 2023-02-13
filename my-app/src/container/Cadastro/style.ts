@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import img from "../Image/IMGlap.png"
+import img from "../../Image/IMGlap.png"
 
 
 export const ControlForm = styled.section`

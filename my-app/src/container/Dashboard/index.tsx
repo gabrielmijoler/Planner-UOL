@@ -1,12 +1,13 @@
 import React, { useEffect, useState } from 'react';
 import { Containerlist, ContainerWeek, ControlDashboard, DivPai, Head, Imagemlogo, InputWeeks, Pvazia, SectionButton, SectionWeek, Spanvazio } from './style';
-import Header from '../Header';
-import Button from '../UI/Button';
-import Input from '../UI/Input';
-import dashlogo from '../Image/dashlogo.svg';
-import FormCard from '../FormCard';
+import Header from '../../componentes/Header';
+import Button from '../../componentes/UI/Button';
+import Input from '../../componentes/UI/Input';
+import dashlogo from  "../../Image/dashlogo.svg"
+import FormCard from '../../componentes/FormCard';
 import { getBackgroundColor } from '../../util';
 import CardItem from '../../model';
+import instance from '../../api';
 
 
 const Dashboard: React.FC = () => {
@@ -44,6 +45,23 @@ const Dashboard: React.FC = () => {
   const [inputDays, setInputDays] = useState(days[0])
   const [selection, setSelection] = useState("Monday");
   const [list, setList] = useState(days)
+
+
+
+
+  async function postUserUp(item: CardItem) {
+    await instance.post('/user/sign-up', {
+        "description": item.description,
+        "dayOfWeek": item.description,
+    })
+    .then(function (response: any) {
+      console.log(response);
+    })
+    .catch(function (error: any) {
+      console.log(error);
+    });
+  }
+ 
 
   const handleSelect = (e: any) => {
     const day: any = days.find((item: any) => item.id === Number(e.target.value)) // verifica se eh o msm id e retorna 
@@ -99,9 +117,7 @@ const Dashboard: React.FC = () => {
     }
   };
 
-
   useEffect(() => {
-    console.log(list)
   }, [list])
 
 
@@ -128,7 +144,7 @@ const Dashboard: React.FC = () => {
           onChange={e => handleSelect(e)}
         >
           {
-            days.map((value, key) => <option key={key} value={value.id}>{value.name}</option>)
+            days.map((value: { id: string | number | readonly string[] | undefined; name: string | number | boolean | React.ReactElement<any, string | React.JSXElementConstructor<any>> | React.ReactFragment | React.ReactPortal | null | undefined; }, key: React.Key | null | undefined) => <option key={key} value={value.id}>{value.name}</option>)
           }
         </InputWeeks>
         <Input
@@ -198,4 +214,3 @@ const Dashboard: React.FC = () => {
 
 
 export default Dashboard;
-// Click={(id) => data.data.filter((item: { id: number; }) => item.id !== id)}

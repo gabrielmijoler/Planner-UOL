@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from 'react';
-import Input from '../UI/Input';
-import logoUol from '../Image/logouol.svg';
-import Button from '../UI/Button';
+import Input from '../../componentes/UI/Input';
+import logoUol from '../../Image/logouol.svg';
+import Button from '../../componentes/UI/Button';
 import { Link, useNavigate } from 'react-router-dom';
 import { ControlForm, ImageLaptop, SectionImg, SectionInputs, SubTitulo, TituloWelcome, ErrorSpan, Spanhere, Errorbutton } from './style';
+import instance from '../../api';
 
 
 
@@ -39,7 +40,26 @@ const Cadastro: React.FC = () => {
     localStorage.setItem(chave, JSON.stringify(valor))
   }
 
-  // const Valoressub = (Object.values(itemStorage).every(val => val === ""))
+  async function postUserUp() {
+    await instance.post('/user/sign-up', {
+      "firstName": itemStorage.firstname,
+      "lastName": itemStorage.lastname,
+      "birthDate": itemStorage.birthdate,
+      "city": itemStorage.city,
+      "country": itemStorage.country,
+      "email": itemStorage.email,
+      "password": itemStorage.password,
+      "confirmPassword": itemStorage.confirpassword
+    })
+    .then(function (response) {
+      console.log(response);
+    })
+    .catch(function (error) {
+      console.log(error);
+    });
+  }
+
+ 
 
   const submit = (e?: any) => {
     if (itemStorage.firstname === ""  || itemStorage.lastname === "" || itemStorage.birthdate === ""|| itemStorage.country  === ""|| itemStorage.city  === "" || itemStorage.email === "" || itemStorage.password === "" || itemStorage.confirpassword === "") {
@@ -50,15 +70,18 @@ const Cadastro: React.FC = () => {
       armazenar('objt', itemStorage)
       armazenarFullname('Fullname', itemStorage.firstname + " " + itemStorage.lastname)
       navigate('/login')
+      postUserUp()
       setSubmitError(false)
 
     }
   }
 
+  // let dataAtual = new Date();
+  // let year = dataAtual.getFullYear();
+  // const maxAge = year - 100;
 
-  console.log("firta", itemStorage.firstname)
 
-  const emailRegex = (/^[a-zA-Z0-9.!#$%&'*+\/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$/);
+  const emailRegex = (/^[a-zA-Z0-9.!#$%&'*+=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$/);
 
   useEffect(() => { }, [itemStorage])
 
@@ -91,8 +114,9 @@ const Cadastro: React.FC = () => {
       setInputCityError(false)
     }
   }
+  // && itemStorage.birthdate.length < maxAge
   const onBlurBirthdate = () => {
-    if (itemStorage.birthdate === "") {
+    if (itemStorage.birthdate === "" ) {
       setInputBirthError(true)
     } else {
       setInputBirthError(false)
@@ -119,6 +143,8 @@ const Cadastro: React.FC = () => {
       setInputpasswconf(false)
     }
   }
+
+  console.log(itemStorage.birthdate.length)
 
   return (
     <>
@@ -239,7 +265,7 @@ const Cadastro: React.FC = () => {
           </form>
         </SectionInputs>
         <ImageLaptop>
-          <a href='https://compass.uol/pt/sobre-nos/'><img style={{ marginLeft: "25%", marginTop: "3%" }} src={logoUol} /></a>
+          <a href='https://compass.uol/pt/sobre-nos/' ><img style={{ marginLeft: "25%", marginTop: "3%" }} alt="Site Compass" src={logoUol} /></a>
         </ImageLaptop>
       </ControlForm>
     </>

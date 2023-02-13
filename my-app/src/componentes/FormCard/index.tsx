@@ -1,7 +1,7 @@
 import { Card, PCard, Span } from "./style";
 import Button from "../UI/Button";
 import CardItem from "../../model";
-import { Div, Divcard, Time } from "../Dashboard/style";
+import { Div, Divcard, Time } from "../../container/Dashboard/style";
 import { getBackgroundColor } from "../../util";
 
 
