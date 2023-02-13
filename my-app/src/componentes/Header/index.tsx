@@ -1,8 +1,8 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { ControlHeader, DivTempo, Pcity, Pgrau, SectionLogOut, Titulo, Weekeplanner } from './style';
-import logouolback from "../Image/logouolback.svg"
-import iconLogout from "../Image/iconlogout.svg"
-import iconNuvem from "../Image/nuvemtempo.svg"
+import logouolback from "../../Image/logouolback.svg"
+import iconLogout from "../../Image/iconlogout.svg"
+import iconNuvem from "../../Image/nuvemtempo.svg"
 import { ApiContext } from '../../context/api-context';
 import axios from 'axios';
 
