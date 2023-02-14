@@ -42,7 +42,7 @@ const ApiProvider: React.FC<Props> = ({ children }) => {
 
         if ((password === getitem.password) && (username === getitem.email ||getFullName === username)) {
             setUser(getitem)
-            localStorage.setItem('token', 'logado');
+            // localStorage.setItem('token', 'logado');
             navigate('/dashboard')
         }
     }

@@ -32,9 +32,9 @@ const Cadastro: React.FC = () => {
   const [SubmitError, setSubmitError] = useState(false)
 
 
-  const armazenar = (chave: string, valor: any) => {
-    localStorage.setItem(chave, JSON.stringify(valor))
-  }
+  // const armazenar = (chave: string, valor: any) => {
+  //   localStorage.setItem(chave, JSON.stringify(valor))
+  // }
 
   const armazenarFullname = (chave: string, valor: any) => {
     localStorage.setItem(chave, JSON.stringify(valor))
@@ -67,8 +67,7 @@ const Cadastro: React.FC = () => {
       e.preventDefault()
     }
     else {
-      armazenar('objt', itemStorage)
-      armazenarFullname('Fullname', itemStorage.firstname + " " + itemStorage.lastname)
+          
       navigate('/login')
       postUserUp()
       setSubmitError(false)
@@ -76,6 +75,27 @@ const Cadastro: React.FC = () => {
     }
   }
 
+  // const submit = async (e?: any) => {
+  //   e.preventDefault()
+  //   if (itemStorage.firstname !== ""  || itemStorage.lastname !== "" || itemStorage.birthdate !== ""|| itemStorage.country  !== ""||
+  //    itemStorage.city  !== "" || itemStorage.email !== "" || itemStorage.password !== "" || itemStorage.confirpassword !== "") {
+  //     setSubmitError(false)
+  //   }
+  //   try {
+  //     const response = instance.post('users/sign-up', JSON.stringify(itemStorage))
+  //     console.log(JSON.stringify(response));
+  //     }
+  //     catch(error){
+  //     console.log('error' ,error)
+  //       setSubmitError(false)
+  //     //  if(err.response){
+  //     //     console.log("response Error")
+  //     // }else if(err.response.status === 400){
+  //     //     console.log("Invalid input")
+  //     // }else(err.response.status === 500)
+  //     //   console.log("Server error")
+  //   }
+  
   // let dataAtual = new Date();
   // let year = dataAtual.getFullYear();
   // const maxAge = year - 100;
@@ -143,8 +163,6 @@ const Cadastro: React.FC = () => {
       setInputpasswconf(false)
     }
   }
-
-  console.log(itemStorage.birthdate.length)
 
   return (
     <>

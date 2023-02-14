@@ -13,7 +13,8 @@ import instance from '../../api';
 
 const Login: React.FC = () => {
   
-  const { Login } = useContext(ApiContext)
+  // const { Login } = useContext(ApiContext)
+  
   const [loginItem, setLoginItem] = useState({
     username: '',
     password: '',
@@ -26,10 +27,7 @@ const Login: React.FC = () => {
   
 
   async function postUserIn() {
-    await instance.post('/users/sign-in', {
-      "email": loginItem.username,
-      "password": loginItem.password
-    })
+    await instance.post('users/sign-in',  loginItem) 
     .then(function (response) {
       console.log(response);
     })
@@ -42,11 +40,12 @@ const Login: React.FC = () => {
   const validationLogin: any = (e: any, valor:any ) => {
     e.preventDefault()
     if ((getitem.email === loginItem.username || getFullName === loginItem.username) && (getitem.password === loginItem.password)) {
-      Login(loginItem.username, loginItem.password)
+      // Login(loginItem.username, loginItem.password)
       postUserIn()
+      e.preventDefault()
     }else{
       setErroLoigin(true)
-    }
+      e.preventDefault()    }
   }
 
 
