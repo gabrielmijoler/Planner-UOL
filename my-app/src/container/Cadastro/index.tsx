@@ -32,16 +32,22 @@ const Cadastro: React.FC = () => {
   const [SubmitError, setSubmitError] = useState(false)
 
 
-  // const armazenar = (chave: string, valor: any) => {
-  //   localStorage.setItem(chave, JSON.stringify(valor))
-  // }
+  const armazenar = (chave: string, valor: any) => {
+    localStorage.setItem(chave, JSON.stringify(valor))
+  }
 
   const armazenarFullname = (chave: string, valor: any) => {
     localStorage.setItem(chave, JSON.stringify(valor))
   }
 
-  async function postUserUp() {
-    await instance.post('/user/sign-up', {
+  const submit = async (e?: any) => {
+    e.preventDefault()
+    if (itemStorage.firstname !== ""  || itemStorage.lastname !== "" || itemStorage.birthdate !== ""|| itemStorage.country  !== ""||
+     itemStorage.city  !== "" || itemStorage.email !== "" || itemStorage.password !== "" || itemStorage.confirpassword !== "") {
+      setSubmitError(false)
+    }
+    try {
+      const response = await instance.post('users/sign-up',{
       "firstName": itemStorage.firstname,
       "lastName": itemStorage.lastname,
       "birthDate": itemStorage.birthdate,
@@ -50,57 +56,27 @@ const Cadastro: React.FC = () => {
       "email": itemStorage.email,
       "password": itemStorage.password,
       "confirmPassword": itemStorage.confirpassword
-    })
-    .then(function (response) {
-      console.log(response);
-    })
-    .catch(function (error) {
-      console.log(error);
-    });
-  }
-
- 
-
-  const submit = (e?: any) => {
-    if (itemStorage.firstname === ""  || itemStorage.lastname === "" || itemStorage.birthdate === ""|| itemStorage.country  === ""|| itemStorage.city  === "" || itemStorage.email === "" || itemStorage.password === "" || itemStorage.confirpassword === "") {
+      })
+      console.log('response data:', response.data)
+      console.log('response status:', response.status)
+      console.log('response headers:', response.headers)
+      navigate("/Login")
+      armazenar('objt', itemStorage)
+      armazenarFullname('Fullname', itemStorage.firstname + " " + itemStorage.lastname)
+    }catch(error:any) {
+      console.log('error data:', error.response.data)
+      console.log('error status:', error.response.status)
+      console.log('error headers:', error.response.headers)
       setSubmitError(true)
-      e.preventDefault()
-    }
-    else {
-          
-      navigate('/login')
-      postUserUp()
-      setSubmitError(false)
-
     }
   }
 
-  // const submit = async (e?: any) => {
-  //   e.preventDefault()
-  //   if (itemStorage.firstname !== ""  || itemStorage.lastname !== "" || itemStorage.birthdate !== ""|| itemStorage.country  !== ""||
-  //    itemStorage.city  !== "" || itemStorage.email !== "" || itemStorage.password !== "" || itemStorage.confirpassword !== "") {
-  //     setSubmitError(false)
-  //   }
-  //   try {
-  //     const response = instance.post('users/sign-up', JSON.stringify(itemStorage))
-  //     console.log(JSON.stringify(response));
-  //     }
-  //     catch(error){
-  //     console.log('error' ,error)
-  //       setSubmitError(false)
-  //     //  if(err.response){
-  //     //     console.log("response Error")
-  //     // }else if(err.response.status === 400){
-  //     //     console.log("Invalid input")
-  //     // }else(err.response.status === 500)
-  //     //   console.log("Server error")
-  //   }
-  
-  // let dataAtual = new Date();
-  // let year = dataAtual.getFullYear();
-  // const maxAge = year - 100;
 
+    // let dataAtual = new Date();
+    // let year = dataAtual.getFullYear();
+    // const maxAge = year - 100;
 
+    
   const emailRegex = (/^[a-zA-Z0-9.!#$%&'*+=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$/);
 
   useEffect(() => { }, [itemStorage])
