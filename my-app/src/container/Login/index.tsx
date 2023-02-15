@@ -25,7 +25,8 @@ const Login: React.FC = () => {
   // const getitem = JSON.parse(localStorage.getItem('objt') as string)
   // const getFullName = JSON.parse(localStorage.getItem('Fullname') as string)
 
-  const validationLogin: any = async () => {
+  const validationLogin: any = async (e: { preventDefault: () => void; }) => {
+    e.preventDefault()
     Login(loginItem.username, loginItem.password)
   }
   
