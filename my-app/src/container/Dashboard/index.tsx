@@ -49,17 +49,24 @@ const Dashboard: React.FC = () => {
 
 
 
-  async function postUserUp(item: CardItem) {
-    await instance.post('/user/sign-up', {
-        "description": item.description,
-        "dayOfWeek": item.description,
-    })
-    .then(function (response: any) {
-      console.log(response);
-    })
-    .catch(function (error: any) {
-      console.log(error);
-    });
+  
+  const Eventpost = async (item: CardItem) =>{
+    const tokenStorage = localStorage.getItem('token')
+    if(tokenStorage){
+    try{
+    const response = await instance.post('events', {
+          "description": `${item.description}`,
+          "dayOfWeek": `${item.day}`,
+      })
+        console.log('response data:', response.data)
+        console.log('response status:', response.status)
+        console.log('response headers:', response.headers)
+      }catch(error: any) {
+        console.log('error data:', error.response.data)
+        console.log('error status:', error.response.status)
+        console.log('error headers:', error.response.headers)
+      }
+    }
   }
  
 
@@ -166,7 +173,7 @@ const Dashboard: React.FC = () => {
             width={200}
             background='#00BA88'
             borderColors='#00BA88'
-            onClick={addCard}
+            onClick={Eventpost}
           />
           <Button
             label='Delete All'
@@ -194,7 +201,7 @@ const Dashboard: React.FC = () => {
             <div key={idx}>
               {selection === data.name && (
                 data.data.map((value: any, idcard: number) => {
-                  console.log(value)
+                  // console.log(value)
                   return (
                     <ControlDashboard key={idcard}>
                       <FormCard item={value} Click={(item) => deleteCard(item, data.name)} />

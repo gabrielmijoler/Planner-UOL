@@ -32,13 +32,13 @@ const Cadastro: React.FC = () => {
   const [SubmitError, setSubmitError] = useState(false)
 
 
-  const armazenar = (chave: string, valor: any) => {
-    localStorage.setItem(chave, JSON.stringify(valor))
-  }
+  // const armazenar = (chave: string, valor: any) => {
+  //   localStorage.setItem(chave, JSON.stringify(valor))
+  // }
 
-  const armazenarFullname = (chave: string, valor: any) => {
-    localStorage.setItem(chave, JSON.stringify(valor))
-  }
+  // const armazenarFullname = (chave: string, valor: any) => {
+  //   localStorage.setItem(chave, JSON.stringify(valor))
+  // }
 
   const submit = async (e?: any) => {
     e.preventDefault()
@@ -61,8 +61,8 @@ const Cadastro: React.FC = () => {
       console.log('response status:', response.status)
       console.log('response headers:', response.headers)
       navigate("/Login")
-      armazenar('objt', itemStorage)
-      armazenarFullname('Fullname', itemStorage.firstname + " " + itemStorage.lastname)
+      // armazenar('objt', itemStorage)
+      // armazenarFullname('Fullname', itemStorage.firstname + " " + itemStorage.lastname)
     }catch(error:any) {
       console.log('error data:', error.response.data)
       console.log('error status:', error.response.status)
