@@ -29,8 +29,8 @@ const ApiProvider: React.FC<Props> = ({ children }) => {
     let navigate = useNavigate();
     const [user, setUser] = useState<object | null>(null);
 
-    const getitem = JSON.parse(localStorage.getItem('objt') as string)
-    const getFullName = JSON.parse(localStorage.getItem('Fullname') as string)
+    // const getitem = JSON.parse(localStorage.getItem('objt') as string)
+    // const getFullName = JSON.parse(localStorage.getItem('Fullname') as string)
     
     useEffect(() => {
         if (localStorage.getItem('token')){

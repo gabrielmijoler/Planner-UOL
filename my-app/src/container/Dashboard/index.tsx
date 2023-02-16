@@ -19,7 +19,7 @@ const Dashboard: React.FC = () => {
 
   const days = [
     {
-      name: "Monday", id: 1, data: [{
+      name: "monday", id: 1, data: [{
         description: "teste",
         hour: "10:10",
         day: "Monday",
@@ -32,31 +32,29 @@ const Dashboard: React.FC = () => {
         id: 2
       }]
     },
-    { name: "Tuesday", id: 2, data: [] },
-    { name: "Wednesday", id: 3, data: [] },
-    { name: "Thursday", id: 4, data: [] },
-    { name: "Friday", id: 5, data: [] },
-    { name: "Saturday", id: 6, data: [] },
-    { name: "Sunday", id: 7, data: [] }
+    { name: "tuesday", id: 2, data: [] },
+    { name: "wednesday", id: 3, data: [] },
+    { name: "thursday", id: 4, data: [] },
+    { name: "friday", id: 5, data: [] },
+    { name: "saturday", id: 6, data: [] },
+    { name: "sunday", id: 7, data: [] }
   ]
 
   const [inpuDescription, setInpuDescription] = useState("");
   const [inpuTime, setInpuTime] = useState("");
   const [inputDays, setInputDays] = useState(days[0])
-  const [selection, setSelection] = useState("Monday");
+  const [selection, setSelection] = useState("monday");
   const [list, setList] = useState(days)
 
 
 
 
   
-  const Eventpost = async (item: CardItem) =>{
-    const tokenStorage = localStorage.getItem('token')
-    if(tokenStorage){
+  const Eventpost = async () =>{
     try{
     const response = await instance.post('events', {
-          "description": `${item.description}`,
-          "dayOfWeek": `${item.day}`,
+        "description": inpuDescription,
+        "dayOfWeek": selection,
       })
         console.log('response data:', response.data)
         console.log('response status:', response.status)
@@ -67,9 +65,23 @@ const Dashboard: React.FC = () => {
         console.log('error headers:', error.response.headers)
       }
     }
-  }
+  
  
+    const Eventgetall = async (item:CardItem) =>{
+      try{
+      const response = await instance.get('events', {
 
+        })
+        console.log('response data:', response.data)
+        console.log('response status:', response.status)
+        console.log('response headers:', response.headers)
+        }catch(error: any) {
+          console.log('error data:', error.response.data)
+          console.log('error status:', error.response.status)
+          console.log('error headers:', error.response.headers)
+        }
+    }
+  
   const handleSelect = (e: any) => {
     const day: any = days.find((item: any) => item.id === Number(e.target.value)) // verifica se eh o msm id e retorna 
     setInputDays(day)
@@ -102,30 +114,30 @@ const Dashboard: React.FC = () => {
     ]
 
 
-  const addCard = (event: any) => {
-    event.preventDefault();
-    const newList = [...list];
+  // const addCard = (event: any) => {
+  //   event.preventDefault();
+  //   const newList = [...list];
 
-    const newItemsIndex = newList.findIndex((list: any) => list.name === inputDays.name);
-    if (newItemsIndex !== -1) {
-      let newData: any = [...newList[newItemsIndex].data];
-      newData.push({
-        description: inpuDescription,
-        hour: inpuTime,
-        day: inputDays.name,
-        id: newData.length + 1,
-      });
+  //   const newItemsIndex = newList.findIndex((list: any) => list.name === inputDays.name);
+  //   if (newItemsIndex !== -1) {
+  //     let newData: any = [...newList[newItemsIndex].data];
+  //     newData.push({
+  //       description: inpuDescription,
+  //       hour: inpuTime,
+  //       day: inputDays.name,
+  //       id: newData.length + 1,
+  //     });
 
-      newList[newItemsIndex] = {
-        ...newList[newItemsIndex],
-        data: newData,
-      };
-      setList(newList);
-    }
-  };
+  //     newList[newItemsIndex] = {
+  //       ...newList[newItemsIndex],
+  //       data: newData,
+  //     };
+  //     setList(newList);
+  //   }
+  // };
 
   useEffect(() => {
-  }, [list])
+  }, [])
 
 
   return (
