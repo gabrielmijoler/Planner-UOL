@@ -18,20 +18,7 @@ const Dashboard: React.FC = () => {
   // id: 1]
 
   const days = [
-    {
-      name: "monday", id: 1, data: [{
-        description: "teste",
-        hour: "10:10",
-        day: "Monday",
-        id: 1
-      },
-      { // 
-        description: "teste2",
-        hour: "11:10",
-        day: "Monday",
-        id: 2
-      }]
-    },
+    { name: "monday", id: 1, data: [{}]},
     { name: "tuesday", id: 2, data: [] },
     { name: "wednesday", id: 3, data: [] },
     { name: "thursday", id: 4, data: [] },
@@ -50,7 +37,7 @@ const Dashboard: React.FC = () => {
 
 
   
-  const Eventpost = async () =>{
+  const PostCard = async () =>{
     try{
     const response = await instance.post('events', {
         "description": inpuDescription,
@@ -67,11 +54,48 @@ const Dashboard: React.FC = () => {
     }
   
  
-    const Eventgetall = async (item:CardItem) =>{
+    const GetallCard = async (description: string) =>{
       try{
-      const response = await instance.get('events', {
+      const response = await instance.get(`events?dayOfWeek=${selection}&description=${description}`)
+        console.log('response data:', response.data)
+        console.log('response status:', response.status)
+        console.log('response headers:', response.headers)
+        }catch(error: any) {
+          console.log('error data:', error.response.data)
+          console.log('error status:', error.response.status)
+          console.log('error headers:', error.response.headers)
+        }
+    }
+  
+    const DeleteCards = async (item:CardItem) =>{
+      try{
+      const response = await instance.delete(`events?dayOfWeek=${selection}`)
+        console.log('response data:', response.data)
+        console.log('response status:', response.status)
+        console.log('response headers:', response.headers)
+        }catch(error: any) {
+          console.log('error data:', error.response.data)
+          console.log('error status:', error.response.status)
+          console.log('error headers:', error.response.headers)
+        }
+    }
 
-        })
+    const GetIDCard= async (item:CardItem) =>{
+      try{
+      const response = await instance.get(`events/${item.id}`)
+        console.log('response data:', response.data)
+        console.log('response status:', response.status)
+        console.log('response headers:', response.headers)
+        }catch(error: any) {
+          console.log('error data:', error.response.data)
+          console.log('error status:', error.response.status)
+          console.log('error headers:', error.response.headers)
+        }
+    }
+
+    const DeleteIDCard= async (item:CardItem, id:string) =>{
+      try{
+      const response = await instance.delete(`events/${item.id}}`)
         console.log('response data:', response.data)
         console.log('response status:', response.status)
         console.log('response headers:', response.headers)
@@ -92,26 +116,26 @@ const Dashboard: React.FC = () => {
   }
 
  
-  const deleteCard = (item: CardItem, day: string) => {
-    const indexDay = getIndexOfDay(day)
-    const indexData = getIndexOfData(indexDay, item.id)
-    const newList = updateList(indexDay, indexData)
-    setList(newList)
-  };
+  // const deleteCard = (item: CardItem, day: string) => {
+  //   const indexDay = getIndexOfDay(day)
+  //   const indexData = getIndexOfData(indexDay, item.id)
+  //   const newList = updateList(indexDay, indexData)
+  //   setList(newList)
+  // };
   
-  const getIndexOfDay = (day: string) => list.findIndex(el => el.name === day)
-  const getIndexOfData = (indexDay: number, id: number) => list[indexDay].data.findIndex((el: any) => el.id === id)
-  const updateList = (indexDay: number, indexData: number) => [
-      ...list.slice(0, indexDay),
-      {
-        ...list[indexDay],
-        data: [
-          ...list[indexDay].data.slice(0, indexData),
-          ...list[indexDay].data.slice(indexData + 1),
-        ]
-      },
-      ...list.slice(indexDay + 1),
-    ]
+  // const getIndexOfDay = (day: string) => list.findIndex(el => el.name === day)
+  // const getIndexOfData = (indexDay: number, id: number) => list[indexDay].data.findIndex((el: any) => el.id === id)
+  // const updateList = (indexDay: number, indexData: number) => [
+  //     ...list.slice(0, indexDay),
+  //     {
+  //       ...list[indexDay],
+  //       data: [
+  //         ...list[indexDay].data.slice(0, indexData),
+  //         ...list[indexDay].data.slice(indexData + 1),
+  //       ]
+  //     },
+  //     ...list.slice(indexDay + 1),
+  //   ]
 
 
   // const addCard = (event: any) => {
@@ -137,7 +161,8 @@ const Dashboard: React.FC = () => {
   // };
 
   useEffect(() => {
-  }, [])
+    GetallCard(inpuDescription)
+  }, [selection, list])
 
 
   return (
@@ -166,7 +191,7 @@ const Dashboard: React.FC = () => {
             days.map((value: { id: string | number | readonly string[] | undefined; name: string | number | boolean | React.ReactElement<any, string | React.JSXElementConstructor<any>> | React.ReactFragment | React.ReactPortal | null | undefined; }, key: React.Key | null | undefined) => <option key={key} value={value.id}>{value.name}</option>)
           }
         </InputWeeks>
-        <Input
+        {/* <Input
           size={14}
           width={120}
           height={45}
@@ -178,21 +203,28 @@ const Dashboard: React.FC = () => {
           type={'time'}
           onChange={(e) => setInpuTime(e)}
           value={inpuTime}
-        />
+        /> */}
         <SectionButton >
           <Button
             label='Add to calendar'
             width={200}
             background='#00BA88'
             borderColors='#00BA88'
-            onClick={Eventpost}
+            onClick={PostCard}
           />
           <Button
             label='Delete All'
             width={200}
-            marginleft={5}
             background='#FF3D1F'
             borderColors='#FF3D1F'
+            onClick={DeleteCards}
+          />
+          <Button
+            label='get Card'
+            width={200}
+            background='#FF3D1F'
+            borderColors='#FF3D1F'
+            onClick={GetallCard}
           />
         </SectionButton>
       </Head>
@@ -213,10 +245,9 @@ const Dashboard: React.FC = () => {
             <div key={idx}>
               {selection === data.name && (
                 data.data.map((value: any, idcard: number) => {
-                  // console.log(value)
                   return (
                     <ControlDashboard key={idcard}>
-                      <FormCard item={value} Click={(item) => deleteCard(item, data.name)} />
+                      <FormCard item={value} Click={(item) => DeleteIDCard(item, data.name)} />
                     </ControlDashboard>
                   )
                 })

@@ -1,25 +1,25 @@
   const getBackgroundColor = (dayName:string) => {
     let backgroundColor;
     switch (dayName) {
-      case 'Monday':
+      case 'monday':
         backgroundColor = "#FF0024";
         break;
-      case 'Tuesday':
+      case 'tuesday':
         backgroundColor = "#FF8000";
         break;
-      case 'Wednesday':
+      case 'wednesday':
         backgroundColor = "#FFCE00";
         break;
-      case 'Thursday':
+      case 'thursday':
         backgroundColor = "rgba(255, 0, 36, 0.7)";
         break;
-      case 'Friday':
+      case 'friday':
         backgroundColor = "rgba(255, 128, 0, 0.7)";
         break;
-      case 'Saturday':
+      case 'saturday':
         backgroundColor = "rgba(255, 206, 0, 0.7)";
         break;
-      case 'Sunday':
+      case 'sunday':
         backgroundColor = "rgba(255, 0, 36, 0.5)";
         break;
       default:
