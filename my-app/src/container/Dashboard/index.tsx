@@ -73,61 +73,11 @@ const Dashboard: React.FC = () => {
   const Clickselect = (day: any) => {
     setButtonsection(day)
     console.log("select", day)
-  } 
-
-  // const handleSelect = (e: any) => {
-  //   const day: any = days.find((item: any) => item.id === Number(e.target.value)) // verifica se eh o msm id e retorna 
-  //   setInputDays(day)
-  // const deleteCard = (item: CardItem, day: string) => {
-  //   const indexDay = getIndexOfDay(day)
-  //   const indexData = getIndexOfData(indexDay, item.id)
-  //   const newList = updateList(indexDay, indexData)
-  //   setList(newList)
-  // };
-
-  // const getIndexOfDay = (day: string) => list.findIndex(el => el.name === day)
-  // const getIndexOfData = (indexDay: number, id: number) => list[indexDay].data.findIndex((el: any) => el.id === id)
-  // const updateList = (indexDay: number, indexData: number) => [
-  //     ...list.slice(0, indexDay),
-  //     {
-  //       ...list[indexDay],
-  //       data: [
-  //         ...list[indexDay].data.slice(0, indexData),
-  //         ...list[indexDay].data.slice(indexData + 1),
-  //       ]
-  //     },
-  //     ...list.slice(indexDay + 1),
-  //   ]
-
-
-  // const addCard = (event: any) => {
-  //   event.preventDefault();
-  //   const newList = [...list];
-
-  //   const newItemsIndex = newList.findIndex((list: any) => list.name === inputDays.name);
-  //   if (newItemsIndex !== -1) {
-  //     let newData: any = [...newList[newItemsIndex].data];
-  //     newData.push({
-  //       description: inpuDescription,
-  //       hour: inpuTime,
-  //       day: inputDays.name,
-  //       id: newData.length + 1,
-  //     });
-
-  //     newList[newItemsIndex] = {
-  //       ...newList[newItemsIndex],
-  //       data: newData,
-  //     };
-  //     setList(newList);
-  //   }
-  // };
+  }
 
   useEffect(() => {
     GetAll()
   }, [buttonSection, selection])
-
-
-  const length = list?.events?.length > 0;
 
   return (
     <DivPai>
@@ -191,12 +141,11 @@ const Dashboard: React.FC = () => {
             </SectionWeek>
           )}
         </ContainerWeek>
-        
           <div>
             <Spanvazio>Time</Spanvazio>
             <Pvazia />
           </div>
-          {length ? (
+          {list?.events?.length > 0 ? (
             list?.events?.map((item: any, idx: number) => {
               return (
                 <ControlDashboard key={idx}>
@@ -219,3 +168,51 @@ const Dashboard: React.FC = () => {
 
 
 export default Dashboard;
+
+
+// const handleSelect = (e: any) => {
+  //   const day: any = days.find((item: any) => item.id === Number(e.target.value)) // verifica se eh o msm id e retorna 
+  //   setInputDays(day)
+  // const deleteCard = (item: CardItem, day: string) => {
+  //   const indexDay = getIndexOfDay(day)
+  //   const indexData = getIndexOfData(indexDay, item.id)
+  //   const newList = updateList(indexDay, indexData)
+  //   setList(newList)
+  // };
+
+  // const getIndexOfDay = (day: string) => list.findIndex(el => el.name === day)
+  // const getIndexOfData = (indexDay: number, id: number) => list[indexDay].data.findIndex((el: any) => el.id === id)
+  // const updateList = (indexDay: number, indexData: number) => [
+  //     ...list.slice(0, indexDay),
+  //     {
+  //       ...list[indexDay],
+  //       data: [
+  //         ...list[indexDay].data.slice(0, indexData),
+  //         ...list[indexDay].data.slice(indexData + 1),
+  //       ]
+  //     },
+  //     ...list.slice(indexDay + 1),
+  //   ]
+
+
+  // const addCard = (event: any) => {
+  //   event.preventDefault();
+  //   const newList = [...list];
+
+  //   const newItemsIndex = newList.findIndex((list: any) => list.name === inputDays.name);
+  //   if (newItemsIndex !== -1) {
+  //     let newData: any = [...newList[newItemsIndex].data];
+  //     newData.push({
+  //       description: inpuDescription,
+  //       hour: inpuTime,
+  //       day: inputDays.name,
+  //       id: newData.length + 1,
+  //     });
+
+  //     newList[newItemsIndex] = {
+  //       ...newList[newItemsIndex],
+  //       data: newData,
+  //     };
+  //     setList(newList);
+  //   }
+  // };
