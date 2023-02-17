@@ -1,128 +1,90 @@
 import React, { useEffect, useState } from 'react';
-import { Containerlist, ContainerWeek, ControlDashboard, DivPai, Head, Imagemlogo, InputWeeks, Pvazia, SectionButton, SectionWeek, Spanvazio } from './style';
+import { Containerlist, ContainerWeek, ControlDashboard, DivButton, DivErro, DivInputs, DivPai, Head, Imagemlogo, InputWeeks, Pvazia, SectionWeek, Spanvazio } from './style';
 import Header from '../../componentes/Header';
 import Button from '../../componentes/UI/Button';
 import Input from '../../componentes/UI/Input';
-import dashlogo from  "../../Image/dashlogo.svg"
+import dashlogo from "../../Image/dashlogo.svg"
 import FormCard from '../../componentes/FormCard';
 import { getBackgroundColor } from '../../util';
-import CardItem from '../../model';
 import instance from '../../api';
 
 
 const Dashboard: React.FC = () => {
-  // data: [
-  // description: "teste",
-  // hour: "10:10",
-  // day: "monday",
-  // id: 1]
-
   const days = [
-    { name: "monday", id: 1, data: [{}]},
-    { name: "tuesday", id: 2, data: [] },
-    { name: "wednesday", id: 3, data: [] },
-    { name: "thursday", id: 4, data: [] },
-    { name: "friday", id: 5, data: [] },
-    { name: "saturday", id: 6, data: [] },
-    { name: "sunday", id: 7, data: [] }
+    { name: "monday", id: 1 },
+    { name: "tuesday", id: 2 },
+    { name: "wednesday", id: 3 },
+    { name: "thursday", id: 4 },
+    { name: "friday", id: 5 },
+    { name: "saturday", id: 6 },
+    { name: "sunday", id: 7 }
   ]
 
   const [inpuDescription, setInpuDescription] = useState("");
-  const [inpuTime, setInpuTime] = useState("");
-  const [inputDays, setInputDays] = useState(days[0])
   const [selection, setSelection] = useState("monday");
-  const [list, setList] = useState(days)
+  const [buttonSection, setButtonsection] = useState("monday");
+  const [list, setList] = useState<any>([])
 
 
-
-
-  
-  const PostCard = async () =>{
-    try{
-    const response = await instance.post('events', {
-        "description": inpuDescription,
-        "dayOfWeek": selection,
+  const PostCard = async () => {
+    await instance.post('events', {
+      "dayOfWeek": selection,
+      "description": inpuDescription,
+    }).then((response: any) => {
+      GetAll()
+      console.log('response post:', response.data)
+      console.log(response)
+    })
+      .catch((err) => {
+        console.log(err)
+        console.log('error status:', err.response.data)
       })
-        console.log('response data:', response.data)
-        console.log('response status:', response.status)
-        console.log('response headers:', response.headers)
-      }catch(error: any) {
-        console.log('error data:', error.response.data)
-        console.log('error status:', error.response.status)
-        console.log('error headers:', error.response.headers)
-      }
-    }
-  
- 
-    const GetallCard = async (description: string) =>{
-      try{
-      const response = await instance.get(`events?dayOfWeek=${selection}&description=${description}`)
-        console.log('response data:', response.data)
-        console.log('response status:', response.status)
-        console.log('response headers:', response.headers)
-        }catch(error: any) {
-          console.log('error data:', error.response.data)
-          console.log('error status:', error.response.status)
-          console.log('error headers:', error.response.headers)
-        }
-    }
-  
-    const DeleteCards = async (item:CardItem) =>{
-      try{
-      const response = await instance.delete(`events?dayOfWeek=${selection}`)
-        console.log('response data:', response.data)
-        console.log('response status:', response.status)
-        console.log('response headers:', response.headers)
-        }catch(error: any) {
-          console.log('error data:', error.response.data)
-          console.log('error status:', error.response.status)
-          console.log('error headers:', error.response.headers)
-        }
-    }
-
-    const GetIDCard= async (item:CardItem) =>{
-      try{
-      const response = await instance.get(`events/${item.id}`)
-        console.log('response data:', response.data)
-        console.log('response status:', response.status)
-        console.log('response headers:', response.headers)
-        }catch(error: any) {
-          console.log('error data:', error.response.data)
-          console.log('error status:', error.response.status)
-          console.log('error headers:', error.response.headers)
-        }
-    }
-
-    const DeleteIDCard= async (item:CardItem, id:string) =>{
-      try{
-      const response = await instance.delete(`events/${item.id}}`)
-        console.log('response data:', response.data)
-        console.log('response status:', response.status)
-        console.log('response headers:', response.headers)
-        }catch(error: any) {
-          console.log('error data:', error.response.data)
-          console.log('error status:', error.response.status)
-          console.log('error headers:', error.response.headers)
-        }
-    }
-  
-  const handleSelect = (e: any) => {
-    const day: any = days.find((item: any) => item.id === Number(e.target.value)) // verifica se eh o msm id e retorna 
-    setInputDays(day)
   }
 
-  const Clickselect = (day: string) => {
-    setSelection(day)
+  const DeleteCards = async () => {
+    await instance.delete(`events?dayOfWeek=${buttonSection}`)
+      .then((response: any) => {
+        GetAll()
+        console.log('response delete:', response.data)
+        console.log(response)
+      }).catch((err) => {
+        console.log(err)
+      })
   }
 
- 
+  const DeleteIDCard = async (id: string) => {
+    await instance.delete(`events/${id}`)
+      .then((response: any) => {
+        GetAll()
+        console.log('response deleteid:', response)
+      })
+      .catch((err) => {
+        console.log(err)
+        console.log('error status:', err.response.status)
+      })
+  }
+  const GetAll = async () => {
+    instance.get(`events?dayOfWeek=${buttonSection}`)
+    .then((response: { data: React.SetStateAction<never[]> }) => { console.log(response); setList(response.data) })
+    .catch((err: any) => console.log(err))
+  }
+
+
+  const Clickselect = (day: any) => {
+    setButtonsection(day)
+    console.log("select", day)
+  } 
+
+  // const handleSelect = (e: any) => {
+  //   const day: any = days.find((item: any) => item.id === Number(e.target.value)) // verifica se eh o msm id e retorna 
+  //   setInputDays(day)
   // const deleteCard = (item: CardItem, day: string) => {
   //   const indexDay = getIndexOfDay(day)
   //   const indexData = getIndexOfData(indexDay, item.id)
   //   const newList = updateList(indexDay, indexData)
   //   setList(newList)
   // };
-  
+
   // const getIndexOfDay = (day: string) => list.findIndex(el => el.name === day)
   // const getIndexOfData = (indexDay: number, id: number) => list[indexDay].data.findIndex((el: any) => el.id === id)
   // const updateList = (indexDay: number, indexData: number) => [
@@ -161,72 +123,65 @@ const Dashboard: React.FC = () => {
   // };
 
   useEffect(() => {
-    GetallCard(inpuDescription)
-  }, [selection, list])
+    GetAll()
+  }, [buttonSection, selection])
 
+
+  const length = list?.events?.length > 0;
 
   return (
     <DivPai>
       <Header />
       <Head>
-        <Input
-          size={14}
-          width={391}
-          height={45}
-          placeholder='Task or issue'
-          color={'rgba(0, 0, 0, 0.7);'}
-          borderRadius={10}
-          background={'#fff'}
-          bordercolor={'#FECE00'}
-          type={'text'}
-          onChange={(e) => setInpuDescription(e)}
-          value={inpuDescription}
-        />
-        <InputWeeks
-          color={'rgba(0, 0, 0, 0.7);'}
-          value={inputDays.id}
-          onChange={e => handleSelect(e)}
-        >
-          {
-            days.map((value: { id: string | number | readonly string[] | undefined; name: string | number | boolean | React.ReactElement<any, string | React.JSXElementConstructor<any>> | React.ReactFragment | React.ReactPortal | null | undefined; }, key: React.Key | null | undefined) => <option key={key} value={value.id}>{value.name}</option>)
-          }
-        </InputWeeks>
-        {/* <Input
-          size={14}
-          width={120}
-          height={45}
-          placeholder='01h 32m'
-          color={'rgba(0, 0, 0, 0.7);'}
-          borderRadius={10}
-          background={'#fff'}
-          bordercolor={'#FECE00'}
-          type={'time'}
-          onChange={(e) => setInpuTime(e)}
-          value={inpuTime}
-        /> */}
-        <SectionButton >
+        <DivInputs>
+          <Input
+            size={14}
+            width={391}
+            height={45}
+            placeholder='Task or issue'
+            color={'rgba(0, 0, 0, 0.7);'}
+            borderRadius={10}
+            background={'#fff'}
+            bordercolor={'#FECE00'}
+            type={'text'}
+            onChange={(e) => setInpuDescription(e)}
+            value={inpuDescription}
+          />
+          <InputWeeks
+            color={'rgba(0, 0, 0, 0.7);'}
+            value={selection}
+            onChange={e => setSelection(e.target.value)}
+          >
+            {
+              days.map((value: { name: string; }, key: React.Key) => <option key={key} value={value.name}>{value.name}</option>)
+            }
+          </InputWeeks>
+        </DivInputs>
+        <DivButton>
           <Button
             label='Add to calendar'
             width={200}
+            height={44}
             background='#00BA88'
             borderColors='#00BA88'
+            boderRadius={10}
+            widthsize={700}
+            fontSize={20}
             onClick={PostCard}
+            marginright={1}
           />
           <Button
             label='Delete All'
             width={200}
+            height={44}
+            boderRadius={10}
+            widthsize={700}
+            fontSize={20}
             background='#FF3D1F'
             borderColors='#FF3D1F'
             onClick={DeleteCards}
           />
-          <Button
-            label='get Card'
-            width={200}
-            background='#FF3D1F'
-            borderColors='#FF3D1F'
-            onClick={GetallCard}
-          />
-        </SectionButton>
+        </DivButton>
       </Head>
       <Containerlist>
         <ContainerWeek>
@@ -236,26 +191,26 @@ const Dashboard: React.FC = () => {
             </SectionWeek>
           )}
         </ContainerWeek>
-        <div>
-          <Spanvazio>Time</Spanvazio>
-          <Pvazia />
-        </div>
-        {list.map((data: any, idx: any) => {
-          return (
-            <div key={idx}>
-              {selection === data.name && (
-                data.data.map((value: any, idcard: number) => {
-                  return (
-                    <ControlDashboard key={idcard}>
-                      <FormCard item={value} Click={(item) => DeleteIDCard(item, data.name)} />
-                    </ControlDashboard>
-                  )
-                })
-              )}
-            </div>
+        
+          <div>
+            <Spanvazio>Time</Spanvazio>
+            <Pvazia />
+          </div>
+          {length ? (
+            list?.events?.map((item: any, idx: number) => {
+              return (
+                <ControlDashboard key={idx}>
+                  <FormCard item={item} Click={() => DeleteIDCard(item._id)} />
+                </ControlDashboard>
+              )
+            })) : (
+            <DivErro>
+              <h2>Vazia</h2>
+            </DivErro>
           )
-        })}
-        <Imagemlogo src={dashlogo}></Imagemlogo>
+          }
+          <Imagemlogo src={dashlogo}></Imagemlogo>
+       
         {/* postion absolute, z-index -1 */}
       </Containerlist>
     </DivPai>

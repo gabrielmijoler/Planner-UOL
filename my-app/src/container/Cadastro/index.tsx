@@ -148,6 +148,7 @@ const Cadastro: React.FC = () => {
             <SubTitulo className='second-title'>Please, register to continue.</SubTitulo></TituloWelcome>
           <form>
             <Input
+              padding={8}
               id='firstname'
               label="first name"
               type="text"
@@ -160,6 +161,7 @@ const Cadastro: React.FC = () => {
             />
             {inputNameError && <ErrorSpan>First name is required</ErrorSpan>}
             <Input
+              padding={8}
               label="last name"
               type="text"
               value={itemStorage.lastname}
@@ -171,6 +173,7 @@ const Cadastro: React.FC = () => {
             />
             {inputLastnameError && <ErrorSpan>Last name is required</ErrorSpan>}
             <Input
+              padding={8}
               label="birth date"
               type="date"
               value={itemStorage.birthdate}
@@ -182,6 +185,7 @@ const Cadastro: React.FC = () => {
             />
             {inputBirthError && <ErrorSpan>Birthday is required</ErrorSpan>}
             <Input
+              padding={8}
               label="Country"
               type="text"
               value={itemStorage.country}
@@ -193,6 +197,7 @@ const Cadastro: React.FC = () => {
             />
             {inputCountryError && <ErrorSpan>Country name is required</ErrorSpan>}
             <Input
+              padding={8}
               label="City"
               type="text"
               value={itemStorage.city}
@@ -204,6 +209,7 @@ const Cadastro: React.FC = () => {
             />
             {inputCityError && <ErrorSpan>City name is required</ErrorSpan>}
             <Input
+              padding={8}
               label="e-mail"
               type="email"
               value={itemStorage.email}
@@ -215,6 +221,7 @@ const Cadastro: React.FC = () => {
             />
             {inputEmail && <ErrorSpan>Email is not valid</ErrorSpan>}
             <Input
+              padding={8}
               label="password"
               type="password"
               value={itemStorage.password}
@@ -226,6 +233,7 @@ const Cadastro: React.FC = () => {
             />
             {Inputpassword && <ErrorSpan>Password is required and need to have 6 words</ErrorSpan>}
             <Input
+              padding={8}
               label="confirm password"
               type="password"
               value={itemStorage.confirpassword}

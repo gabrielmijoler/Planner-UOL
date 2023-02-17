@@ -10,7 +10,9 @@ export const Head = styled.section`
     height: 100px;
     align-items: center;
     width: 100%;
-    justify-content: space-around;
+`;
+export const DivInputs = styled.div`
+    display: flex;
 `;
 
 
@@ -44,13 +46,15 @@ export const Time = styled.span`
 
 export const InputWeeks = styled.select`
     width: 240px;
-    height: 45px;
+    height: 50px;
     background: #FFFFFF;
     border: 1px solid #FECE00;
     border-radius: 10px;
     display: flex;
     justify-content: center;
-    font-size:14;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 20px;
     color: rgba(0, 0, 0, 0.7);
 
 `;
@@ -85,10 +89,12 @@ export const Imagemlogo = styled.img`
     float: right;
 `;
 
-export const SectionButton = styled.section`
+export const DivButton = styled.div`
     display: flex;
-    justify-content: center;
-    /* margin-left: 11%; */
+    flex-direction: row;
+    justify-content: flex-end;
+    width: 100%;
+    margin-right: 2%;
 `;
 
 
@@ -132,7 +138,7 @@ export const Div = styled.div`
 
 export const Divcard = styled.div`
     display: flex;
-    padding: 5px;
+    padding: 0 0 0 1%;
     justify-content: space-around;
 `;
 
@@ -166,4 +172,8 @@ export const Span = styled.span`
     font-weight: 800;
     font-size: 17px;
     line-height: 20px;
+`;
+export const DivErro = styled.div`
+   display: flex;
+   padding: 0 0 0 1.5%;
 `;

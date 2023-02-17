@@ -22,6 +22,7 @@ type Props = {
   icon?: any;
   showlabel?: boolean
   error?: boolean
+  padding?: number
 };
 
 
@@ -44,10 +45,12 @@ export default function Input({
   showlabel = true,
   id,
   error,
+  padding,
 }: Props) {
 
   return (  
-    <ConteinerInput>
+    <ConteinerInput 
+      padding={padding}>
       {showlabel && (<LabelInput>{label}</LabelInput>)}
       <InputStyle
         id={id}

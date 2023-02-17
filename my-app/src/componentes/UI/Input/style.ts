@@ -53,11 +53,11 @@ export const InputStyle = styled.input<{
     }
 `;
 
-export const ConteinerInput = styled.div`
+export const ConteinerInput = styled.div<{padding?:number}>`
     display: flex;
     flex-direction: row;
     align-items: center;
-    padding: 8px;
+    padding:${props => props.padding}px;
 `;
 
 

@@ -1,26 +1,24 @@
 import { Card, PCard, Span } from "./style";
 import Button from "../UI/Button";
-import CardItem from "../../model";
 import { Div, Divcard, Time } from "../../container/Dashboard/style";
 import { getBackgroundColor } from "../../util";
 
 
 interface Props {
-    item: CardItem,
-    Click: (obj: CardItem) => void
+    item: any,
+    Click: (id: string) => void
 }
 
 const FormCard = ({ item, Click}: Props) => {
-    console.log(item.name)
     return (
         <>
          <Divcard>
             <Div>
-                <Time style={getBackgroundColor(item.day)}>{item.hour}</Time   >
+                <Time style={getBackgroundColor(item.dayOfWeek)}>{item.createdAt.slice(11, 16)}</Time>
             </Div>
             <Div>
-                <Card key={item.id}>
-                    <Span style={getBackgroundColor(item.day)} />
+                <Card key={item._id}>
+                    <Span style={getBackgroundColor(item.dayOfWeek)} />
                     <PCard>{item.description}</PCard>
                     <Button
                         width={57}
@@ -38,12 +36,11 @@ const FormCard = ({ item, Click}: Props) => {
                             alignItems: 'center',
                             justifyContent: 'center'
                         }}
-                        onClick={() => Click(item)}
+                        onClick={() => Click(item._id)}
                     />
                 </Card>
             </Div>
             </Divcard>
-            )
         </>
     )
 }

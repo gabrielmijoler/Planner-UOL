@@ -1,4 +1,3 @@
-import React from 'react';
 import { ButtonStyled } from './style';
 
 type Props = {
@@ -6,7 +5,6 @@ type Props = {
   onClick?: (e: any) => void
   disabled?: boolean;
   type?: "button" | "submit" | "reset" | undefined,
-  children?: string;
   width?: number;
   height?: number;
   fontSize?: number;
@@ -15,7 +13,9 @@ type Props = {
   borderColors?: string;
   marginleft?: number;
   margintop?: number;
+  marginright?: number;
   background?: string;
+  widthsize?: number;
 };
 
 const Button = (props: Props) => {
@@ -34,8 +34,8 @@ const Button = (props: Props) => {
         marginleft={props.marginleft}
         margintop={props.margintop}
         background={props.background}
+        marginright={props.marginright}
       >
-        {props.children}
         {props.label}
       </ButtonStyled>
     </>

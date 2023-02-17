@@ -10,6 +10,7 @@ export const ButtonStyled = styled.button<
         borderColors?: any,
         marginleft?: number,
         margintop?: number,
+        marginright?: number,
         background?: string,
     }>`
 
@@ -27,5 +28,7 @@ export const ButtonStyled = styled.button<
     border-color: ${props => props.borderColors};
     margin-left: ${props => props.marginleft}%;
     margin-top: ${props => props.margintop}%;
+    margin-right: ${props => props.marginright}%;
+    line-height: 20px;
     
 `;
