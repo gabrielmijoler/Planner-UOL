@@ -29,3 +29,23 @@
   };
 
 export {getBackgroundColor};
+
+const TostColors = (type:string) => {
+  let backgroundColor;
+  switch (type) {
+    case 'Warning':
+      backgroundColor = "#FFCE00";
+      break;
+    case 'Error':
+      backgroundColor = "#FF0024";
+      break;
+    case 'Sucess':
+      backgroundColor = "#00FF00";
+      break;
+    case 'Info':
+      backgroundColor = "#009DFF";
+      break;
+  }
+  return { backgroundColor: backgroundColor };
+};
+export {TostColors};

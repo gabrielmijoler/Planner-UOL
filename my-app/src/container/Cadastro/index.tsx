@@ -5,6 +5,8 @@ import Button from '../../componentes/UI/Button';
 import { Link, useNavigate } from 'react-router-dom';
 import { ControlForm, ImageLaptop, SectionImg, SectionInputs, SubTitulo, TituloWelcome, ErrorSpan, Spanhere, Errorbutton } from './style';
 import instance from '../../api';
+import Toast from '../../componentes/Toast';
+
 
 
 
@@ -30,7 +32,7 @@ const Cadastro: React.FC = () => {
   const [Inputpasswconf, setInputpasswconf] = useState(false)
   const [Inputpassword, setInputpassword] = useState(false)
   const [SubmitError, setSubmitError] = useState(false)
-
+  const [errorMessage, setErrorMessage] = useState('');
 
   // const armazenar = (chave: string, valor: any) => {
   //   localStorage.setItem(chave, JSON.stringify(valor))
@@ -46,8 +48,7 @@ const Cadastro: React.FC = () => {
      itemStorage.city  !== "" || itemStorage.email !== "" || itemStorage.password !== "" || itemStorage.confirpassword !== "") {
       setSubmitError(false)
     }
-    try {
-      const response = await instance.post('users/sign-up',{
+    await instance.post('users/sign-up',{
       "firstName": itemStorage.firstname,
       "lastName": itemStorage.lastname,
       "birthDate": itemStorage.birthdate,
@@ -56,19 +57,29 @@ const Cadastro: React.FC = () => {
       "email": itemStorage.email,
       "password": itemStorage.password,
       "confirmPassword": itemStorage.confirpassword
+      }).then((response:any)=>{
+        navigate("/Login")
+        console.log('response data:', response.data)
+        console.log('response status:', response.status)
+        console.log('response headers:', response.headers)
       })
-      console.log('response data:', response.data)
-      console.log('response status:', response.status)
-      console.log('response headers:', response.headers)
-      navigate("/Login")
       // armazenar('objt', itemStorage)
       // armazenarFullname('Fullname', itemStorage.firstname + " " + itemStorage.lastname)
-    }catch(error:any) {
-      console.log('error data:', error.response.data)
-      console.log('error status:', error.response.status)
-      console.log('error headers:', error.response.headers)
+      .catch((err:any) => {
+          if (err.response && err.response.status === 400) {
+            setErrorMessage(err.response.data.error)
+            console.log(setErrorMessage)
+          } else if (err.response && err.response.status === 500) {
+            setErrorMessage(err.response.data.error);
+          } else {
+            setErrorMessage('Ocorreu um erro desconhecido');
+          }
+          console.log('error data:', err.response.data)
+          console.log('error status:', err.response.status)
+          console.log('error headers:', err.response.headers)
+        });
+        // setErrorMessage(err.response.data)
       setSubmitError(true)
-    }
   }
 
 
@@ -79,7 +90,9 @@ const Cadastro: React.FC = () => {
     
   const emailRegex = (/^[a-zA-Z0-9.!#$%&'*+=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$/);
 
-  useEffect(() => { }, [itemStorage])
+  useEffect(() => { 
+
+  }, [itemStorage])
 
   const onBlurFirstName = () => {
     if (itemStorage.firstname === "" || itemStorage.firstname.length <= 2) {
@@ -140,9 +153,11 @@ const Cadastro: React.FC = () => {
     }
   }
 
+
   return (
     <>
       <ControlForm>
+      <Toast mensage={"ERROOO"} type={'Info'}/> 
         <SectionInputs>
           <TituloWelcome className='titleWelcome'>Welcome,
             <SubTitulo className='second-title'>Please, register to continue.</SubTitulo></TituloWelcome>

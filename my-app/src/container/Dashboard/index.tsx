@@ -156,11 +156,9 @@ const Dashboard: React.FC = () => {
             <DivErro>
               <h2>Vazia</h2>
             </DivErro>
-          )
+            )
           }
           <Imagemlogo src={dashlogo}></Imagemlogo>
-       
-        {/* postion absolute, z-index -1 */}
       </Containerlist>
     </DivPai>
   )
