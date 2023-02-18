@@ -32,9 +32,8 @@ const Cadastro: React.FC = () => {
   const [Inputpasswconf, setInputpasswconf] = useState(false)
   const [Inputpassword, setInputpassword] = useState(false)
   const [SubmitError, setSubmitError] = useState(false)
-  const [showToast, setShowToast] = useState(false);
-  const [errorMessage, setErrorMessage] = useState('');
-  const [type, setType] = useState('');
+  const [errorMessage, setErrorMessage] = useState({ message: '', type: '' });
+
 
   // const armazenar = (chave: string, valor: any) => {
   //   localStorage.setItem(chave, JSON.stringify(valor))
@@ -60,51 +59,28 @@ const Cadastro: React.FC = () => {
       "password": itemStorage.password,
       "confirmPassword": itemStorage.confirpassword
     }).then((response: any) => {
-      navigate("/Login")
-      e.preventDefault()
       console.log('response data:', response.data)
-      if (response.data.status === 201) {
-        setErrorMessage(response.data.message)
-        setType('Sucess')
-        setShowToast(true);
-      }})
+      if (response.data._id) {
+        setErrorMessage({ message: "Usuário cadastrado com sucesso", type: 'success' })
+        setTimeout(() => {
+          navigate("/Login")
+        }, 1500);
+      }
+    })
       .catch((err: any) => {
-        console.log(err.response.data)
-        if (err.response.status === 400) {
-            setErrorMessage(err.response.data.message)
-            setType('Error')
-            setShowToast(true);
-          } else if (err.response.status === 500) {
-            setErrorMessage(err.response.data.message)
-            setType('Error')
-            setShowToast(true);
-          }else {
-            setErrorMessage('Ocorreu um erro desconhecido')
-            setShowToast(true);
-            setType('Warning')
-          }
-        });
-    setSubmitError(true)
+        console.log(err?.response.data)
+        setErrorMessage({ message: err?.response?.data?.message ?? err?.response?.data ?? "Ocorreu um erro ao cadastrar", type: 'error' })
+      }
+      );
+    setSubmitError(false)
   }
-
-  //  if (err.response && err.response.status === 400) {
-  //   setErrorMessage(err.response.data.error)
-  //   console.log(setErrorMessage)
-  // } else if (err.response && err.response.status === 500) {
-  //   setErrorMessage(err.response.data.error);
-  // } else {
-  //   setErrorMessage('Ocorreu um erro desconhecido');
-  // }
-  // armazenar('objt', itemStorage)
-  // armazenarFullname('Fullname', itemStorage.firstname + " " + itemStorage.lastname)
 
   // let dataAtual = new Date();
   // let year = dataAtual.getFullYear();
   // const maxAge = year - 100;
 
 
-  const emailRegex = (/^[a-zA-Z0-9.!#$%&'*+=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$/);
-
+ 
   useEffect(() => {
 
   }, [itemStorage])
@@ -138,7 +114,6 @@ const Cadastro: React.FC = () => {
       setInputCityError(false)
     }
   }
-  // && itemStorage.birthdate.length < maxAge
   const onBlurBirthdate = () => {
     if (itemStorage.birthdate === "") {
       setInputBirthError(true)
@@ -147,11 +122,9 @@ const Cadastro: React.FC = () => {
     }
   }
   const onBlurEmail = () => {
-    if (emailRegex.test(itemStorage.email) && itemStorage.email !== '') {
-      setInputEmail(false)
-    } else {
-      setInputEmail(true)
-    }
+    const emailRegex = (/^[a-zA-Z0-9.!#$%&'*+=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$/);
+    const emailValidade = !(emailRegex.test(itemStorage.email) && itemStorage.email !== '')
+    setInputEmail(emailValidade)
   }
   const onBlurPassword = () => {
     if (itemStorage.password === "" || (itemStorage.password).length < 6) {
@@ -172,7 +145,7 @@ const Cadastro: React.FC = () => {
   return (
     <>
       <ControlForm>
-      {showToast && <Toast mensage={errorMessage} type="Error" />}
+        <Toast item={errorMessage} />
         <SectionInputs>
           <TituloWelcome className='titleWelcome'>Welcome,
             <SubTitulo className='second-title'>Please, register to continue.</SubTitulo></TituloWelcome>

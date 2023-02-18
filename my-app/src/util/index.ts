@@ -30,22 +30,14 @@
 
 export {getBackgroundColor};
 
-const TostColors = (type:string) => {
-  let backgroundColor;
-  switch (type) {
-    case 'Warning':
-      backgroundColor = "#FFCE00";
-      break;
-    case 'Error':
-      backgroundColor = "#FF0024";
-      break;
-    case 'Sucess':
-      backgroundColor = "#00FF00";
-      break;
-    case 'Info':
-      backgroundColor = "#009DFF";
-      break;
+
+const TostColors = (type:any) => {
+  const typeColor = {
+    warning:"#FFCE00",
+    error:"#FF0024",
+    success:"#00FF00",
+    info:"#009DFF",
   }
-  return { backgroundColor: backgroundColor };
-};
+  return { backgroundColor: typeColor[type] ?? '' };
+}
 export {TostColors};
