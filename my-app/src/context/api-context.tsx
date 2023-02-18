@@ -1,6 +1,5 @@
 import React, { createContext, useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { isToken } from 'typescript';
 import instance from '../api';
 
 
@@ -31,43 +30,40 @@ const ApiProvider: React.FC<Props> = ({ children }) => {
 
     // const getitem = JSON.parse(localStorage.getItem('objt') as string)
     // const getFullName = JSON.parse(localStorage.getItem('Fullname') as string)
-    
-    useEffect(() => {
-        if (localStorage.getItem('token')){
-            navigate('/dashboard')
-        }
-    }, []); 
-
-    
     const Login = async (username: string, password: string) => {
         try{
             const response = await instance.post('users/sign-in', {
                 "email": `${username}`,
                 "password": `${password}`
             })
-            console.log('response data:', response.data)
-            console.log('response status:', response.status)
-            console.log('response headers:', response.headers)
-            navigate('/dashboard')
-            const token = response.data.token;
-            localStorage.setItem('token', token);
-            setUser(response.data.user.token)
+                console.log('response data:', response.data)
+                navigate('/dashboard')
+                const token = response.data.token;
+                localStorage.setItem('token', token)
+                localStorage.setItem("logUser", JSON.stringify(response.data.user));
+                setUser(response.data.user.token)
             }catch(error: any) {
                 console.log('error data:', error.response.data)
                 console.log('error status:', error.response.status)
                 console.log('error headers:', error.response.headers)
             }
-        // if ((password === getitem.password) && (username === getitem.email ||getFullName === username)) {
-        //     navigate('/dashboard')
-        // }
     }
-
-
+    
     function Logout() {
         setUser(null);
         localStorage.removeItem('token')
         navigate('/login')
     }
+    
+    useEffect(() => {
+        if (localStorage.getItem('token')){
+            navigate('/dashboard')
+        }
+    }, [user]); 
+
+    
+    
+    
 
     return (
         <ApiContext.Provider value={{ signed:Boolean(user), user ,Logout, Login}}>

@@ -16,6 +16,7 @@ type Props = {
   marginright?: number;
   background?: string;
   widthsize?: number;
+  
 };
 
 const Button = (props: Props) => {

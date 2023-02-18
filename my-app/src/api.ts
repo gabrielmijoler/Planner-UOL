@@ -1,4 +1,5 @@
 import axios from "axios";
+import { useEffect } from "react";
 
 const token = localStorage.getItem('token')
 console.log("token",token)
@@ -10,7 +11,5 @@ const instance = axios.create({
       "Authorization": `Bearer ${token}`,
     }
   });
-
-
 
 export default instance;

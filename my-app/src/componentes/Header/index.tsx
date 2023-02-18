@@ -7,8 +7,9 @@ import { ApiContext } from '../../context/api-context';
 import axios from 'axios';
 
 
-const Header: React.FC = (props: any) => {
-  const getItem = JSON.parse(localStorage.getItem('objt') as string)
+  const Header: React.FC = (props: any) => {
+  const getItem = JSON.parse(localStorage.getItem('logUser') as string)
+  
 
   const [city, setCity] = useState(getItem.city);
   const [data, setData] = useState<any>(getItem.city);
@@ -19,6 +20,7 @@ const Header: React.FC = (props: any) => {
   async function getCity() {
       await axios.get(url).then((res)=>{
         setData(res.data)
+        console.log(res.data)
       })
     }
   

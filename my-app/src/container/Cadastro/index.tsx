@@ -32,7 +32,9 @@ const Cadastro: React.FC = () => {
   const [Inputpasswconf, setInputpasswconf] = useState(false)
   const [Inputpassword, setInputpassword] = useState(false)
   const [SubmitError, setSubmitError] = useState(false)
+  const [showToast, setShowToast] = useState(false);
   const [errorMessage, setErrorMessage] = useState('');
+  const [type, setType] = useState('');
 
   // const armazenar = (chave: string, valor: any) => {
   //   localStorage.setItem(chave, JSON.stringify(valor))
@@ -44,11 +46,11 @@ const Cadastro: React.FC = () => {
 
   const submit = async (e?: any) => {
     e.preventDefault()
-    if (itemStorage.firstname !== ""  || itemStorage.lastname !== "" || itemStorage.birthdate !== ""|| itemStorage.country  !== ""||
-     itemStorage.city  !== "" || itemStorage.email !== "" || itemStorage.password !== "" || itemStorage.confirpassword !== "") {
+    if (itemStorage.firstname !== "" || itemStorage.lastname !== "" || itemStorage.birthdate !== "" || itemStorage.country !== "" ||
+      itemStorage.city !== "" || itemStorage.email !== "" || itemStorage.password !== "" || itemStorage.confirpassword !== "") {
       setSubmitError(false)
     }
-    await instance.post('users/sign-up',{
+    await instance.post('users/sign-up', {
       "firstName": itemStorage.firstname,
       "lastName": itemStorage.lastname,
       "birthDate": itemStorage.birthdate,
@@ -57,40 +59,53 @@ const Cadastro: React.FC = () => {
       "email": itemStorage.email,
       "password": itemStorage.password,
       "confirmPassword": itemStorage.confirpassword
-      }).then((response:any)=>{
-        navigate("/Login")
-        console.log('response data:', response.data)
-        console.log('response status:', response.status)
-        console.log('response headers:', response.headers)
-      })
-      // armazenar('objt', itemStorage)
-      // armazenarFullname('Fullname', itemStorage.firstname + " " + itemStorage.lastname)
-      .catch((err:any) => {
-          if (err.response && err.response.status === 400) {
-            setErrorMessage(err.response.data.error)
-            console.log(setErrorMessage)
-          } else if (err.response && err.response.status === 500) {
-            setErrorMessage(err.response.data.error);
-          } else {
-            setErrorMessage('Ocorreu um erro desconhecido');
+    }).then((response: any) => {
+      navigate("/Login")
+      e.preventDefault()
+      console.log('response data:', response.data)
+      if (response.data.status === 201) {
+        setErrorMessage(response.data.message)
+        setType('Sucess')
+        setShowToast(true);
+      }})
+      .catch((err: any) => {
+        console.log(err.response.data)
+        if (err.response.status === 400) {
+            setErrorMessage(err.response.data.message)
+            setType('Error')
+            setShowToast(true);
+          } else if (err.response.status === 500) {
+            setErrorMessage(err.response.data.message)
+            setType('Error')
+            setShowToast(true);
+          }else {
+            setErrorMessage('Ocorreu um erro desconhecido')
+            setShowToast(true);
+            setType('Warning')
           }
-          console.log('error data:', err.response.data)
-          console.log('error status:', err.response.status)
-          console.log('error headers:', err.response.headers)
         });
-        // setErrorMessage(err.response.data)
-      setSubmitError(true)
+    setSubmitError(true)
   }
 
+  //  if (err.response && err.response.status === 400) {
+  //   setErrorMessage(err.response.data.error)
+  //   console.log(setErrorMessage)
+  // } else if (err.response && err.response.status === 500) {
+  //   setErrorMessage(err.response.data.error);
+  // } else {
+  //   setErrorMessage('Ocorreu um erro desconhecido');
+  // }
+  // armazenar('objt', itemStorage)
+  // armazenarFullname('Fullname', itemStorage.firstname + " " + itemStorage.lastname)
 
-    // let dataAtual = new Date();
-    // let year = dataAtual.getFullYear();
-    // const maxAge = year - 100;
+  // let dataAtual = new Date();
+  // let year = dataAtual.getFullYear();
+  // const maxAge = year - 100;
 
-    
+
   const emailRegex = (/^[a-zA-Z0-9.!#$%&'*+=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$/);
 
-  useEffect(() => { 
+  useEffect(() => {
 
   }, [itemStorage])
 
@@ -125,7 +140,7 @@ const Cadastro: React.FC = () => {
   }
   // && itemStorage.birthdate.length < maxAge
   const onBlurBirthdate = () => {
-    if (itemStorage.birthdate === "" ) {
+    if (itemStorage.birthdate === "") {
       setInputBirthError(true)
     } else {
       setInputBirthError(false)
@@ -157,7 +172,7 @@ const Cadastro: React.FC = () => {
   return (
     <>
       <ControlForm>
-      <Toast mensage={"ERROOO"} type={'Info'}/> 
+      {showToast && <Toast mensage={errorMessage} type="Error" />}
         <SectionInputs>
           <TituloWelcome className='titleWelcome'>Welcome,
             <SubTitulo className='second-title'>Please, register to continue.</SubTitulo></TituloWelcome>

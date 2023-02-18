@@ -4,6 +4,8 @@ import Header from '../../componentes/Header';
 import Button from '../../componentes/UI/Button';
 import Input from '../../componentes/UI/Input';
 import dashlogo from "../../Image/dashlogo.svg"
+import iconAdd from "../../Image/iconAdd.svg"
+import iconNegativo from "../../Image/iconReduce.svg"
 import FormCard from '../../componentes/FormCard';
 import { getBackgroundColor } from '../../util';
 import instance from '../../api';
@@ -65,7 +67,7 @@ const Dashboard: React.FC = () => {
   }
   const GetAll = async () => {
     instance.get(`events?dayOfWeek=${buttonSection}`)
-    .then((response: { data: React.SetStateAction<never[]> }) => { console.log(response); setList(response.data) })
+    .then((response: { data: React.SetStateAction<never[]> }) => { console.log("GetAll",response); setList(response.data) })
     .catch((err: any) => console.log(err))
   }
 
@@ -109,7 +111,7 @@ const Dashboard: React.FC = () => {
         </DivInputs>
         <DivButton>
           <Button
-            label='Add to calendar'
+            label='+ Add to calendar'
             width={200}
             height={44}
             background='#00BA88'
@@ -121,7 +123,7 @@ const Dashboard: React.FC = () => {
             marginright={1}
           />
           <Button
-            label='Delete All'
+            label='- Delete All'
             width={200}
             height={44}
             boderRadius={10}
