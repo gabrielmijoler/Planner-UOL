@@ -70,11 +70,13 @@ export const ApiProvider: React.FC<Props> = ({ children }) => {
         navigate('/login')
     }
 
-    // useEffect(() => {
-    //     if (localStorage.getItem('token')) {
-    //         navigate('/dashboard')
-    //     }
-    // }, [user]);
+    useEffect(() => {
+        if (localStorage.getItem('token')) {
+            setTimeout(() => {
+                navigate("/dashboard");
+              }, 1500);
+        }
+    }, [user]);
 
     return (
         <ApiContext.Provider value={{ signed: Boolean(user), user, errorMessage, Logout, Login }}>
