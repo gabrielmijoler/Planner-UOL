@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { TostColors } from '../../util';
+import { ColorType, TostColors } from '../../util';
 import { DivChildren, DivText, DivToast, SpanText } from './style';
 
 interface Props {
@@ -31,7 +31,7 @@ const Toast = ({item}: Props) => {
         <>
         {showToast &&(
             <DivToast >
-                <DivChildren style={TostColors(message.type)}>
+                <DivChildren style={TostColors(message.type as keyof ColorType)}>
                         <DivText>
                             <SpanText>{message.message}</SpanText>
                         </DivText>

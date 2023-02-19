@@ -8,31 +8,30 @@ import Button from '../../componentes/UI/Button';
 import { Link, useNavigate } from 'react-router-dom';
 import { ControlInput, Imagem, P, SectionButton, Spanlogin } from './style';
 import { ApiContext } from '../../context/api-context';
+import Toast from '../../componentes/Toast';
 
 
 
 const Login: React.FC = () => {
   // let navigate = useNavigate();
   const { Login } = useContext(ApiContext)
-
+  const { errorMessage} = useContext(ApiContext)
+  
   const [loginItem, setLoginItem] = useState({
     username: '',
     password: '',
   })
-
   const [erroLoigin, setErroLoigin] = useState<boolean>(false)
-
-  // const getitem = JSON.parse(localStorage.getItem('objt') as string)
-  // const getFullName = JSON.parse(localStorage.getItem('Fullname') as string)
 
   const validationLogin: any = async (e: { preventDefault: () => void; }) => {
     e.preventDefault()
-    Login(loginItem.username, loginItem.password)
+    await Login(loginItem.username, loginItem.password,  { errorMessage })
   }
   
 
     return (
       <ControlForm>
+        <Toast item={errorMessage} />
         <SectionInputs>
           <TituloWelcome style={{ marginTop: '55%' }}>Welcome,
             <SubTitulo>To continue browsing safely, log in to the network.</SubTitulo></TituloWelcome>

@@ -1,3 +1,12 @@
+
+export interface ColorType {
+  warning: string;
+  error: string;
+  success: string;
+  info: string;
+}
+  
+  
   const getBackgroundColor = (dayName:string) => {
     let backgroundColor;
     switch (dayName) {
@@ -31,13 +40,15 @@
 export {getBackgroundColor};
 
 
-const TostColors = (type:any) => {
-  const typeColor = {
-    warning:"#FFCE00",
-    error:"#FF0024",
-    success:"#00FF00",
-    info:"#009DFF",
-  }
-  return { backgroundColor: typeColor[type] ?? '' };
-}
-export {TostColors};
+
+const TostColors = (type: keyof ColorType) => {
+  const typeColor: Record<keyof ColorType, string> = {
+    warning: "#FFCE00",
+    error: "#FF0024",
+    success: "#00FF00",
+    info: "#009DFF",
+  };
+  return { backgroundColor: typeColor[type] ?? "" };
+};
+
+export { TostColors };

@@ -3,70 +3,81 @@ import { useNavigate } from 'react-router-dom';
 import instance from '../api';
 
 
-export interface IContext {
-    signed: boolean
+interface IContext {
+    signed: boolean;
     user: object | null;
-    Login(username:string, password: string): void;
-    Logout(): void;
-
+    errorMessage: {
+        message: string;
+        type: string;
+    };
+    Logout: () => void;
+    Login: (username: string, password: string, { errorMessage }: { errorMessage: { message: string, type: string } }) => Promise<string>;
 }
 
 interface Props {
     children: React.ReactNode;
 }
 
-
 export const ApiContext = createContext<IContext>({
     signed: false,
     user: {},
-    Login(){},
-    Logout(){},
+    errorMessage: { message: '', type: '' },
+    Logout: () => {},
+    Login: async () => '',
 });
 
 
-const ApiProvider: React.FC<Props> = ({ children }) => {
+export const ApiProvider: React.FC<Props> = ({ children }) => {
     let navigate = useNavigate();
-    const [user, setUser] = useState<object | null>(null);
-
-    // const getitem = JSON.parse(localStorage.getItem('objt') as string)
-    // const getFullName = JSON.parse(localStorage.getItem('Fullname') as string)
-    const Login = async (username: string, password: string) => {
-        try{
-            const response = await instance.post('users/sign-in', {
-                "email": `${username}`,
-                "password": `${password}`
-            })
-                console.log('response data:', response.data)
-                navigate('/dashboard')
-                const token = response.data.token;
-                localStorage.setItem('token', token)
-                localStorage.setItem("logUser", JSON.stringify(response.data.user));
-                setUser(response.data.user.token)
-            }catch(error: any) {
-                console.log('error data:', error.response.data)
-                console.log('error status:', error.response.status)
-                console.log('error headers:', error.response.headers)
-            }
-    }
+    const [user, setUser] = useState(null);
+    const [errorMessage, setErrorMessage] = useState({ message: '', type: '' });
+  
+    const handleErrorMessage = (message: string, type: string) => {
+      setErrorMessage({ message, type });
+    };
+  
+    const Login = async (username: string, password: string, { errorMessage }: { errorMessage?: { message: string, type: string } }) => {
+      try {
+        const response = await instance.post('users/sign-in', {
+          "email": `${username}`,
+          "password": `${password}`
+        });
+  
+        if (response.data.token) {
+          handleErrorMessage("Usuário cadastrado com sucesso", 'success');
+          setTimeout(() => {
+            navigate("/dashboard");
+          }, 1500);
+        }
+  
+        const token = response.data.token;
+        localStorage.setItem('token', token);
+        localStorage.setItem("logUser", JSON.stringify(response.data.user));
+        setUser(response.data.user.token);
+  
+        return response.data.token;
+      } catch (err: any) {
+        handleErrorMessage(err?.response?.data?.message ?? "Usuário ou senha inválida", 'error');
+        console.log('error data:', err.response.data);
+        console.log('error status:', err.response.status);
+        console.log('error headers:', err.response.headers);
+      }
+    };
     
-    function Logout() {
+    const Logout = () => {
         setUser(null);
         localStorage.removeItem('token')
         navigate('/login')
     }
-    
-    useEffect(() => {
-        if (localStorage.getItem('token')){
-            navigate('/dashboard')
-        }
-    }, [user]); 
 
-    
-    
-    
+    // useEffect(() => {
+    //     if (localStorage.getItem('token')) {
+    //         navigate('/dashboard')
+    //     }
+    // }, [user]);
 
     return (
-        <ApiContext.Provider value={{ signed:Boolean(user), user ,Logout, Login}}>
+        <ApiContext.Provider value={{ signed: Boolean(user), user, errorMessage, Logout, Login }}>
             {children}
         </ApiContext.Provider>
     );
@@ -74,3 +85,71 @@ const ApiProvider: React.FC<Props> = ({ children }) => {
 
 
 export default ApiProvider;
+
+// interface IContext {
+//   signed: boolean;
+//   user: object | null;
+//   errorMessage?: {
+//     message: string;
+//     type: string;
+//   };
+//   Logout: () => void;
+//   Login: (username: string, password: string, { errorMessage, setErrorMessage }: { errorMessage?: { message: string, type: string }, setErrorMessage: React.Dispatch<React.SetStateAction<{ message: string, type: string }>> }) => Promise<string>;
+// }
+
+
+// export const ApiContext = createContext<IContext>({
+//   signed: false,
+//   user: null,
+//   errorMessage: { message: '', type: '' },
+//   Logout: () => {},
+//   Login: async () => '',
+// });
+
+// export const ApiProvider: React.FC<Props> = ({ children }) => {
+//   const [user, setUser] = useState(null);
+//   const [errorMessage, setErrorMessage] = useState({ message: '', type: '' });
+
+//   const handleErrorMessage = (message: string, type: string) => {
+//     setErrorMessage({ message, type });
+//   };
+
+//   const Logout = () => {
+//     localStorage.clear();
+//     setUser(null);
+//   };
+
+//   const Login = async (username: string, password: string, { errorMessage, setErrorMessage }: { errorMessage?: { message: string, type: string }, setErrorMessage: React.Dispatch<React.SetStateAction<{ message: string, type: string }>> }) => {
+//     try {
+//       const response = await instance.post('users/sign-in', {
+//         "email": `${username}`,
+//         "password": `${password}`
+//       });
+
+//       if (response.data.token) {
+//         handleErrorMessage("Usuário cadastrado com sucesso", 'success');
+//         setTimeout(() => {
+//           navigator("/dashboard");
+//         }, 1500);
+//       }
+
+//       const token = response.data.token;
+//       localStorage.setItem('token', token);
+//       localStorage.setItem("logUser", JSON.stringify(response.data.user));
+//       setUser(response.data.user.token);
+
+//       return response.data.token;
+//     } catch (err: any) {
+//       handleErrorMessage(err?.response?.data?.message ?? err?.response?.data ?? "Usuário ou senha inválida", 'error');
+//       console.log('error data:', err.response.data);
+//       console.log('error status:', err.response.status);
+//       console.log('error headers:', err.response.headers);
+//     }
+//   };
+
+//   return (
+//     <ApiContext.Provider value={{ signed: Boolean(user), user, errorMessage, Logout, Login }}>
+//       {children}
+//     </ApiContext.Provider>
+//   );
+// };

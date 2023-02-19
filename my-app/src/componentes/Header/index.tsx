@@ -20,7 +20,6 @@ import axios from 'axios';
   async function getCity() {
       await axios.get(url).then((res)=>{
         setData(res.data)
-        console.log(res.data)
       })
     }
   
