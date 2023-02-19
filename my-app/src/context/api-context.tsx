@@ -33,17 +33,11 @@ export const ApiProvider: React.FC<Props> = ({ children }) => {
     const [auth, setAuth] = useState(false);
     const [errorMessage, setErrorMessage] = useState({ message: '', type: '' });
 
-    useEffect(() => {
-      if (localStorage.getItem('token')) {
-          navigate("/dashboard");
-      }
-  }, [user]);
-
     const handleErrorMessage = (message: string, type: string) => {
       setErrorMessage({ message, type });
     };
   
-    const Login = async (username: string, password: string, { errorMessage }: { errorMessage?: { message: string, type: string } }) => {
+    const Login = async (username: string, password: string) => {
       try {
         const response = await instance.post('users/sign-in', {
           "email": `${username}`,
