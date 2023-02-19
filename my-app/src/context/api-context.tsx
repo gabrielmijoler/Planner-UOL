@@ -30,8 +30,15 @@ export const ApiContext = createContext<IContext>({
 export const ApiProvider: React.FC<Props> = ({ children }) => {
     let navigate = useNavigate();
     const [user, setUser] = useState(null);
+    const [auth, setAuth] = useState(false);
     const [errorMessage, setErrorMessage] = useState({ message: '', type: '' });
-  
+
+    useEffect(() => {
+      if (localStorage.getItem('token')) {
+          navigate("/dashboard");
+      }
+  }, [user]);
+
     const handleErrorMessage = (message: string, type: string) => {
       setErrorMessage({ message, type });
     };
@@ -42,7 +49,7 @@ export const ApiProvider: React.FC<Props> = ({ children }) => {
           "email": `${username}`,
           "password": `${password}`
         });
-  
+        setAuth(true)
         if (response.data.token) {
           handleErrorMessage("Usuário cadastrado com sucesso", 'success');
           setTimeout(() => {
@@ -68,18 +75,11 @@ export const ApiProvider: React.FC<Props> = ({ children }) => {
         setUser(null);
         localStorage.removeItem('token')
         navigate('/login')
+        setAuth(false)
     }
 
-    useEffect(() => {
-        if (localStorage.getItem('token')) {
-            setTimeout(() => {
-                navigate("/dashboard");
-              }, 1500);
-        }
-    }, [user]);
-
     return (
-        <ApiContext.Provider value={{ signed: Boolean(user), user, errorMessage, Logout, Login }}>
+        <ApiContext.Provider value={{ signed: Boolean(auth), user, errorMessage, Logout, Login }}>
             {children}
         </ApiContext.Provider>
     );

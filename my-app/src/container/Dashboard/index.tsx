@@ -9,6 +9,7 @@ import iconNegativo from "../../Image/iconReduce.svg"
 import FormCard from '../../componentes/FormCard';
 import { getBackgroundColor } from '../../util';
 import instance from '../../api';
+import Toast from '../../componentes/Toast';
 
 
 const Dashboard: React.FC = () => {
@@ -26,7 +27,7 @@ const Dashboard: React.FC = () => {
   const [selection, setSelection] = useState("monday");
   const [buttonSection, setButtonsection] = useState("monday");
   const [list, setList] = useState<any>([])
-
+  const [errorMessage, setErrorMessage] = useState({ message: '', type: '' });
 
   const PostCard = async () => {
     await instance.post('events', {
@@ -34,10 +35,12 @@ const Dashboard: React.FC = () => {
       "description": inpuDescription,
     }).then((response: any) => {
       GetAll()
+      setErrorMessage({ message: "Adicionado com sucesso", type: 'success' })
       console.log('response post:', response.data)
       console.log(response)
     })
       .catch((err) => {
+        setErrorMessage({ message: err?.response?.data?.message ?? err?.response?.data ?? "Ocorreu um erro ao adicionar", type: 'error' })
         console.log(err)
         console.log('error status:', err.response.data)
       })
@@ -47,9 +50,11 @@ const Dashboard: React.FC = () => {
     await instance.delete(`events?dayOfWeek=${buttonSection}`)
       .then((response: any) => {
         GetAll()
+        setErrorMessage({ message: "Deletado com sucesso", type: 'success' })
         console.log('response delete:', response.data)
         console.log(response)
       }).catch((err) => {
+        setErrorMessage({ message: err?.response?.data?.message ?? err?.response?.data ?? "Ocorreu um erro ao deletar todos", type: 'error' })
         console.log(err)
       })
   }
@@ -58,10 +63,12 @@ const Dashboard: React.FC = () => {
     await instance.delete(`events/${id}`)
       .then((response: any) => {
         GetAll()
+        setErrorMessage({ message: "Deletado com sucesso", type: 'success' })
         console.log('response deleteid:', response)
       })
       .catch((err) => {
         console.log(err)
+        setErrorMessage({ message: err?.response?.data?.message ?? err?.response?.data ?? "Ocorreu um erro ao deletar", type: 'error' })
         console.log('error status:', err.response.status)
       })
   }
@@ -143,6 +150,7 @@ const Dashboard: React.FC = () => {
             </SectionWeek>
           )}
         </ContainerWeek>
+        <Toast item={errorMessage} />
           <div>
             <Spanvazio>Time</Spanvazio>
             <Pvazia />
