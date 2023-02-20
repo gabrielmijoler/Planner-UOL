@@ -9,10 +9,12 @@ import iconAdd from "../../Image/iconAdd.svg"
 import iconNegativo from "../../Image/iconReduce.svg"
 import FormCard from '../../componentes/FormCard';
 import { getBackgroundColor } from '../../util';
-import instance from '../../api';
+import { getInstance } from '../../api';
 import Toast from '../../componentes/Toast';
 import Modal from '../../componentes/Modal';
+import Loading from '../../componentes/Loading';
 
+const instance = getInstance();
 
 const Dashboard: React.FC = () => {
   const days = [
@@ -31,6 +33,7 @@ const Dashboard: React.FC = () => {
   const [list, setList] = useState<any>([])
   const [errorMessage, setErrorMessage] = useState({ message: '', type: '' });
   const [isModelVisible, setIsModelVisible] = useState(false)
+  const [removeLoading, setRemoveLoading] = useState(false)
   
 
   const PostCard = async () => {
@@ -38,14 +41,13 @@ const Dashboard: React.FC = () => {
       "dayOfWeek": selection,
       "description": inpuDescription,
     }).then((response: any) => {
+      setRemoveLoading(true)
       GetAll()
       setErrorMessage({ message: "Adicionado com sucesso", type: 'success' })
       console.log('response post:', response.data)
-      console.log(response)
     })
       .catch((err) => {
         setErrorMessage({ message: err?.response?.data?.message ?? err?.response?.data ?? "Ocorreu um erro ao adicionar", type: 'error' })
-        console.log(err)
         console.log('error status:', err.response.data)
       })
   }
@@ -53,6 +55,7 @@ const Dashboard: React.FC = () => {
   const DeleteCards = async () => {
     await instance.delete(`events?dayOfWeek=${buttonSection}`)
       .then((response: any) => {
+        setRemoveLoading(true)
         GetAll()
         setErrorMessage({ message: "Deletado com sucesso", type: 'success' })
         console.log('response delete:', response.data)
@@ -61,7 +64,7 @@ const Dashboard: React.FC = () => {
         setErrorMessage({ message: err?.response?.data?.message ?? err?.response?.data ?? "Ocorreu um erro ao deletar todos", type: 'error' })
         console.log(err)
       })
-  }
+    }
 
   const DeleteModal = async (id: string) => {
       setIsModelVisible(true)
@@ -70,6 +73,7 @@ const Dashboard: React.FC = () => {
   const DeleteIDCard = async (id: string) => {
     await instance.delete(`events/${id}`)
       .then((response: any) => {
+        setRemoveLoading(true)
         GetAll()
         setErrorMessage({ message: "Removido com sucesso", type: 'success' })
         console.log('response deleteid:', response)
@@ -89,12 +93,15 @@ const Dashboard: React.FC = () => {
 
   const Clickselect = (day: any) => {
     setButtonsection(day)
-    console.log("select", day)
   }
 
   useEffect(() => {
     GetAll()
-  }, [buttonSection, selection])
+    const timeoutId = setTimeout(() => {
+      setRemoveLoading(false);
+    }, 1800);
+    return () => clearTimeout(timeoutId);
+  }, [buttonSection, selection, instance, removeLoading])
 
   return (
     <DivPai>
@@ -163,6 +170,7 @@ const Dashboard: React.FC = () => {
             <Spanvazio>Time</Spanvazio>
             <Pvazia />
           </div>
+          {removeLoading && <Loading/>}
           {list?.events?.length > 0 ? (
             list?.events?.map((item: any, idx: number) => {
               return (
@@ -175,7 +183,7 @@ const Dashboard: React.FC = () => {
                       <Button
                         label='Sim'
                         onClick={()=>
-                          {DeleteIDCard(item._id); setIsModelVisible(false); }
+                          {DeleteIDCard(item._id); setIsModelVisible  (false); }
                         }
                         background={'#00BA88'}
                         width={70}

@@ -1,7 +1,9 @@
 import React, { createContext, useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import instance from '../api';
+import { getInstance } from '../api';
 
+
+const instance = getInstance();
 
 interface IContext {
     signed: boolean;
@@ -55,13 +57,9 @@ export const ApiProvider: React.FC<Props> = ({ children }) => {
         localStorage.setItem('token', token);
         localStorage.setItem("logUser", JSON.stringify(response.data.user));
         setUser(response.data.user.token);
-  
-        return response.data.token;
-      } catch (err: any) {
+        return  response.data.token;
+        } catch (err: any) {
         handleErrorMessage(err?.response?.data?.message ?? "Usuário ou senha inválida", 'error');
-        console.log('error data:', err.response.data);
-        console.log('error status:', err.response.status);
-        console.log('error headers:', err.response.headers);
       }
     };
     
@@ -76,9 +74,8 @@ export const ApiProvider: React.FC<Props> = ({ children }) => {
       if (localStorage.getItem('token')) {
           navigate("/dashboard");
           setAuth(true)
-      }
-    }, [user]);
-
+        }
+      }, [auth, user]);
     return (
         <ApiContext.Provider value={{ signed: Boolean(auth), user, errorMessage, Logout, Login }}>
             {children}

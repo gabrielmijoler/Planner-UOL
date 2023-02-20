@@ -4,9 +4,10 @@ import logoUol from '../../Image/logouol.svg';
 import Button from '../../componentes/UI/Button';
 import { Link, useNavigate } from 'react-router-dom';
 import { ControlForm, ImageLaptop, SectionImg, SectionInputs, SubTitulo, TituloWelcome, ErrorSpan, Spanhere, Errorbutton } from './style';
-import instance from '../../api';
+import { getInstance } from '../../api';
 import Toast from '../../componentes/Toast';
 
+const instance = getInstance();
 
 
 
