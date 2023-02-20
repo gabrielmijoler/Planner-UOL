@@ -59,7 +59,7 @@ export const ApiProvider: React.FC<Props> = ({ children }) => {
         setUser(response.data.user.token);
         return  response.data.token;
         } catch (err: any) {
-        handleErrorMessage(err?.response?.data?.errors[0] ?? "Usuário ou senha inválida", 'error');
+        handleErrorMessage(err?.response?.data?.errors ?? "Usuário ou senha inválida", 'error');
         console.log(err)
       }
     };
