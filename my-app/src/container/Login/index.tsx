@@ -21,7 +21,6 @@ const Login: React.FC = () => {
     username: '',
     password: '',
   })
-  const [erroLoigin, setErroLoigin] = useState<boolean>(false)
 
   const validationLogin: any = async (e: { preventDefault: () => void; }) => {
     e.preventDefault()
@@ -45,7 +44,6 @@ const Login: React.FC = () => {
                 value={loginItem.username}
                 onChange={(e) => setLoginItem({ ...loginItem, username: e })}
                 placeholder='user name'
-                error={erroLoigin}
               />
               <Imagem empty={loginItem.username?.length > 0} src={iconUser} alt="" />
             </ControlInput>
@@ -57,14 +55,11 @@ const Login: React.FC = () => {
                 size={16}
                 onChange={(e) => setLoginItem({ ...loginItem, password: e })}
                 placeholder='password'
-                error={erroLoigin}
               />
               <Imagem empty={loginItem.password?.length > 0} src={iconPassowrd} alt="" />
             </ControlInput>
 
             <SectionButton>
-              {erroLoigin && <Spanlogin>Wow, invalid username or password.<br />
-                Please, try again!</Spanlogin>}
               <Button
                 type='submit'
                 label="Log in" width={379}

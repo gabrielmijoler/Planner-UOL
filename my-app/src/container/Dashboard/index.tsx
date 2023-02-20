@@ -43,12 +43,12 @@ const Dashboard: React.FC = () => {
     }).then((response: any) => {
       setRemoveLoading(true)
       GetAll()
-      setErrorMessage({ message: "Adicionado com sucesso", type: 'success' })
-      console.log('response post:', response.data)
+      setErrorMessage({ message: "Adicionado com sucesso" && response.statusText , type: 'success' })
+      console.log('response post:', response)
     })
       .catch((err) => {
-        setErrorMessage({ message: err?.response?.data?.message ?? err?.response?.data ?? "Ocorreu um erro ao adicionar", type: 'error' })
-        console.log('error status:', err.response.data)
+        setErrorMessage({ message: err?.response?.data?.errors[0] ?? err?.response?.data ?? "Ocorreu um erro ao adicionar", type: 'error' })
+        console.log('error status:', err)
       })
   }
 
@@ -61,7 +61,7 @@ const Dashboard: React.FC = () => {
         console.log('response delete:', response.data)
         console.log(response)
       }).catch((err) => {
-        setErrorMessage({ message: err?.response?.data?.message ?? err?.response?.data ?? "Ocorreu um erro ao deletar todos", type: 'error' })
+        setErrorMessage({ message: err?.response?.data?.erros[0] ?? err?.response?.data ?? "Ocorreu um erro ao deletar todos", type: 'error' })
         console.log(err)
       })
     }
@@ -80,7 +80,7 @@ const Dashboard: React.FC = () => {
       })
       .catch((err) => {
         console.log(err)
-        setErrorMessage({ message: err?.response?.data?.message ?? err?.response?.data ?? "Ocorreu um erro ao deletar", type: 'error' })
+        setErrorMessage({ message: err?.response?.data?.erros[0] ?? err?.response?.data ?? "Ocorreu um erro ao deletar", type: 'error' })
         console.log('error status:', err.response.status)
       })
   }

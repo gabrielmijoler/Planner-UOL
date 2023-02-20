@@ -59,7 +59,8 @@ export const ApiProvider: React.FC<Props> = ({ children }) => {
         setUser(response.data.user.token);
         return  response.data.token;
         } catch (err: any) {
-        handleErrorMessage(err?.response?.data?.message ?? "Usuário ou senha inválida", 'error');
+        handleErrorMessage(err?.response?.data?.errors[0] ?? "Usuário ou senha inválida", 'error');
+        console.log(err)
       }
     };
     
@@ -71,7 +72,7 @@ export const ApiProvider: React.FC<Props> = ({ children }) => {
     }
 
     useEffect(() => {
-      if (localStorage.getItem('token')) {
+      if (localStorage.getItem('token')){  
           navigate("/dashboard");
           setAuth(true)
         }

@@ -67,10 +67,9 @@ const Cadastro: React.FC = () => {
           navigate("/Login")
         }, 1500);
       }
-    })
-      .catch((err: any) => {
-        console.log(err?.response.data)
-        setErrorMessage({ message: err?.response?.data?.message ?? err?.response?.data ?? "Ocorreu um erro ao cadastrar", type: 'error' })
+    }).catch((err: any) => {
+        console.log(err)
+        setErrorMessage({ message: err?.response?.data?.errors ?? err?.response?.data ?? "Ocorreu um erro ao cadastrar", type: 'error' })
       }
       );
     setSubmitError(false)
@@ -81,65 +80,48 @@ const Cadastro: React.FC = () => {
   // const maxAge = year - 100;
 
 
- 
+
   useEffect(() => {
 
   }, [itemStorage])
 
   const onBlurFirstName = () => {
-    if (itemStorage.firstname === "" || itemStorage.firstname.length <= 2) {
-      setInputNameError(true)
-    } else {
-      setInputNameError(false)
-    }
+    const FirtName = !(itemStorage.firstname !== "" || itemStorage.firstname.length > 2)
+    setInputNameError(FirtName)
   }
-  const onBlurLasttName = () => {
-    if (itemStorage.lastname === "" || itemStorage.lastname.length < 2) {
-      setInputLastnameError(true)
-    } else {
-      setInputLastnameError(false)
-    }
 
+  const onBlurLasttName = () => {
+    const LastName = !(itemStorage.lastname !== "" || itemStorage.lastname.length > 2)
+    setInputLastnameError(LastName)
   }
+
   const onBlurCountry = () => {
-    if (itemStorage.country === "" || itemStorage.country.length < 2) {
-      setInputCountryError(true)
-    } else {
-      setInputCountryError(false)
-    }
+    const Country = !(itemStorage.country !== "" || itemStorage.country.length > 2)
+    setInputCountryError(Country)
   }
   const onBlurCity = () => {
-    if (itemStorage.city === "" || itemStorage.city.length < 2) {
-      setInputCityError(true)
-    } else {
-      setInputCityError(false)
-    }
+    const City = !(itemStorage.city !== "")
+    setInputCityError(City)
   }
+
   const onBlurBirthdate = () => {
-    if (itemStorage.birthdate === "") {
-      setInputBirthError(true)
-    } else {
-      setInputBirthError(false)
-    }
+    const Birthdate = !(itemStorage.birthdate !== "")
+    setInputBirthError(Birthdate)
   }
+
   const onBlurEmail = () => {
     const emailRegex = (/^[a-zA-Z0-9.!#$%&'*+=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$/);
     const emailValidade = !(emailRegex.test(itemStorage.email) && itemStorage.email !== '')
     setInputEmail(emailValidade)
   }
+
   const onBlurPassword = () => {
-    if (itemStorage.password === "" || (itemStorage.password).length < 6) {
-      setInputpassword(true)
-    } else {
-      setInputpassword(false)
-    }
+    const Password = !(itemStorage.password !== "" || (itemStorage.password).length > 6)
+    setInputpassword(Password)
   }
   const onBlurConfirmPassword = () => {
-    if (itemStorage.password !== itemStorage.confirpassword || itemStorage.confirpassword === "") {
-      setInputpasswconf(true)
-    } else {
-      setInputpasswconf(false)
-    }
+    const ConfirmPassword = !(itemStorage.password === itemStorage.confirpassword || itemStorage.confirpassword !== "")
+    setInputpasswconf(ConfirmPassword)
   }
 
 
