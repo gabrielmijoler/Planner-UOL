@@ -99,13 +99,12 @@ export const DivButton = styled.div`
 
 
 export const Pvazia = styled.div`
-    width: 512px;
-    height: 85px;
+    height: 10px;
     border-radius: 10px;
 `;
 
 export const Spanvazio = styled.span`
-    position: absolute;
+    position: sticky;
     width: 85px;
     height: 75px;
     display: flex;
@@ -190,4 +189,12 @@ export const TituloModal = styled.p`
     font-weight: 700;
     font-size: 23px;
     line-height: 70px;
+`;
+
+export const DivScroll = styled.div`
+    overflow-y: scroll;
+    height: 100vh;
+`;
+export const DiVazia = styled.div`
+    width: 100%;
 `;

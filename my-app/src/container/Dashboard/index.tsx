@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Containerlist, ContainerWeek, ControlDashboard, DivButton, DivButtonModal, DivErro, DivInputs, DivPai, Head, Imagemlogo, InputWeeks, 
+import { Containerlist, ContainerWeek, ControlDashboard, DiVazia, DivButton, DivButtonModal, DivErro, DivInputs, DivPai, DivScroll, Head, Imagemlogo, InputWeeks, 
   Pvazia, SectionWeek, Spanvazio, TituloModal } from './style';
 import Header from '../../componentes/Header';
 import Button from '../../componentes/UI/Button';
@@ -163,12 +163,12 @@ const Dashboard: React.FC = () => {
             </SectionWeek>
           )}
         </ContainerWeek>
-        <div style={{overflow: 'scrol'}}>
+        <DivScroll>
         <Toast item={errorMessage} />
-          <div>
+          <DiVazia style={{width:'100%'}}>
             <Spanvazio>Time</Spanvazio>
             <Pvazia />
-          </div>
+          </DiVazia>
           {removeLoading && <Loading/>}
           {list?.events?.length > 0 ? (
             list?.events?.map((item: any, idx: number) => {
@@ -206,7 +206,7 @@ const Dashboard: React.FC = () => {
             </DivErro>
             )
           }
-          </div>
+          </DivScroll>
           <Imagemlogo src={dashlogo}></Imagemlogo>
       </Containerlist>
     </DivPai>

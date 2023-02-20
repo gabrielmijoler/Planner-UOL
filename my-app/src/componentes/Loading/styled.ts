@@ -9,7 +9,7 @@ export const DivLoading = styled.div`
 }
 .ldio-8ps1aqm8jzn div {
   left: 50%;
-  top: 48px;
+  top: 50%;
   position: absolute;
   animation: ldio-8ps1aqm8jzn linear 1s infinite;
   background: #0a0a0a;
