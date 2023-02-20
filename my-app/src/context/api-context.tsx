@@ -45,12 +45,12 @@ export const ApiProvider: React.FC<Props> = ({ children }) => {
         });
         setAuth(true)
         if (response.data.token) {
-          handleErrorMessage("Usuário cadastrado com sucesso", 'success');
+          handleErrorMessage("Login feito com sucesso", 'success');
           setTimeout(() => {
             navigate("/dashboard");
           }, 1500);
         }
-  
+        
         const token = response.data.token;
         localStorage.setItem('token', token);
         localStorage.setItem("logUser", JSON.stringify(response.data.user));
@@ -71,6 +71,13 @@ export const ApiProvider: React.FC<Props> = ({ children }) => {
         navigate('/login')
         setAuth(false)
     }
+
+    useEffect(() => {
+      if (localStorage.getItem('token')) {
+          navigate("/dashboard");
+          setAuth(true)
+      }
+    }, [user]);
 
     return (
         <ApiContext.Provider value={{ signed: Boolean(auth), user, errorMessage, Logout, Login }}>

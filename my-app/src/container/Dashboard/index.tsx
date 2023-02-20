@@ -10,6 +10,7 @@ import FormCard from '../../componentes/FormCard';
 import { getBackgroundColor } from '../../util';
 import instance from '../../api';
 import Toast from '../../componentes/Toast';
+import Modal from '../../componentes/Modal';
 
 
 const Dashboard: React.FC = () => {
@@ -28,6 +29,8 @@ const Dashboard: React.FC = () => {
   const [buttonSection, setButtonsection] = useState("monday");
   const [list, setList] = useState<any>([])
   const [errorMessage, setErrorMessage] = useState({ message: '', type: '' });
+  const [isModelVisible, setIsModelVisible] = useState(false)
+  
 
   const PostCard = async () => {
     await instance.post('events', {
@@ -57,6 +60,10 @@ const Dashboard: React.FC = () => {
         setErrorMessage({ message: err?.response?.data?.message ?? err?.response?.data ?? "Ocorreu um erro ao deletar todos", type: 'error' })
         console.log(err)
       })
+  }
+
+  const DeleteModal = async (id: string) => {
+      setIsModelVisible(true)
   }
 
   const DeleteIDCard = async (id: string) => {
@@ -90,6 +97,7 @@ const Dashboard: React.FC = () => {
 
   return (
     <DivPai>
+      {isModelVisible ? <Modal onClose={()=>setIsModelVisible(false)}><h2>Deseja remover o agendamento ?</h2></Modal> : null}
       <Header />
       <Head>
         <DivInputs>
@@ -159,7 +167,7 @@ const Dashboard: React.FC = () => {
             list?.events?.map((item: any, idx: number) => {
               return (
                 <ControlDashboard key={idx}>
-                  <FormCard item={item} Click={() => DeleteIDCard(item._id)} />
+                  <FormCard item={item} Click={() => DeleteModal(item._id)} />
                 </ControlDashboard>
               )
             })) : (
