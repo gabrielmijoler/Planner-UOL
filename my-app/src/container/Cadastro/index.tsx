@@ -35,15 +35,6 @@ const Cadastro: React.FC = () => {
   const [SubmitError, setSubmitError] = useState(false)
   const [errorMessage, setErrorMessage] = useState({ message: '', type: '' });
 
-
-  // const armazenar = (chave: string, valor: any) => {
-  //   localStorage.setItem(chave, JSON.stringify(valor))
-  // }
-
-  // const armazenarFullname = (chave: string, valor: any) => {
-  //   localStorage.setItem(chave, JSON.stringify(valor))
-  // }
-
   const submit = async (e?: any) => {
     e.preventDefault()
     if (itemStorage.firstname !== "" || itemStorage.lastname !== "" || itemStorage.birthdate !== "" || itemStorage.country !== "" ||

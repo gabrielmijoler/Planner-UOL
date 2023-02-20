@@ -1,25 +1,58 @@
-import { getInstance } from "../api";
+import Cadastro from '../container/Cadastro/index';
 
 
-export const axios = require('axios');
+describe('signUpUser', () => {
+  test('should return success message if user is created', async () => {
+    // Arrange
+    const userData = {
+      firstName: 'John',
+      lastName: 'Doe',
+      email: 'johndoe@example.com',
+      password: 'password123',
+      confirmPassword: 'password123',
+      birthDate: '2000-01-01',
+      city: 'New York',
+      country: 'USA',
+    };
+    // Mock axios post request
+    const mockedPost = jest.fn().mockResolvedValue({ data: { _id: 'user_id' } });
+    const mockedInstance = jest.fn(() => ({ post: mockedPost }));
+    const expectedMessage = { message: 'Usuário cadastrado com sucesso', type: 'success' };
 
-const instance = getInstance();
+    // Act
+    const result = await Cadastro(userData, mockedInstance);
 
-const USER_ID = 1;
-
-describe('API test', () => {
-  test('should get user by id', async () => {
-    const response = await instance.get(`/users/${USER_ID}`);
-
-    expect(response.status).toBe(200);
-    expect(response.data.id).toBe(USER_ID);
+    // Assert
+    expect(result).toEqual(expectedMessage);
+    expect(mockedInstance).toHaveBeenCalledWith({ baseURL: 'https://latam-challenge-2.deta.dev/api/v1/', headers: { 'Content-Type': 'application/json' } });
+    expect(mockedPost).toHaveBeenCalledWith('users/sign-up', userData);
   });
 
-  test('should handle error', async () => {
-    try {
-      await instance.get(`users/`);
-    } catch (error: any) {
-      expect(error.response.status).toBe(400);
-    }
+  test('should return error message if user is not created', async () => {
+    // Arrange
+    const userData = {
+      firstName: 'John',
+      lastName: 'Doe',
+      email: 'johndoe@example.com',
+      password: 'password123',
+      confirmPassword: 'password123',
+      birthDate: '2000-01-01',
+      city: 'New York',
+      country: 'USA',
+    };
+    // Mock axios post request
+    const errorMessage = 'Erro ao cadastrar usuário';
+    const errorResponse = { response: { data: errorMessage } };
+    const mockedPost = jest.fn().mockRejectedValue(errorResponse);
+    const mockedInstance = jest.fn(() => ({ post: mockedPost }));
+    const expectedMessage = { message: errorMessage, type: 'error' };
+
+    // Act
+    const result = await Cadastro(userData, mockedInstance);
+
+    // Assert
+    expect(result).toEqual(expectedMessage);
+    expect(mockedInstance).toHaveBeenCalledWith({ baseURL: 'https://latam-challenge-2.deta.dev/api/v1/', headers: { 'Content-Type': 'application/json' } });
+    expect(mockedPost).toHaveBeenCalledWith('users/sign-up', userData);
   });
 });
