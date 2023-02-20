@@ -5,15 +5,14 @@ import iconPassowrd from '../../Image/iconPassowrd.svg';
 import iconUser from '../../Image/iconUser.svg';
 import { ControlForm, ImageLaptop, SectionImg, SectionInputs, Spanhere, SubTitulo, TituloWelcome } from '../Cadastro/style';
 import Button from '../../componentes/UI/Button';
-import { Link, useNavigate } from 'react-router-dom';
-import { ControlInput, Imagem, P, SectionButton, Spanlogin } from './style';
+import { Link } from 'react-router-dom';
+import { ControlInput, Imagem, P, SectionButton } from './style';
 import { ApiContext } from '../../context/api-context';
 import Toast from '../../componentes/Toast';
 
 
 
 const Login: React.FC = () => {
-  // let navigate = useNavigate();
   const { Login } = useContext(ApiContext)
   const { errorMessage} = useContext(ApiContext)
   

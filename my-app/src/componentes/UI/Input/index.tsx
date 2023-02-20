@@ -1,4 +1,3 @@
-import React, { useEffect, useState } from 'react';
 import { ConteinerInput, InputStyle, LabelInput } from './style';
 
 
@@ -46,7 +45,6 @@ export default function Input({
   id,
   error,
   padding,
-  onClick,
 }: Props) {
 
   return (  
@@ -70,7 +68,6 @@ export default function Input({
         marginLeft={marginLeft}
         onBlur={event => onBlur && onBlur(event.target.value)}
         error={error}
-        onClick={event => onClick}
       />
     </ConteinerInput>
   );

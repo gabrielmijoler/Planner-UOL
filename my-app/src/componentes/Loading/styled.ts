@@ -8,7 +8,7 @@ export const DivLoading = styled.div`
   100% { opacity: 0 }
 }
 .ldio-8ps1aqm8jzn div {
-  left: 94px;
+  left: 50%;
   top: 48px;
   position: absolute;
   animation: ldio-8ps1aqm8jzn linear 1s infinite;
@@ -80,6 +80,7 @@ export const DivLoading = styled.div`
   transform: translateZ(0) scale(1);
   backface-visibility: hidden;
   transform-origin: 0 0; /* see note above */
+  z-index: 99;
 }
 .ldio-8ps1aqm8jzn div { box-sizing: content-box; }
 `;

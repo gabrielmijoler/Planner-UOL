@@ -5,8 +5,6 @@ import Header from '../../componentes/Header';
 import Button from '../../componentes/UI/Button';
 import Input from '../../componentes/UI/Input';
 import dashlogo from "../../Image/dashlogo.svg"
-import iconAdd from "../../Image/iconAdd.svg"
-import iconNegativo from "../../Image/iconReduce.svg"
 import FormCard from '../../componentes/FormCard';
 import { getBackgroundColor } from '../../util';
 import { getInstance } from '../../api';
@@ -165,6 +163,7 @@ const Dashboard: React.FC = () => {
             </SectionWeek>
           )}
         </ContainerWeek>
+        <div style={{overflow: 'scrol'}}>
         <Toast item={errorMessage} />
           <div>
             <Spanvazio>Time</Spanvazio>
@@ -207,6 +206,7 @@ const Dashboard: React.FC = () => {
             </DivErro>
             )
           }
+          </div>
           <Imagemlogo src={dashlogo}></Imagemlogo>
       </Containerlist>
     </DivPai>
