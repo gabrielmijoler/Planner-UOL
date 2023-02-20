@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
-import { Containerlist, ContainerWeek, ControlDashboard, DivButton, DivErro, DivInputs, DivPai, Head, Imagemlogo, InputWeeks, Pvazia, SectionWeek, Spanvazio } from './style';
+import { Containerlist, ContainerWeek, ControlDashboard, DivButton, DivButtonModal, DivErro, DivInputs, DivPai, Head, Imagemlogo, InputWeeks, 
+  Pvazia, SectionWeek, Spanvazio, TituloModal } from './style';
 import Header from '../../componentes/Header';
 import Button from '../../componentes/UI/Button';
 import Input from '../../componentes/UI/Input';
@@ -70,7 +71,7 @@ const Dashboard: React.FC = () => {
     await instance.delete(`events/${id}`)
       .then((response: any) => {
         GetAll()
-        setErrorMessage({ message: "Deletado com sucesso", type: 'success' })
+        setErrorMessage({ message: "Removido com sucesso", type: 'success' })
         console.log('response deleteid:', response)
       })
       .catch((err) => {
@@ -97,7 +98,6 @@ const Dashboard: React.FC = () => {
 
   return (
     <DivPai>
-      {isModelVisible ? <Modal onClose={()=>setIsModelVisible(false)}><h2>Deseja remover o agendamento ?</h2></Modal> : null}
       <Header />
       <Head>
         <DivInputs>
@@ -168,6 +168,29 @@ const Dashboard: React.FC = () => {
               return (
                 <ControlDashboard key={idx}>
                   <FormCard item={item} Click={() => DeleteModal(item._id)} />
+                  {isModelVisible ? 
+                  <Modal onClose={()=>setIsModelVisible(false)}>
+                    <TituloModal>Deseja remover o agendamento?</TituloModal>
+                    <DivButtonModal>
+                      <Button
+                        label='Sim'
+                        onClick={()=>
+                          {DeleteIDCard(item._id); setIsModelVisible(false); }
+                        }
+                        background={'#00BA88'}
+                        width={70}
+                        height={32}
+                      />
+                      <Button
+                        label='Não'
+                        onClick={()=>setIsModelVisible(false)}
+                        background={'#FF3D1F'}
+                        width={70}
+                        height={32}
+                      />
+                    </DivButtonModal>
+                  </Modal> 
+                  : null}
                 </ControlDashboard>
               )
             })) : (

@@ -177,3 +177,17 @@ export const DivErro = styled.div`
    display: flex;
    padding: 0 0 0 1.5%;
 `;
+
+export const DivButtonModal = styled.div`
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+`;
+export const TituloModal = styled.p`
+    display: flex;
+    justify-content: center;
+    font-family: 'Mulish';
+    font-weight: 700;
+    font-size: 23px;
+    line-height: 70px;
+`;

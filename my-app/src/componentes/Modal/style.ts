@@ -16,16 +16,17 @@ export const DivModal = styled.div`
 `;
 
 export const Div = styled.div`
-    background-color: #FFFFFF;
+    background-color: #f5f7f9;
     color: #000;
-    width: 60%;
+    width: 40%;
     height: 30%;
     border-radius: 20px;
+    box-shadow: 0px 4px 24px #ff8000;
 `;
 
 export const DivChildren = styled.div`
-    display: flex;
 `;
+
 
 export const Button = styled.button`
     background-color: transparent;
@@ -33,8 +34,8 @@ export const Button = styled.button`
     outline: none;
     width: 32px;
     height: 32px;
-    right: calc(-100% + 30px);
-    top: 6px;
+    right: calc(-100% + 45px);
+    top: 5px;
     cursor: pointer;
     display: flex;
     position: relative;
