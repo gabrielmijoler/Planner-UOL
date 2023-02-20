@@ -5,8 +5,8 @@ import { ConteinerInput, InputStyle, LabelInput } from './style';
 type Props = {
   id?: string;
   label?: string;
-  onChange: (str: string) => void;
   onBlur?: (str: string) => void;
+  onChange: (str: string) => void;
   placeholder: string;
   value?: string;
   type: 'text' | 'number' | 'password' | 'email' | 'time' | 'date';
@@ -46,6 +46,7 @@ export default function Input({
   id,
   error,
   padding,
+  onClick,
 }: Props) {
 
   return (  
@@ -69,6 +70,7 @@ export default function Input({
         marginLeft={marginLeft}
         onBlur={event => onBlur && onBlur(event.target.value)}
         error={error}
+        onClick={event => onClick}
       />
     </ConteinerInput>
   );
