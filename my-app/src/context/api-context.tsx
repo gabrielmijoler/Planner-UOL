@@ -76,7 +76,7 @@ export const ApiProvider: React.FC<Props> = ({ children }) => {
           navigate("/dashboard");
           setAuth(true)
         }
-      }, [auth, user]);
+      }, [auth, navigate, user]);
     return (
         <ApiContext.Provider value={{ signed: Boolean(auth), user, errorMessage, Logout, Login }}>
             {children}

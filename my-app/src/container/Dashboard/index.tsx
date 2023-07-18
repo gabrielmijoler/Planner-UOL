@@ -82,6 +82,7 @@ const Dashboard: React.FC = () => {
         console.log('error status:', err.response.status)
       })
   }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   const GetAll = async () => {
     instance.get(`events?dayOfWeek=${buttonSection}`)
     .then((response: { data: React.SetStateAction<never[]> }) => { console.log("GetAll",response); setList(response.data) })
@@ -99,7 +100,7 @@ const Dashboard: React.FC = () => {
       setRemoveLoading(false);
     }, 1800);
     return () => clearTimeout(timeoutId);
-  }, [buttonSection, selection, instance, removeLoading])
+  }, [buttonSection, selection, removeLoading, GetAll])
 
   return (
     <DivPai>

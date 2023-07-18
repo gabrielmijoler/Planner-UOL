@@ -38,7 +38,7 @@ import axios from 'axios';
 
   useEffect(() => {
     getCity()
-  }, [])
+  }, [getCity])
 
   return (
     <>
